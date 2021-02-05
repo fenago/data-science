@@ -28,8 +28,6 @@ itsdangerous==1.1.0
 jinja2==2.10.3
 joblib==0.14.1
 jsonschema==3.2.0
-jupyter-client==5.3.4
-jupyter-core==4.6.1
 kiwisolver==1.1.0
 lazy-object-proxy==1.4.3
 lime==0.1.1.36
@@ -67,7 +65,6 @@ pytest==5.3.3
 python-dateutil==2.8.1
 pytz==2019.3
 pywavelets==1.1.1
-pyyaml==5.3
 pyzmq==18.1.1
 requests==2.22.0
 scikit-image==0.16.2
