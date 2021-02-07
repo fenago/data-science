@@ -55,7 +55,7 @@ objectives of data science, a flexible programming language that
 effectively combines interactivity with computing power and speed is
 necessary. This is where the Python programming language meets the needs
 of data science and, as mentioned in *Lab 1*, *Introduction to Data
-Science in Python*, we will be using Python in this book.
+Science in Python*, we will be using Python in this course.
 
 The need to develop models to make predictions and to gain insights for
 decisionmaking cuts across many industries. Data science is, therefore,
@@ -275,7 +275,7 @@ variable of interest. What happens then is that the transformed variable
 tends to have a linear relationship with the other untransformed
 variables, enabling the use of linear regression to fit the data. This
 will be illustrated in practice on the dataset being analyzed later in
-the exercises of the book.
+the exercises of the course.
 
 
 
@@ -559,7 +559,7 @@ The following steps will help you to complete this exercise:
     model that learns the relationships between the variables), and the
     rest of the data to test your model (that is, to see how well your
     new model can make predictions when given new data). You will use
-    train-test splits throughout this book, and the concept will be
+    train-test splits throughout this course, and the concept will be
     explained in more detail in *Lab 7, The Generalization Of
     Machine Learning Models*.
 

@@ -22,208 +22,6 @@ formats using `pandas`. You will also have had your first
 taste of training a model using scikit-learn.
 
 
-Introduction
-============
-
-
-Welcome to the fascinating world of data science! We are sure you must
-be pretty excited to start your journey and learn interesting and
-exciting techniques and algorithms. This is exactly what this book is
-intended for.
-
-But before diving into it, let\'s define what data science is: it is a
-combination of multiple disciplines, including business, statistics, and
-programming, that intends to extract meaningful insights from data by
-running controlled experiments similar to scientific research.
-
-The objective of any data science project is to derive valuable
-knowledge for the business from data in order to make better decisions.
-It is the responsibility of data scientists to define the goals to be
-achieved for a project. This requires business knowledge and expertise.
-In this book, you will be exposed to some examples of data science tasks
-from real-world datasets.
-
-Statistics is a mathematical field used for analyzing and finding
-patterns from data. A lot of the newest and most advanced techniques
-still rely on core statistical approaches. This book will present to you
-the basic techniques required to understand the concepts we will be
-covering.
-
-With an exponential increase in data generation, more computational
-power is required for processing it efficiently. This is the reason why
-programming is a required skill for data scientists. You may wonder why
-we chose Python for this Workshop. That\'s because Python is one of the
-most popular programming languages for data science. It is extremely
-easy to learn how to code in Python thanks to its simple and easily
-readable syntax. It also has an incredible number of packages available
-to anyone for free, such as pandas, scikit-learn, TensorFlow, and
-PyTorch. Its community is expanding at an incredible rate, adding more
-and more new functionalities and improving its performance and
-reliability. It\'s no wonder companies such as Facebook, Airbnb, and
-Google are using it as one of their main stacks. No prior knowledge of
-Python is required for this book. If you do have some experience with
-Python or other programming languages, then this will be an advantage,
-but all concepts will be fully explained, so don\'t worry if you are new
-to programming.
-
-
-Application of Data Science
-===========================
-
-
-As mentioned in the introduction, data science is a multidisciplinary
-approach to analyzing and identifying complex patterns and extracting
-valuable insights from data. Running a data science project usually
-involves multiple steps, including the following:
-
-1.  Defining the business problem to be solved
-2.  Collecting or extracting existing data
-3.  Analyzing, visualizing, and preparing data
-4.  Training a model to spot patterns in data and make predictions
-5.  Assessing a model\'s performance and making improvements
-6.  Communicating and presenting findings and gained insights
-7.  Deploying and maintaining a model
-
-As its name implies, data science projects require data, but it is
-actually more important to have defined a clear business problem to
-solve first. If it\'s not framed correctly, a project may lead to
-incorrect results as you may have used the wrong information, not
-prepared the data properly, or led a model to learn the wrong patterns.
-So, it is absolutely critical to properly define the scope and objective
-of a data science project with your stakeholders.
-
-There are a lot of data science applications in real-world situations or
-in business environments. For example, healthcare providers may train a
-model for predicting a medical outcome or its severity based on medical
-measurements, or a high school may want to predict which students are at
-risk of dropping out within a year\'s time based on their historical
-grades and past behaviors. Corporations may be interested to know the
-likelihood of a customer buying a certain product based on his or her
-past purchases. They may also need to better understand which customers
-are more likely to stop using existing services and churn. These are
-examples where data science can be used to achieve a clearly defined
-goal, such as increasing the number of patients detected with a heart
-condition at an early stage or reducing the number of customers
-canceling their subscriptions after six months. That sounds exciting,
-right? Soon enough, you will be working on such interesting projects.
-
-
-
-What Is Machine Learning?
--------------------------
-
-When we mention data science, we usually think about machine learning,
-and some people may not understand the difference between them. Machine
-learning is the field of building algorithms that can learn patterns by
-themselves without being programmed explicitly. So machine learning is a
-family of techniques that can be used at the modeling stage of a data
-science project.
-
-Machine learning is composed of three different types of learning:
-
-- Supervised learning
-- Unsupervised learning
-- Reinforcement learning
-
-
-
-### Supervised Learning
-
-Supervised learning refers to a type of task where an algorithm is
-trained to learn patterns based on prior knowledge. That means this kind
-of learning requires the labeling of the outcome (also called the
-response variable, dependent variable, or target variable) to be
-predicted beforehand. For instance, if you want to train a model that
-will predict whether a customer will cancel their subscription, you will
-need a dataset with a column (or variable) that already contains the
-churn outcome (cancel or not cancel) for past or existing customers.
-This outcome has to be labeled by someone prior to the training of a
-model. If this dataset contains 5,000 observations, then all of them
-need to have the outcome being populated. The objective of the model is
-to learn the relationship between this outcome column and the other
-features (also called independent variables or predictor variables).
-Following is an example of such a dataset:
-
-![](./images/B15019_01_01.jpg)
-
-Caption: Example of customer churn dataset
-
-The `Cancel` column is the response variable. This is the
-column you are interested in, and you want the model to predict
-accurately the outcome for new input data (in this case, new customers).
-All the other columns are the predictor variables.
-
-The model, after being trained, may find the following pattern: a
-customer is more likely to cancel their subscription after 12 months and
-if their average monthly spent is over `$50`. So, if a new
-customer has gone through 15 months of subscription and is spending \$85
-per month, the model will predict this customer will cancel their
-contract in the future.
-
-When the response variable contains a limited number of possible values
-(or classes), it is a classification problem (you will learn more about
-this in *Lab 3, Binary Classification*, and *Lab 4, Multiclass
-Classification with RandomForest*). The model will learn how to predict
-the right class given the values of the independent variables. The churn
-example we just mentioned is a classification problem as the response
-variable can only take two different values: `yes` or
-`no`.
-
-On the other hand, if the response variable can have a value from an
-infinite number of possibilities, it is called a regression problem.
-
-An example of a regression problem is where you are trying to predict
-the exact number of mobile phones produced every day for some
-manufacturing plants. This value can potentially range from 0 to an
-infinite number (or a number big enough to have a large range of
-potential values), as shown in *Figure 1.2*.
-
-![](./images/B15019_01_02.jpg)
-
-Caption: Example of a mobile phone production dataset
-
-In the preceding figure, you can see that the values for
-`Daily output` can take any value from `15000` to
-more than `50000`. This is a regression problem, which we will
-look at in *Lab 2, Regression*.
-
-
-
-### Unsupervised Learning
-
-Unsupervised learning is a type of algorithm that doesn\'t require any
-response variables at all. In this case, the model will learn patterns
-from the data by itself. You may ask what kind of pattern it can find if
-there is no target specified beforehand.
-
-This type of algorithm usually can detect similarities between variables
-or records, so it will try to group those that are very close to each
-other. This kind of algorithm can be used for clustering (grouping
-records) or dimensionality reduction (reducing the number of variables).
-Clustering is very popular for performing customer segmentation, where
-the algorithm will look to group customers with similar behaviors
-together from the data. *Lab 5*, *Performing Your First Cluster
-Analysis*, will walk you through an example of clustering analysis.
-
-
-
-### Reinforcement Learning
-
-Reinforcement learning is another type of algorithm that learns how to
-act in a specific environment based on the feedback it receives. You may
-have seen some videos where algorithms are trained to play Atari games
-by themselves. Reinforcement learning techniques are being used to teach
-the agent how to act in the game based on the rewards or penalties it
-receives from the game.
-
-For instance, in the game Pong, the agent will learn to not let the ball
-drop after multiple rounds of training in which it receives high
-penalties every time the ball drops.
-
-Note
-
-Reinforcement learning algorithms are out of scope and will not be
-covered in this book.
 
 
 Overview of Python
@@ -243,7 +41,7 @@ Types of Variable
 In Python, you can handle and manipulate different types of variables.
 Each has its own specificities and benefits. We will not go through
 every single one of them but rather focus on the main ones that you will
-have to use in this book. For each of the following code examples, you
+have to use in this course. For each of the following code examples, you
 can run the code in Google Colab to view the given output.
 
 
@@ -301,15 +99,6 @@ You should get the following output:
 
 Caption: Printing the two text variables
 
-Python also provides an interface called f-strings for printing text
-with the value of defined variables. It is very handy when you want to
-print results with additional text to make it more readable and
-interpret results. It is also quite common to use f-strings to print
-logs. You will need to add `f` before the quotes (or double
-quotes) to specify that the text will be an f-string. Then you can add
-an existing variable inside the quotes and display the text with the
-value of this variable. You need to wrap the variable with curly
-brackets, `{}`.
 
 For instance, if we want to print `Text:` before the values of
 `var3` and `var4`, we will write the following code:
@@ -528,13 +317,13 @@ Exercise 1.01: Creating a Dictionary That Will Contain Machine Learning Algorith
 
 In this exercise, we will create a dictionary using Python that will
 contain a collection of different machine learning algorithms that will
-be covered in this book.
+be covered in this course.
 
 The following steps will help you complete the exercise:
 
 Note
 
-Every exercise and activity in this book is to be executed on Google
+Every exercise and activity in this course is to be executed on Google
 Colab.
 
 1.  Open on a new Colab notebook.
@@ -1131,7 +920,7 @@ Caption: Predictions of the trained Random Forest model
 Finally, we want to assess the model\'s performance by comparing its
 predictions to the actual values of the target variable. There are a lot
 of different metrics that can be used for assessing model performance,
-and you will learn more about them later in this book. For now, though,
+and you will learn more about them later in this course. For now, though,
 we will just use a metric called **accuracy**. This metric calculates
 the ratio of correct predictions to the total number of observations:
 
@@ -1350,7 +1139,7 @@ general. We also learned the different types of machine learning
 algorithms, including supervised and unsupervised, as well as regression
 and classification. We had a quick introduction to Python and how to
 manipulate the main data structures (lists and dictionaries) that will
-be used in this book.
+be used in this course.
 
 Then we walked you through what a DataFrame is and how to create one by
 loading data from different file formats using the famous pandas
@@ -1358,7 +1147,7 @@ package. Finally, we learned how to use the sklearn package to train a
 machine learning model and make predictions with it.
 
 This was just a quick glimpse into the fascinating world of data
-science. In this book, you will learn much more and discover new
+science. In this course, you will learn much more and discover new
 techniques for handling data science projects from end to end.
 
 The next lab will show you how to perform a regression task on a

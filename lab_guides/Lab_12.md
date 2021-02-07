@@ -1743,7 +1743,7 @@ handle and fix some of the most frequent issues (duplicate rows, type
 conversion, value replacement, and missing values) using
 `pandas`\' APIs. Finally, we went through several feature engineering techniques.
 
-The next lab opens a new part of this book that presents data
+The next lab opens a new part of this course that presents data
 science use cases end to end. *Lab 13*, *Imbalanced Datasets*, will
 walk you through an example of an imbalanced dataset and how to deal
 with such a situation.

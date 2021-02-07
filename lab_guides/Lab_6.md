@@ -290,7 +290,7 @@ that give rise to different loss functions. Two of these are:
 - Manhattan distance
 - Euclidean distance
 
-There are various loss functions for regression, but in this book, we
+There are various loss functions for regression, but in this course, we
 will be looking at two of the commonly used loss functions for
 regression, which are:
 

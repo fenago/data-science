@@ -1965,17 +1965,6 @@ You should get the following output:
 
 Caption: Scatter plot of the standardized data
 
-k-means results are very different from the standardized data. Now we
-can see that there are two main clusters (blue and red) and their
-boundaries are not straight vertical lines anymore but diagonal. So,
-k-means is actually taking into consideration both axes now. The orange
-cluster contains much fewer data points compared to previous iterations,
-and it seems it is grouping all the extreme outliers with high values
-together. If your project was about detecting anomalies, you would have
-found a way here to easily separate outliers from \"normal\"
-observations.
-
-
 
 Exercise 5.06: Standardizing the Data from Our Dataset
 ------------------------------------------------------

@@ -15,52 +15,6 @@ importance. You will use a partial dependence plot to analyze single
 variables and make use of the lime package for local interpretation.
 
 
-Introduction
-============
-
-
-In the previous lab, you saw how to find the optimal hyperparameters
-of some of the most popular machine learning algorithms in order to get
-better predictive performance (that is, more accurate predictions).
-
-Machine learning algorithms are always referred to as black box where we
-can only see the inputs and outputs and the implementation inside the
-algorithm is quite opaque, so people don\'t know what is happening
-inside.
-
-With each day that passes, we can sense the elevated need for more
-transparency in machine learning models. In the last few years, we have
-seen some cases where algorithms have been accused of discriminating
-against groups of people. For instance, a few years ago, a
-not-for-profit news organization called ProPublica highlighted bias in
-the COMPAS algorithm, built by the Northpointe company. The objective of
-the algorithm is to assess the likelihood of re-offending for a
-criminal. It was shown that the algorithm was predicting a higher level
-of risk for specific groups of people based on their demographics rather
-than other features. This example highlighted the importance of
-interpreting the results of your model and its logic properly and
-clearly.
-
-Luckily, some machine learning algorithms provide methods to understand
-the parameters they learned for a given task and dataset. There are also
-some functions that are model-agnostic and can help us to better
-understand the predictions made. So, there are different techniques that
-are either model-specific or model-agnostic for interpreting a model.
-
-These techniques can also differ in their scope. In the literature, we
-either have a global or local interpretation. A global interpretation
-means we are looking at the variables for all observations from a
-dataset and we want to understand which features have the biggest
-overall influence on the target variable. For instance, if you are
-predicting customer churn for a telco company, you may find the most
-important features for your model are customer usage and the average
-monthly amount paid. Local interpretation, on the other hand, focuses
-only on a single observation and analyzes the impact of the different
-variables. We will look at a single specific case and see what led the
-model to make its final prediction. For example, you will look at a
-specific customer who is predicted to churn and will discover that they
-usually buy the new iPhone model every year, in September.
-
 In this lab, we will go through some techniques on how to interpret
 your models or their results.
 

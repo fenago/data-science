@@ -19,54 +19,6 @@ regression function and analyze classification metrics and formulate
 action plans for the improvement of the model.
 
 
-Introduction
-============
-
-
-In previous labs, where an introduction to machine learning was
-covered, you were introduced to two broad categories of machine
-learning; supervised learning and unsupervised learning. Supervised
-learning can be further divided into two types of problem cases,
-regression and classification. In the last lab, we covered
-regression problems. In this lab, we will peek into the world of
-classification problems.
-
-Take a look at the following *Figure 3.1*:
-
-![](./images/B15019_03_01.jpg)
-
-Caption: Overview of machine learning algorithms
-
-Classification problems are the most prevalent use cases you will
-encounter in the real world. Unlike regression problems, where a real
-numbered value is predicted, classification problems deal with
-associating an example to a category. Classification use cases will take
-forms such as the following:
-
-- Predicting whether a customer will buy the recommended product
-- Identifying whether a credit transaction is fraudulent
-- Determining whether a patient has a disease
-- Analyzing images of animals and predicting whether the image is of a
-    dog, cat, or panda
-- Analyzing text reviews and capturing the underlying emotion such as
-    happiness, anger, sorrow, or sarcasm
-
-If you observe the preceding examples, there is a subtle difference
-between the first three and the last two. The first three revolve around
-binary decisions:
-
-- Customers can either buy the product or not.
-- Credit card transactions can be fraudulent or legitimate.
-- Patients can be diagnosed as positive or negative for a disease.
-
-Use cases that align with the preceding three genres where a binary
-decision is made are called binary classification problems. Unlike the
-first three, the last two associate an example with multiple classes or
-categories. Such problems are called multiclass classification problems.
-This lab will deal with binary classification problems. Multiclass
-classification will be covered next in *Lab 4*, *Multiclass
-Classification with RandomForest*.
-
 
 Understanding the Business Context
 ==================================
@@ -88,45 +40,6 @@ whether the targeted customers really bought the term deposits or not.
 Equipped with the historical data, you have set out on the task to
 identify the customers with the highest propensity (an inclination) to
 buy term deposits.
-
-
-
-Business Discovery
-------------------
-
-The first process when embarking on a data science problem like the
-preceding is the business discovery process. This entails understanding
-various drivers influencing the business problem. Getting to know the
-business drivers is important as it will help in formulating hypotheses
-about the business problem, which can be verified during the
-**exploratory data analysis** (**EDA**). The verification of hypotheses
-will help in formulating intuitions for feature engineering, which will
-be critical for the veracity of the models that we build.
-
-Let\'s understand this process in detail from the context of our use
-case. The problem statement is to identify those customers who have a
-propensity to buy term deposits. As you might be aware, term deposits
-are bank instruments where your money will be locked for a certain
-period, assuring higher interest rates than saving accounts or
-interest-bearing checking accounts. From an investment propensity
-perspective, term deposits are generally popular among risk-averse
-customers. Equipped with the business context, let\'s look at some
-questions on business factors influencing a propensity to buy term
-deposits:
-
-- Would age be a factor, with more propensity shown by the elderly?
-- Is there any relationship between employment status and the
-    propensity to buy term deposits?
-- Would the asset portfolio of a customer---that is, house, loan, or
-    higher bank balance---influence the propensity to buy?
-- Will demographics such as marital status and education influence the
-    propensity to buy term deposits? If so, how are demographics
-    correlated to a propensity to buy?
-
-Formulating questions on the business context is critical as this will
-help in arriving at various trails that we can take when we do
-exploratory analysis. We will deal with that in the next section. First,
-let\'s explore the data related to the preceding business problem.
 
 
 

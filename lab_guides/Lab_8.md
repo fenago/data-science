@@ -1125,7 +1125,7 @@ Distributions of continuous random variables are a bit more challenging
 in that we cannot calculate an exact `P(X=x)` directly because
 `X` lies on a continuum. We can, however, use integration to
 approximate probabilities between a range of values, but this is beyond
-the scope of this book. The relationship between `X` and
+the scope of this course. The relationship between `X` and
 probability is described using a probability density function,
 `P(X)`. Perhaps the most well-known continuous distribution is
 the normal distribution, which visually takes the form of a bell.
