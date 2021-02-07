@@ -12,135 +12,12 @@ implementations are demonstrated. This is to ensure that you fully
 understand the concept behind each of the strategies before jumping to
 the more automated methods.
 
-By the end of this lab, you will be able to find further predictive
-performance improvements via the systematic evaluation of estimators
-with different hyperparameters. You will successfully deploy manual,
-grid, and random search strategies to find the optimal hyperparameters.
-You will be able to parameterize **k-nearest neighbors** (**k-NN**),
-**support vector machines** (**SVMs**), ridge regression, and random
-forest classifiers to optimize model performance.
-
-
-Introduction
-============
-
-
-In previous labs, we discussed several methods to arrive at a model
-that performs well. These include transforming the data via
-preprocessing, feature engineering and scaling, or simply choosing an
-appropriate estimator (algorithm) type from the large set of possible
-estimators made available to the users of scikit-learn.
-
-Depending on which estimator you eventually select, there may be
-settings that can be adjusted to improve overall predictive performance.
-These settings are known as hyperparameters, and deriving the best
-hyperparameters is known as tuning or optimizing. Properly tuning your
-hyperparameters can result in performance improvements well into the
-double-digit percentages, so it is well worth doing in any modeling
-exercise.
-
-This lab will discuss the concept of hyperparameter tuning and will
-present some simple strategies that you can use to help find the best
-hyperparameters for your estimators.
-
-In previous labs, we have seen some exercises that use a range of
-estimators, but we haven\'t conducted any hyperparameter tuning. After
-reading this lab, we recommend you revisit these exercises, apply
-the techniques taught, and see if you can improve the results.
-
-
-What Are Hyperparameters?
-=========================
-
-
-Hyperparameters can be thought of as a set of dials and switches for
-each estimator that change how the estimator works to explain
-relationships in the data.
-
-Have a look at *Figure 8.1*:
-
-![](./images/B15019_08_01.jpg)
-
-Caption: How hyperparameters work
-
-If you read from left to right in the preceding figure, you can see that
-during the tuning process we change the value of the hyperparameter,
-which results in a change to the estimator. This in turn causes a change
-in model performance. Our objective is to find hyperparameterization
-that leads to the best model performance. This will be the *optimal*
-hyperparameterization.
-
-Estimators can have hyperparameters of varying quantities and types,
-which means that sometimes you can be faced with a very large number of
-possible hyperparameterizations to choose for an estimator.
-
-For instance, scikit-learn\'s implementation of the SVM classifier
-(`sklearn.svm.SVC`), which you will be introduced to later in
-the lab, is an estimator that has multiple possible
-hyperparameterizations. We will test out only a small subset of these,
-namely using a linear kernel or a polynomial kernel of degree 2, 3, or
-4.
-
-Some of these hyperparameters are continuous in nature, while others are
-discrete, and the presence of continuous hyperparameters means that the
-number of possible hyperparameterizations is theoretically infinite. Of
-course, when it comes to producing a model with good predictive
-performance, some hyperparameterizations are much better than others,
-and it is your job as a data scientist to find them.
-
-In the next section, we will be looking at setting these hyperparameters
-in more detail. But first, some clarification of terms.
-
-
-
-Difference between Hyperparameters and Statistical Model Parameters
--------------------------------------------------------------------
-
-In your reading on data science, particularly in the area of statistics,
-you will come across terms such as \"model parameters,\" \"parameter
-estimation,\" and \"(non)-parametric models.\" These terms relate to the
-parameters that feature in the mathematical formulation of models. The
-simplest example is that of the single variable linear model with no
-intercept term that takes the following form:
-
-![](./images/B15019_08_02.jpg)
-
-Caption: Equation for a single variable linear model
-
-Here, 𝛽 is the statistical model parameter, and if this formulation is
-chosen, it is the data scientist\'s job to use data to estimate what
-value it takes. This could be achieved using **Ordinary Least Squares**
-(**OLS**) regression modeling, or it could be achieved through a method
-called median regression.
-
-Hyperparameters are different in that they are external to the
-mathematical form. An example of a hyperparameter in this case is the
-way in which 𝛽 will be estimated (OLS, or median regression). In some
-cases, hyperparameters can change the algorithm completely (that is,
-generating a completely different mathematical form). You will see
-examples of this occurring throughout this lab.
-
-In the next section, you will be looking at how to set a hyperparameter.
 
 
 
 Setting Hyperparameters
 -----------------------
 
-In *Lab 7*, *The Generalization of Machine Learning Models*, you
-were introduced to the k-NN model for classification and you saw how
-varying k, the number of nearest neighbors, resulted in changes in model
-performance with respect to the prediction of class labels. Here, k is a
-hyperparameter, and the act of manually trying different values of k is
-a simple form of hyperparameter tuning.
-
-Each time you initialize a scikit-learn estimator, it will take on a
-hyperparameterization as determined by the values you set for its
-arguments. If you specify no values, then the estimator will take on a
-default hyperparameterization. If you would like to see how the
-hyperparameters have been set for your estimator, and what
-hyperparameters you can adjust, simply print the output of the
-`estimator.get_params()` method.
 
 For instance, say we initialize a k-NN estimator without specifying any
 arguments (empty brackets). To see the default hyperparameterization, we
@@ -239,31 +116,7 @@ now set to `15`, and `weights` is now set to
 
 
 
-A Note on Defaults
-------------------
 
-Generally, efforts have been made by the developers of machine learning
-libraries to set sensible default hyperparameters for estimators. That
-said, for certain datasets, significant performance improvements may be
-achieved through tuning.
-
-
-Finding the Best Hyperparameterization
-======================================
-
-
-The best hyperparameterization depends on your overall objective in
-building a machine learning model in the first place. In most cases,
-this is to find the model that has the highest predictive performance on
-unseen data, as measured by its ability to correctly label data points
-(classification) or predict a number (regression).
-
-The prediction of unseen data can be simulated using hold-out test sets
-or cross-validation, the former being the method used in this lab.
-Performance is evaluated differently in each case, for instance, **Mean
-Squared Error** (**MSE**) for regression and accuracy for
-classification. We seek to reduce the MSE or increase the accuracy of
-our predictions.
 
 Let\'s implement manual hyperparameterization in the following exercise.
 

@@ -1044,15 +1044,6 @@ You should get the following output:
 
 Caption: Output of the scatter plot with combined altair methods
 
-We can see that we got the exact same output as before. This graph shows
-us that there are a lot of outliers (extreme values) for both variables:
-most of the values of `UnitPrice` are below 100, but there are
-some over 300, and `Quantity` ranges from -200 to 800, while
-most of the observations are between -50 to 150. We can also notice a
-pattern where items with a high unit price have lower quantity (items
-over 50 in terms of unit price have a quantity close to 0) and the
-opposite is also true (items with a quantity over 100 have a unit price
-close to 0).
 
 Now, let\'s say we want to visualize the same plot while adding the
 `Country` column\'s information. One easy way to do this is to

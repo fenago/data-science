@@ -310,16 +310,6 @@ We will be using the `numpy` implementation of
 
 Caption: Output of the pivot\_table function
 
-In this summary, we can see that the algorithm has grouped the data into
-eight clusters (clusters 0 to 7). Cluster 0 has the lowest average net
-tax and total deductions amounts among all the clusters, while cluster 4
-has the highest values. With this pivot table, we are able to compare
-clusters between them using their summarized values.
-
-Using an aggregated view of clusters is a good way of seeing the
-difference between them, but it is not the only way. Another possibility
-is to visualize clusters in a graph. This is exactly what we are going
-to do now.
 
 You may have heard of different visualization packages, such as
 `matplotlib`, `seaborn`, and `bokeh`, but
