@@ -16,7 +16,7 @@ class Test(unittest.TestCase):
         import Activity8_01
         self.exercises = Activity8_01
 
-        self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter08/agaricus-lepiota.data'
+        self.file_url = '../agaricus-lepiota.data'
 
         self.mushrooms = pd.read_csv(self.file_url, header=None)
 

@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Activity_15_02_Comparison_of_ensemble_learning_techniques_v1_0
         self.exercises = Activity_15_02_Comparison_of_ensemble_learning_techniques_v1_0
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter15/Dataset/crx.data'
+        self.filename = '../Dataset/crx.data'
         self.credData = pd.read_csv(self.filename,sep=",",header = None,na_values = "?")
         self.dataShape = self.credData.shape
 

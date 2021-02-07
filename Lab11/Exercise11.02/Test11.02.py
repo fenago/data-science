@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
 		import Exercise11_02
 		self.exercises = Exercise11_02
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter10/dataset/ames_iowa_housing.csv'
+		self.file_url = '../dataset/ames_iowa_housing.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.df['Id'] = self.df['Id'].astype('category')
 		self.df['MSSubClass'] = self.df['MSSubClass'].astype('category')

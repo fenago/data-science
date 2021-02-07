@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Activity_16_01_Complete_ML_workflow_using_Pipeline_with_Heart_Disease_data_set_v1_0
         self.exercises = Activity_16_01_Complete_ML_workflow_using_Pipeline_with_Heart_Disease_data_set_v1_0		
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter16/Dataset/processed.cleveland.data'	
+        self.filename = '../Dataset/processed.cleveland.data'	
         self.heartData = pd.read_csv(self.filename,sep=",",header = None,na_values = "?")
         self.heartData.columns = ['age','sex', 'cp', 'trestbps','chol','fbs','restecg','thalach','exang','oldpeak','slope','ca','thal','label']
         self.heartData.loc[self.heartData['label'] > 0 , 'label'] = 1        

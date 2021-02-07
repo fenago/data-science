@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
 		import Activity11_1
 		self.exercises = Activity11_1
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter11/dataset/Speed_Dating_Data.csv'
+		self.file_url = '../dataset/Speed_Dating_Data.csv'
 		self.df = pd.read_csv(self.file_url)
 
 		self.scale_1_10 = ['imprace', 'imprelig', 'sports', 'tvsports', 'exercise', 'dining',

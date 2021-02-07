@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
 		import Exercise11_03
 		self.exercises = Exercise11_03
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter11/dataset/officers.csv'
+		self.file_url = '../dataset/officers.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.il_mask = self.df['State'].isin(['il', 'Il', 'iL', 'Il'])
 		self.df.loc[self.il_mask, 'State'] = 'IL'

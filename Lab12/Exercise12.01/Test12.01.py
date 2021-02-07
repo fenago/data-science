@@ -9,7 +9,7 @@ class Test(unittest.TestCase):
 		import Exercise12_01
 		self.exercises = Exercise12_01
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter12/Dataset/taxstats2015.csv'
+		self.file_url = '../Dataset/taxstats2015.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.postcode_url = '../Dataset/taxstats2016individual06taxablestatusstateterritorypostcodetaxableincome%20(2).xlsx'
 		self.postcode_df = pd.read_excel(self.postcode_url, sheet_name='Individuals Table 6B', header=2)		

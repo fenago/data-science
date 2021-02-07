@@ -11,10 +11,10 @@ class Test(unittest.TestCase):
 		import Activity12_1
 		self.exercises = Activity12_1
 
-		self.disp_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter12/Dataset/disp.csv'
-		self.trans_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter12/Dataset/trans.csv'
-		self.account_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter12/Dataset/account.csv'
-		self.client_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter12/Dataset/client.csv'
+		self.disp_url = '../Dataset/disp.csv'
+		self.trans_url = '../Dataset/trans.csv'
+		self.account_url = '../Dataset/account.csv'
+		self.client_url = '../Dataset/client.csv'
 
 		self.df_disp = pd.read_csv(self.disp_url, sep=';')
 		self.df_trans = pd.read_csv(self.trans_url, sep=';')

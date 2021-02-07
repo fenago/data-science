@@ -13,7 +13,7 @@ class Test(unittest.TestCase):
 		import Activity5_1
 		self.exercises = Activity5_1
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter05/DataSet/german.data-numeric'
+		self.file_url = '../DataSet/german.data-numeric'
 		self.df = pd.read_csv(self.file_url, header=None, sep='\s\s+', prefix='X')
 		self.X = self.df[['X3', 'X9']]
 		self.standard_scaler = StandardScaler()

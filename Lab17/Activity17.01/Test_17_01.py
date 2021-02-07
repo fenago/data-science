@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Activity_17_01_Classification_model_after_automated_feature_generation
         self.exercises = Activity_17_01_Classification_model_after_automated_feature_generation		
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter17/Datasets/adult.csv'	
+        self.filename = '../Datasets/adult.csv'	
         self.adultData = pd.read_csv(self.filename,sep=",",na_values = " ?")
         self.adultData = self.adultData.dropna(axis = 0, how = 'any')
 

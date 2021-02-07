@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Exercise_13_04_Logistic_Regression_Model_with_MSMOTE_v1_0
         self.exercises = Exercise_13_04_Logistic_Regression_Model_with_MSMOTE_v1_0		
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter13/Dataset/bank-full.csv'	
+        self.filename = '../Dataset/bank-full.csv'	
         self.bankData = pd.read_csv(self.filename, sep=";")        
         self.dataShape = self.bankData.shape 
 

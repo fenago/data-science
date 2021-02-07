@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
 		import Exercise12_03
 		self.exercises = Exercise12_03
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter12/Dataset/Consumer_Complaints.csv'
+		self.file_url = '../Dataset/Consumer_Complaints.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.df['Date received'] = pd.to_datetime(self.df['Date received'])
 		self.df['Date sent to company'] = pd.to_datetime(self.df['Date sent to company'])

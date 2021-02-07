@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
 		import Exercise12_04
 		self.exercises = Exercise12_04
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter12/Dataset/ames_iowa_housing.csv'
+		self.file_url = '../Dataset/ames_iowa_housing.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.df_agg = self.df.groupby(['Neighborhood', 'YrSold']).agg({'SalePrice': 'max'}).reset_index()
 		self.df_agg.columns = ['Neighborhood', 'YrSold', 'SalePriceMax']

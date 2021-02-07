@@ -14,7 +14,7 @@ class Test(unittest.TestCase):
 		import Activity4_1
 		self.exercises = Activity4_1
 
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter04/Dataset/test/phpB0xrNj.csv'
+		self.file_url = '../Dataset/test/phpB0xrNj.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.y = self.df.pop('class')
 

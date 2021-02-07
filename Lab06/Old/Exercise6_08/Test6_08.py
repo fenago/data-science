@@ -15,7 +15,7 @@ class MyTestCase(unittest.TestCase):
         self.exercises = Exercise6_08
 
         self.headers = ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'car']
-        self.df = pd.read_csv('https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter06/Dataset/car.data', names=self.headers, index_col=None)
+        self.df = pd.read_csv('../Dataset/car.data', names=self.headers, index_col=None)
         self._df = pd.get_dummies(self.df, columns=['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety'])
         self.features = self._df.drop(['car'], axis=1).values
         self.labels = self._df[['car']].values

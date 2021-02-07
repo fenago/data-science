@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
 		import Exercise12_02
 		self.exercises = Exercise12_02
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter12/Dataset/ames_iowa_housing.csv'
+		self.file_url = '../Dataset/ames_iowa_housing.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.year_built = self.df['YearBuilt'].unique()
 		self.decade_list = [year - (year % 10) for year in self.year_built]

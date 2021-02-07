@@ -15,7 +15,7 @@ class Test(unittest.TestCase):
 		import Activity9_1
 		self.exercises = Activity9_1
 
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter09/Dataset/KDDCup99.csv'
+		self.file_url = '../Dataset/KDDCup99.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.y = self.df.pop('label')
 		self.df = pd.get_dummies(self.df)

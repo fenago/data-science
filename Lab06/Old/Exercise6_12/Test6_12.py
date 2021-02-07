@@ -15,7 +15,7 @@ class MyTestCase(unittest.TestCase):
         self.exercises = Exercise6_12
 
         self.headers = ['Age', 'Delivery_Nbr', 'Delivery_Time', 'Blood_Pressure', 'Heart_Problem', 'Caesarian']
-        self.df = pd.read_csv('https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter06/Dataset/caesarian.csv.arff', names=self.headers, index_col=None, skiprows=15)
+        self.df = pd.read_csv('../Dataset/caesarian.csv.arff', names=self.headers, index_col=None, skiprows=15)
         self.features = self.df.drop(['Caesarian'], axis=1).values
         self.labels = self.df[['Caesarian']].values
         self.X_train, self.X_eval, self.y_train, self.y_eval = train_test_split(self.features, self.labels, test_size=0.2, random_state=0)

@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Exercise_17_03_Classification_model_after_automated_feature_generation
         self.exercises = Exercise_17_03_Classification_model_after_automated_feature_generation		
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter17/Datasets/bank-full.csv'	
+        self.filename = '../Datasets/bank-full.csv'	
         self.bankData = pd.read_csv(self.filename,sep=";")
         self.Y = self.bankData.pop('y')
         self.bankData['custID'] = self.bankData.index.values

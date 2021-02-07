@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Exercise_15_02_Ensemble_learning_Averaging_v1_0
         self.exercises = Exercise_15_02_Ensemble_learning_Averaging_v1_0
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter15/Dataset/crx.data'
+        self.filename = '../Dataset/crx.data'
         self.credData = pd.read_csv(self.filename,sep=",",header = None,na_values = "?")
         self.dataShape = self.credData.shape
 

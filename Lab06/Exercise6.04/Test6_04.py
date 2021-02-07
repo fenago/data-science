@@ -20,7 +20,7 @@ class MyTestCase(unittest.TestCase):
 
         self.headers = ['CIC0', 'SM1', 'GATS1i', 'NdsCH', 'Ndssc', 'MLOGP', 'response']
         self.df = pd.read_csv(
-            'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter06/Dataset/qsar_fish_toxicity.csv',
+            '../Dataset/qsar_fish_toxicity.csv',
             names=self.headers, sep=';')
         self.features = self.df.drop('response', axis=1).values
         self.labels = self.df[['response']].values

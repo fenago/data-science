@@ -13,7 +13,7 @@ class Test(unittest.TestCase):
 		import Activity1_1
 		self.exercises = Activity1_1
 
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter01/Dataset/dataset_44_spambase.csv'
+		self.file_url = '../Dataset/dataset_44_spambase.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.target = self.df.pop('class')
 		self.seed = 168

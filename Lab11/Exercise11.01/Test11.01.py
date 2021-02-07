@@ -9,7 +9,7 @@ class Test(unittest.TestCase):
 		import Exercise11_01
 		self.exercises = Exercise11_01
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter11/dataset/breast-cancer-wisconsin.data'
+		self.file_url = '../dataset/breast-cancer-wisconsin.data'
 		self.df = pd.read_csv(self.file_url, header=None)
 		self.col_names = ['Sample code number', 'Clump Thickness', 'Uniformity of Cell Size', 'Uniformity of Cell Shape',
 					 'Marginal Adhesion', 'Single Epithelial Cell Size',

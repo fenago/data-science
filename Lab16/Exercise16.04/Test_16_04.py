@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Exercise_16_04_Model_building_using_Pipeline_v1_0
         self.exercises = Exercise_16_04_Model_building_using_Pipeline_v1_0		
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter15/Dataset/crx.data'	
+        self.filename = '../Dataset/crx.data'	
         self.credData = pd.read_csv(self.filename,sep=",",header = None,na_values = "?")
         self.credData.loc[self.credData[15] == '+' , 15] = 1
 

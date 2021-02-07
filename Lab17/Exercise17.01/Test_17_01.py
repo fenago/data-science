@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Exercise_17_01_Defining_entities_and_establishing_relationships
         self.exercises = Exercise_17_01_Defining_entities_and_establishing_relationships		
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter17/Datasets/bank-full.csv'	
+        self.filename = '../Datasets/bank-full.csv'	
         self.bankData = pd.read_csv(self.filename,sep=";")
         self.Y = self.bankData.pop('y')
         self.bankData['custID'] = self.bankData.index.values

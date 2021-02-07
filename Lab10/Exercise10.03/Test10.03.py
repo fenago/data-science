@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
 		import Exercise10_03
 		self.exercises = Exercise10_03
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter10/dataset/ames_iowa_housing.csv'
+		self.file_url = '../dataset/ames_iowa_housing.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.num_df = self.df.select_dtypes(include='number')
 		self.num_cols = self.num_df.columns

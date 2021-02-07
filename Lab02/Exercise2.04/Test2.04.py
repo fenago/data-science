@@ -13,7 +13,7 @@ class Test(unittest.TestCase):
 		import Exercise2_04
 		self.exercises = Exercise2_04
 
-		self.rawBostonData = pd.read_csv('https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter02/Dataset/Boston.csv')
+		self.rawBostonData = pd.read_csv('../Dataset/Boston.csv')
 		self.rawBostonData = self.rawBostonData.dropna()
 		self.rawBostonData = self.rawBostonData.drop_duplicates()
 		self.renamedBostonData = self.rawBostonData.rename(columns={'CRIM': 'crimeRatePerCapita',

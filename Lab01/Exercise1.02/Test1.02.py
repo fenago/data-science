@@ -10,9 +10,9 @@ class Test(unittest.TestCase):
 		import Exercise1_02
 		self.exercises = Exercise1_02
 		
-		self.csv_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter01/Dataset/overall_topten_2012-2013.csv'
+		self.csv_url = '../Dataset/overall_topten_2012-2013.csv'
 		self.csv_df = pd.read_csv(self.csv_url, skiprows=1)
-		self.tsv_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter01/Dataset/overall_topten_2012-2013.tsv'
+		self.tsv_url = '../Dataset/overall_topten_2012-2013.tsv'
 		self.tsv_df = pd.read_csv(self.tsv_url, skiprows=1, sep='\t')
 		self.xlsx_url = '../Dataset/overall_topten_2012-2013.xlsx'
 		self.xlsx_df = pd.read_excel(self.xlsx_url)

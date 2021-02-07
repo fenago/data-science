@@ -9,7 +9,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Exercise3_05
         self.exercises = Exercise3_05
-        self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter03/bank-full.csv'
+        self.file_url = '../bank-full.csv'
         self.bankData = pd.read_csv(self.file_url, sep=";")
         self.bankNumeric = self.bankData[['age','balance','day','duration','campaign','pdays','previous']]
         self.bankCorr = self.bankNumeric.corr(method = 'pearson')

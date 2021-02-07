@@ -14,7 +14,7 @@ class Test(unittest.TestCase):
 		import Exercise4_05
 		self.exercises = Exercise4_05
 
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter04/Dataset/openml_phpZNNasq.csv'
+		self.file_url = '../Dataset/openml_phpZNNasq.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.y = self.df.pop('type')
 		self.df.drop(columns='animal', inplace=True)

@@ -9,7 +9,7 @@ class Test(unittest.TestCase):
 		import Exercise5_3
 		self.exercises = Exercise5_3
 		
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter05/DataSet/taxstats2015.csv'		
+		self.file_url = '../DataSet/taxstats2015.csv'		
 		self.df = pd.read_csv(self.file_url, usecols=['Postcode', 'Average total business income', 'Average total business expenses'])
 		self.X = self.df[['Average total business income', 'Average total business expenses']]
 		self.clusters = pd.DataFrame()

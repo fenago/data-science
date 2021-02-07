@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Exercise_17_02_Feature_Engineering_with_Feature_tools
         self.exercises = Exercise_17_02_Feature_Engineering_with_Feature_tools		
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter17/Datasets/bank-full.csv'	
+        self.filename = '../Datasets/bank-full.csv'	
         self.bankData = pd.read_csv(self.filename,sep=";")
         self.Y = self.bankData.pop('y')
         self.bankData['custID'] = self.bankData.index.values

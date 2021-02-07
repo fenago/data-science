@@ -15,7 +15,7 @@ class Test(unittest.TestCase):
 		import Exercise9_03
 		self.exercises = Exercise9_03
 
-		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter09/Dataset/phpYYZ4Qc.csv'
+		self.file_url = '../Dataset/phpYYZ4Qc.csv'
 		self.df = pd.read_csv(self.file_url)
 		self.df.head()
 		self.y = self.df.pop('rej')

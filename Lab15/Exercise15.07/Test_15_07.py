@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Exercise_15_07_Ensemble_learning_Stacking
         self.exercises = Exercise_15_07_Ensemble_learning_Stacking
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter15/Dataset/crx.data'
+        self.filename = '../Dataset/crx.data'
         self.credData = pd.read_csv(self.filename,sep=",",header = None,na_values = "?")
         self.dataShape = self.credData.shape
 

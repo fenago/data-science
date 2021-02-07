@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         import Chapter_14_Exercise_14_02_Backward_Feature_Elimination_v1
         self.exercises = Chapter_14_Exercise_14_02_Backward_Feature_Elimination_v1		
-        self.filename = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter14/Dataset/ad.data'	
+        self.filename = '../Dataset/ad.data'	
         self.adData = pd.read_csv(self.filename,sep=",",header = None,error_bad_lines=False)        
         self.dataShape = self.adData.shape 
 
