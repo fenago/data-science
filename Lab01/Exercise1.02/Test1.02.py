@@ -14,7 +14,7 @@ class Test(unittest.TestCase):
 		self.csv_df = pd.read_csv(self.csv_url, skiprows=1)
 		self.tsv_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter01/Dataset/overall_topten_2012-2013.tsv'
 		self.tsv_df = pd.read_csv(self.tsv_url, skiprows=1, sep='\t')
-		self.xlsx_url = 'https://github.com/PacktWorkshops/The-Data-Science-Workshop/blob/master/Chapter01/Dataset/overall_topten_2012-2013.xlsx?raw=true'
+		self.xlsx_url = '../Dataset/overall_topten_2012-2013.xlsx'
 		self.xlsx_df = pd.read_excel(self.xlsx_url)
 		self.xlsx_df1 = pd.read_excel(self.xlsx_url, skiprows=1, sheet_name=1)
 

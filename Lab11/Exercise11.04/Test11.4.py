@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
 		import Exercise11_04
 		self.exercises = Exercise11_04
 		
-		self.file_url = 'http://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter11/dataset/horse-colic.data'
+		self.file_url = '../dataset/horse-colic.data'
 		self.df = pd.read_csv(self.file_url, header=None, sep='\s+', prefix='X', na_values='?')
 		self.x0_mask = self.df['X0'].isna()
 		self.x0_median = self.df['X0'].median()

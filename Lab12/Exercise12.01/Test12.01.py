@@ -11,7 +11,7 @@ class Test(unittest.TestCase):
 		
 		self.file_url = 'https://raw.githubusercontent.com/PacktWorkshops/The-Data-Science-Workshop/master/Chapter12/Dataset/taxstats2015.csv'
 		self.df = pd.read_csv(self.file_url)
-		self.postcode_url = 'https://github.com/PacktWorkshops/The-Data-Science-Workshop/blob/master/Chapter12/Dataset/taxstats2016individual06taxablestatusstateterritorypostcodetaxableincome%20(2).xlsx?raw=true'
+		self.postcode_url = '../Dataset/taxstats2016individual06taxablestatusstateterritorypostcodetaxableincome%20(2).xlsx'
 		self.postcode_df = pd.read_excel(self.postcode_url, sheet_name='Individuals Table 6B', header=2)		
 		self.merged_df = pd.merge(self.df, self.postcode_df, how='left', on='Postcode')
 
