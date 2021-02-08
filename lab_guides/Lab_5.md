@@ -1,5 +1,8 @@
 
-5. Performing Your First Cluster Analysis
+<img align="right" src="./logo.png">
+
+
+Lab 5. Performing Your First Cluster Analysis
 =========================================
 
 

@@ -1,5 +1,7 @@
+<img align="right" src="./logo.png">
 
-13. Imbalanced Datasets
+
+Lab 13. Imbalanced Datasets
 =======================
 
 
@@ -17,62 +19,6 @@ In this lab, you will be dealing with imbalanced datasets, which are
 very prevalent in real-life scenarios. You will be using techniques such
 as `SMOTE`, `MSMOTE`, and random undersampling to
 address imbalanced datasets.
-
-
-Introduction
-============
-
-
-In the previous lab, *Lab 12*, *Feature Engineering*, where we
-dealt with data points related to dates, we were addressing scenarios
-pertaining to features. In this lab, we will deal with scenarios
-where the proportions of examples in the overall dataset pose
-challenges.
-
-Let\'s revisit the dataset we dealt with in *Lab 3*, *Binary
-Classification*, in which the examples pertaining to \'No\' for term
-deposits far outnumbered the ones with \'Yes\' with a ratio of 88% to
-12%. We also determined that one reason for suboptimal results with a
-logistic regression model on that dataset was the skewed proportion of
-examples. Datasets like the one we analyzed in *Lab 3*, *Binary
-Classification,* which are called imbalanced datasets, are very common
-in real-world use cases.
-
-Some of the use cases where we encounter imbalanced datasets include the
-following:
-
-- Fraud detection for credit cards or insurance claims
-- Medical diagnoses where we must detect the presence of rare diseases
-- Intrusion detection in networks
-
-In all of these use cases, we can see that what we really want to detect
-will be minority cases. For instance, in domains such as the medical
-diagnosis of rare diseases, examples where rare diseases exist could
-even be less than 1% of the total examples. One inherent characteristic
-of use cases with imbalanced datasets is that the quality of the
-classifier is not apparent if the right metric is not used. This makes
-the problem of imbalanced datasets really challenging.
-
-In this lab, we will discuss strategies for identifying imbalanced
-datasets and ways to mitigate the effects of imbalanced datasets.
-
-
-Understanding the Business Context
-==================================
-
-
-The business head of the bank for which you are working as a data
-scientist recently raised the alarm about the results of the term
-deposit propensity model that you built in *Lab 3*, *Binary
-Classification*. It has been observed that a large proportion of
-customers who were identified as potential cases for targeted marketing
-for term deposits have turned down the offer. This has made a big dent
-in the sales team\'s metrics on upselling and cross-selling. The
-business team urgently requires your help in fixing the issue to meet
-the required sales targets for the quarter. Don\'t worry, though -- this
-is the problem that we will be solving later in this lab.
-
-First, we begin with an analysis of the issue.
 
 
 
@@ -270,11 +216,6 @@ Classification*, and you will look closely at the metrics:
 ![](./images/B15019_13_04.jpg)
 
 
-    Caption: Fitting the model
-
-    Now that the model is fit, let\'s now predict the test set and
-    generate the metrics.
-
 14. Next, find the prediction on the test set and print the accuracy
     scores:
 
@@ -311,22 +252,7 @@ Classification*, and you will look closely at the metrics:
     You should get the following output:
 
     
-![Caption: Metrics showing the accuracy result along with the
-    confusion matrix ](./images/B15019_13_05.jpg)
-
-
-Caption: Metrics showing the accuracy result along with the
-confusion matrix
-
-Note
-
-You will get metrics similar to the following. However, the values will
-vary due to the variability in the modeling process.
-
-In this exercise, we have found a report that may have caused the issue
-with the number of customers expected to purchase the term deposit plan.
-From the metrics, we can see that the number of values for
-`No` is relatively higher than that for `Yes`.
+![](./images/B15019_13_05.jpg)
 
 
 To understand more about the reasons behind the skewed results, we will
@@ -341,7 +267,6 @@ the confusion matrix in the form:
 
 ![](./images/B15019_13_06.jpg)
 
-Caption: Confusion matrix of the resulting metrics obtained
 
 We enter the values `11707`, `291`,
 `1060`, and `506` from the output we got from the
@@ -359,42 +284,17 @@ Caption: Accuracy of a model
 In our case, it will be (11707 + 506) / (11707 + 1060 + 291 + 506), or
 90%.
 
-From the accuracy perspective, the model would seem like it is doing a
-reasonable job. However, the reality might be quite different. To find
-out what\'s really the case, let\'s look at the precision and recall
-values, which are available from the classification report we obtained.
-The formulae for precision for any class was covered in *Lab 3*,
-*Binary Classification*
 
 The precision value of any class is given by:
 
 ![](./images/B15019_13_08.jpg)
 
-Caption: Precision of a model
 
-In our case, for the positive class, the precision is *TP/(TP + FP)*,
-which is 11707/ (11707 + 1060), which comes to approximately 92%.
-
-In the case of the negative class, the precision could be written as *TN
-/ (TN + FN)*, which is 506 / (506 + 291), which comes to approximately
-63%.
-
-Similarly, the recall value for any class can be represented as follows:
+The recall value for any class can be represented as follows:
 
 ![](./images/B15019_13_09.jpg)
 
-Caption: Recalling a model
 
-The recall value for the positive class, *TP / (TP + FN)* = 11707 /
-(11707 + 291), comes to approximately 98%.
-
-The recall value for the negative class, *TN / (TN + FP)* = 506 / (506 +
-1060), comes to approximately 32%.
-
-Recall indicates the ability of the classifier to correctly identify the
-respective classes. From the metrics, we see that the model that we
-built does a good job of identifying the positive classes, but does a
-very poor job of correctly identifying the negative class.
 
 Why do you think that the classifier is biased toward one class? The
 answer to this can be unearthed by looking at the class balance in the
@@ -420,6 +320,7 @@ Name: y, dtype: float64
 Percentage of positive class: no    88.235852
 Name: y, dtype: float64
 ```
+
 From this, we can see that the majority of the training set (88%) is
 made up of the positive class. This imbalance is one of the major
 reasons behind the poor metrics that we have had with the logistic
@@ -465,14 +366,8 @@ Accuracy = (TP + TN ) / ( TP + FP + FN + TN)
  = (0 + 9900) / ( 0 + 0 + 90 + 9900) = 9900/10000
  = 99%
 ```
-With such a classifier, if we were to use a metric such as accuracy, we
-still would get a result of around 99%, which, in normal circumstances,
-would look outstanding. However, in this case, the classifier is doing a
-bad job. Think of the real-life impact of using such a classifier and a
-metric such as accuracy. The impact on patients who have rare diseases
-and who get wrongly classified as not having the disease could be fatal.
 
-Therefore, it is important to identify cases with imbalanced datasets
+It is important to identify cases with imbalanced datasets
 and equally important to pick the right metric for analyzing such
 datasets. The right metric in this example would have been to look at
 the recall values for both the classes:
@@ -496,48 +391,6 @@ Now that we have identified the challenges of imbalanced datasets,
 let\'s look at strategies for combatting imbalanced datasets:
 
 ![](./images/B15019_13_11.jpg)
-
-Caption: Strategies for dealing with imbalanced datasets
-
-
-
-Collecting More Data
---------------------
-
-Having encountered an imbalanced dataset, one of the first questions you
-need to ask is whether it is possible to get more data. This might
-appear naïve, but collecting more data, especially from the minority
-class, and then balancing the dataset should be the first strategy for
-addressing the class imbalance.
-
-
-
-Resampling Data
----------------
-
-In many circumstances, collecting more data, especially from minority
-classes, can be challenging as data points for the minority class will
-be very minimal. In such circumstances, we need to adopt different
-strategies to work with our constraints and still strive to balance our
-dataset. One effective strategy is to resample our dataset to make the
-dataset more balanced. Resampling would mean taking samples from the
-available dataset to create a new dataset, thereby making the new
-dataset balanced.
-
-Let\'s look at the idea in detail:
-
-![](./images/B15019_13_12.jpg)
-
-Caption: Random undersampling of the majority class
-
-As seen in *Figure 13.8*, the idea behind resampling is to randomly pick
-samples from the majority class to make the final dataset more balanced.
-In the diagram, we can see that the minority class has the same number
-of examples as the original dataset and that the majority class is
-under-sampled to make the final dataset more balanced. Resampling
-examples of this type is called random undersampling as we are
-undersampling the majority class. We will perform random undersampling
-in the following exercise.
 
 
 
@@ -585,31 +438,8 @@ analyze the results:
     You should get the following output
 
     
-![Caption: Displaying the first five rows of the dataset using
-    .head() ](./images/B15019_13_13.jpg)
+![](./images/B15019_13_13.jpg)
 
-
-    Caption: Displaying the first five rows of the dataset using
-    .head()
-
-    The preceding output shows some of the columns of the dataset.
-
-    Now, let\'s move onto separating the minority and majority classes
-    into separate datasets.
-
-    What we will do next is separate the minority class and the majority
-    class. This is required because we have to sample separately from
-    the majority class to make a balanced dataset. To separate the
-    minority class, we have to identify the indexes of the dataset where
-    the dataset has \'yes.\' The indexes are identified using
-    `.index()` function.
-
-    Once those indexes are identified, they are separated from the main
-    dataset using the `.loc()` function and stored in a new
-    variable for the minority class. The shape of the minority dataset
-    is also printed. A similar process is followed for the majority
-    class and, after these two steps, we have two datasets: one for the
-    minority class and one for the majority class.
 
 5.  Next, find the indexes of the sample dataset where the propensity is
     `yes`:
@@ -1248,24 +1078,6 @@ one.
     
 ![](./images/B15019_13_23.jpg)
 
-
-
-Applying Balancing Techniques on a Telecom Dataset
---------------------------------------------------
-
-Now that we have seen different balancing techniques, let\'s apply these
-techniques to a new dataset that is related to the churn of telecom
-customers.
-
-This dataset has various variables related to the usage level of a
-mobile connection, such as total call minutes, call charges, calls made
-during certain periods of the day, details of international calls, and
-details of calls to customer services.
-
-The problem statement is to predict whether a customer will churn. This
-dataset is a highly imbalanced one, with the cases where customers churn
-being the minority. You will be using this dataset in the following
-activity.
 
 
 

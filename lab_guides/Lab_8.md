@@ -1,5 +1,8 @@
 
-8. Hyperparameter Tuning
+<img align="right" src="./logo.png">
+
+
+Lab 8. Hyperparameter Tuning
 ========================
 
 
@@ -1456,9 +1459,3 @@ In this lab, we have covered three strategies for hyperparameter
 tuning based on searching for estimator hyperparameterizations that
 improve performance.
 
-
-The grid search is an automated method that is the most systematic of
-the three but can be very computationally intensive to run when the
-range of possible hyperparameterizations increases.
-The random search, while the most complicated to set up, is based on
-sampling from distributions of hyperparameters.

@@ -1,5 +1,8 @@
 
-7. The Generalization of Machine Learning Models
+<img align="right" src="./logo.png">
+
+
+Lab 7. The Generalization of Machine Learning Models
 ================================================
 
 

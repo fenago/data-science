@@ -1,5 +1,8 @@
 
-4. Multiclass Classification with RandomForest
+<img align="right" src="./logo.png">
+
+
+Lab 4. Multiclass Classification with RandomForest
 ==============================================
 
 
@@ -158,39 +161,12 @@ preds
 
 The output will be as follows:
 
-![Caption: Predictions of the RandomForest algorithm on the training
-set ](./images/B15019_04_04.jpg)
-
-Caption: Predictions of the RandomForest algorithm on the training
-set
-
-This output shows us the model predicted, respectively, the values
-`lying`, `bending1`, and `cycling` for the
-first three observations and `cycling`, `bending1`,
-and `standing` for the last three observations. Python, by
-default, truncates the output for a long list of values. This is why it
-shows only six values here.
-
-These are basically the key steps required for training a Random Forest
-classifier. This was quite straightforward, right? Training a machine
-learning model is incredibly easy but getting meaningful and accurate
-results is where the challenges lie. In the next section, we will learn
-how to assess the performance of a trained model.
+![](./images/B15019_04_04.jpg)
 
 
 Evaluating the Model\'s Performance
 ===================================
 
-
-Now that we know how to train a Random Forest classifier, it is time to
-check whether we did a good job or not. What we want is to get a model
-that makes extremely accurate predictions, so we need to assess its
-performance using some kind of metric.
-
-For a classification problem, multiple metrics can be used to assess the
-model\'s predictive power, such as F1 score, precision, recall, or ROC
-AUC. Each of them has its own specificity and depending on the projects
-and datasets, you may use one or another.
 
 In this lab, we will use a metric called **accuracy score**. It
 calculates the ratio between the number of correct predictions and the
@@ -229,25 +205,6 @@ The output will be as follows:
 
 Caption: Accuracy score on the training set
 
-We achieved an accuracy score of 0.988 on our training data. This means
-we accurately predicted more than `98%` of these cases.
-Unfortunately, this doesn\'t mean you will be able to achieve such a
-high score for new, unseen data. Your model may have just learned the
-patterns that are only relevant to this training set, and in that case,
-the model will overfit.
-
-If we take the analogy of a student learning a subject for a semester,
-they could memorize by heart all the textbook exercises but when given a
-similar but unseen exercise, they wouldn\'t be able to solve it.
-Ideally, the student should understand the underlying concepts of the
-subject and be able to apply that learning to any similar exercises.
-This is exactly the same for our model: we want it to learn the generic
-patterns that will help it to make accurate predictions even on unseen
-data.
-
-But how can we assess the performance of a model for unseen data? Is
-there a way to get that kind of assessment? The answer to these
-questions is yes.
 
 Remember, in the last section, we split the dataset into training and
 testing sets. We used the training set to fit the model and assess its
@@ -1368,78 +1325,6 @@ We will be using the same zoo dataset as in the previous exercise.
 Maximum Features
 ================
 
-
-We are getting close to the end of this lab. You have already
-learned how to tune several of the most important hyperparameters for
-RandomForest. In this section, we will present you with another
-extremely important one: `max_features`.
-
-Earlier, we learned that `RandomForest` builds multiple trees
-and takes the average to make predictions. This is why it is called a
-forest, but we haven\'t really discussed the \"random\" part yet. Going
-through this lab, you may have asked yourself: how does building
-multiple trees help to get better predictions, and won\'t all the trees
-look the same given that the input data is the same?
-
-Before answering these questions, let\'s use the analogy of a court
-trial. In some countries, the final decision of a trial is either made
-by a judge or a jury. A judge is a person who knows the law in detail
-and can decide whether a person has broken the law or not. On the other
-hand, a jury is composed of people from different backgrounds who don\'t
-know each other or any of the parties involved in the trial and have
-limited knowledge of the legal system. In this case, we are asking
-random people who are not expert in the law to decide the outcome of a
-case. This sounds very risky at first. The risk of one person making the
-wrong decision is very high. But in fact, the risk of 10 or 20 people
-all making the wrong decision is relatively low.
-
-But there is one condition that needs to be met for this to work:
-randomness. If all the people in the jury come from the same background,
-work in the same industry, or live in the same area, they may share the
-same way of thinking and make similar decisions. For instance, if a
-group of people were raised in a community where you only drink hot
-chocolate at breakfast and one day you ask them if it is OK to drink
-coffee at breakfast, they would all say no.
-
-On the other hand, say you got another group of people from different
-backgrounds with different habits: some drink coffee, others tea, a few
-drink orange juice, and so on. If you asked them the same question, you
-would end up with the majority of them saying yes. Because we randomly
-picked these people, they have less bias as a group, and this therefore
-lowers the risk of them making a wrong decision.
-
-RandomForest actually applies the same logic: it builds a number of
-trees independently of each other by randomly sampling the data. A tree
-may see `60%` of the training data, another one
-`70%`, and so on. By doing so, there is a high chance that the
-trees are absolutely different from each other and don\'t share the same
-bias. This is the secret of RandomForest: building multiple random trees
-leads to higher accuracy.
-
-But it is not the only way RandomForest creates randomness. It does so
-also by randomly sampling columns. Each tree will only see a subset of
-the features rather than all of them. And this is exactly what the
-`max_features` hyperparameter is for: it will set the maximum
-number of features a tree is allowed to see.
-
-In `sklearn`, you can specify the value of this hyperparameter
-as:
-
-- The maximum number of features, as an integer.
-- A ratio, as the percentage of allowed features.
-- The `sqrt` function (the default value in
-    `sklearn`, which stands for square root), which will use
-    the square root of the number of features as the maximum value. If,
-    for a dataset, there are `25` features, its square root
-    will be `5` and this will be the value for
-    `max_features`.
-- The `log2` function, which will use the log base,
-    `2`, of the number of features as the maximum value. If,
-    for a dataset, there are eight features, its `log2` will
-    be `3` and this will be the value for
-    `max_features`.
-- The `None` value, which means Random Forest will use all
-    the features available.
 
 Let\'s try three different values on the activity dataset. First, we
 will specify the maximum number of features as two:

@@ -1,5 +1,7 @@
+<img align="right" src="./logo.png">
 
-1. Introduction to Data Science in Python
+
+Lab 1. Introduction to Data Science in Python
 =========================================
 
 
@@ -339,7 +341,7 @@ The following steps will help you complete the exercise:
 ![](./images/B15019_01_21.jpg)
 
 
-    Caption: Output of \'algorithm\'
+    Caption: Output of 'algorithm'
 
     From the preceding output, we can see that we added the
     `k-means` item to the list.
@@ -365,7 +367,7 @@ The following steps will help you complete the exercise:
 ![](./images/B15019_01_22.jpg)
 
 
-    Caption: Output of \'learning\'
+    Caption: Output of 'learning'
 
     From the preceding output, we can see that we added the
     `Unsupervised` item into the list.
@@ -426,7 +428,7 @@ The following steps will help you complete the exercise:
 ![](./images/B15019_01_24.jpg)
 
 
-    Caption: Output of \'machine\_learning\'
+    Caption: Output of machine_learning
 
     From the preceding output, we notice that we have created a
     dictionary from the `algorithm` list.
@@ -461,7 +463,7 @@ The following steps will help you complete the exercise:
 ![](./images/B15019_01_25.jpg)
 
 
-    Caption: Output of \'machine\_learning\'
+    Caption: Output of machine_learning
 
 17. Remove the `a3c` item from the `algorithm` key
     using the `.remove()` method:
@@ -485,7 +487,7 @@ The following steps will help you complete the exercise:
 ![](./images/B15019_01_26.jpg)
 
 
-    Caption: Output of \'algorithm\' from \'machine\_learning\'
+    Caption: Output of 'algorithm' from machine_learning
 
 19. Remove the `Reinforcement` item from the
     `learning` key using the `.remove()` method:
@@ -516,7 +518,7 @@ The following steps will help you complete the exercise:
 ![](./images/B15019_01_27.jpg)
 
 
-Caption: Output of \'machine\_learning\'
+Caption: Output of machine_learning
 
 
 

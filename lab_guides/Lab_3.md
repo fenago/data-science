@@ -1,5 +1,8 @@
 
-3. Binary Classification
+<img align="right" src="./logo.png">
+
+
+Lab 3. Binary Classification
 ========================
 
 

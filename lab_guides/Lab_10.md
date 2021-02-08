@@ -1,5 +1,8 @@
 
-10. Analyzing a Dataset
+<img align="right" src="./logo.png">
+
+
+Lab 10. Analyzing a Dataset
 =======================
 
 
@@ -12,10 +15,6 @@ data contained in the dataset; summarize the dataset and at a detailed
 level for each variable; visualize the data distribution in each column;
 find relationships between variables and analyze missing values and
 outliers for each variable
-
-This lab will introduce you to the art of performing exploratory
-data analysis and visualizing the data in order to identify quality
-issues, potential data transformations, and interesting patterns.
 
 
 
@@ -53,10 +52,7 @@ You should get the following output:
 ```
 (541909, 8)
 ```
-This attribute returns a tuple containing the number of rows as the
-first element and the number of columns as the second element. The
-loaded dataset contains `541909` rows and `8`
-different columns.
+
 
 Since this attribute returns a tuple, we can access each of its elements
 independently by providing the relevant index. Let\'s extract the number
@@ -605,11 +601,6 @@ Summarizing Numerical Variables
 ===============================
 
 
-Now, let\'s have a look at a numerical column and get a good
-understanding of its content. We will use some statistical measures that
-summarize a variable. All of these measures are referred to as
-descriptive statistics. In this lab, we will introduce you to the
-most popular ones.
 
 With the `pandas` package, a lot of these measures have been
 implemented as methods. For instance, if we want to know what the

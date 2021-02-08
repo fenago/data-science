@@ -1,5 +1,8 @@
 
-11. Data Preparation
+<img align="right" src="./logo.png">
+
+
+Lab 11. Data Preparation
 ====================
 
 
@@ -16,56 +19,10 @@ handle data issues in order to achieve high quality for your dataset
 prior to modeling it.
 
 
-Introduction
-============
-
-
-In the previous lab, you saw how critical it was to get a very good
-understanding of your data and learned about different techniques and
-tools to achieve this goal. While performing **Exploratory Data
-Analysis** (**EDA**) on a given **dataset**, you may find some potential
-issues that need to be addressed before the modeling stage. This is
-exactly the topic that will be covered in this lab. You will learn
-how you can handle some of the most frequent data quality issues and
-prepare the dataset properly.
-
-This lab will introduce you to the issues that you will encounter
-frequently during your data scientist career (such as **duplicated**
-**rows**, incorrect data types, incorrect values, and missing values)
-and you will learn about the techniques you can use to easily fix them.
-But be careful -- some issues that you come across don\'t necessarily
-need to be fixed. Some of the suspicious or unexpected values you find
-may be genuine from a business point of view. This includes values that
-crop up very rarely but are totally genuine. Therefore, it is extremely
-important to get confirmation either from your stakeholder or the data
-engineering team before you alter the dataset. It is your responsibility
-to make sure you are making the right decisions for the business while
-preparing the dataset.
-
-For instance, in *Lab 10*, *Analyzing a Dataset*, you looked at the
-*Online Retail dataset*, which had some negative values in the
-`Quantity` column. Here, we expected only positive values. But
-before fixing this issue straight away (by either dropping the records
-or transforming them into positive values), it is preferable to get in
-touch with your stakeholders first and get confirmation that these
-values are not significant for the business. They may tell you that
-these values are extremely important as they represent returned items
-and cost the company a lot of money, so they want to analyze these cases
-in order to reduce these numbers. If you had moved to the data cleaning
-stage straight away, you would have missed this critical piece of
-information and potentially came up with incorrect results.
-
 
 Handling Row Duplication
 ========================
 
-
-Most of the time, the datasets you will receive or have access to will
-not have been 100% cleaned. They usually have some issues that need to
-be fixed. One of these issues could be duplicated rows. Row duplication
-means that several observations contain the exact same information in
-the dataset. With the `pandas` package, it is extremely easy
-to find these cases.
 
 Let\'s use the example that we saw in *Lab 10*, *Analyzing a
 Dataset*.
@@ -96,10 +53,7 @@ You should get the following output:
 
 Caption: Output of the duplicated() method
 
-Note
 
-The outputs in this lab have been truncated to effectively use the
-page area.
 
 In Python, the `True` and `False` binary values
 correspond to the numerical values 1 and 0, respectively. To find out
@@ -825,14 +779,6 @@ dataset, refer to the following note. Let\'s get started:
 ![](./images/B15019_11_19.jpg)
 
 
-Caption: List of variables and their new data types
-
-
-You have successfully converted the columns that have incorrect data
-types (numerical or object) into categorical variables. Your dataset is
-now one step closer to being prepared for modeling.
-
-In the next section, we will look at handling incorrect values.
 
 
 Handling Incorrect Values
@@ -868,15 +814,6 @@ You should get the following output
 
 ![](./images/B15019_11_20.jpg)
 
-Caption: List of unique values for the Description column and
-StockCode 23131
-
-There are multiple issues in the preceding output. One issue is that the
-word `Mistletoe` has been misspelled so that it reads
-`Miseltoe`. The other errors are unexpected values and missing
-values, which will be covered in the next section. It seems that the
-`Description` column has been used to record comments such as
-`had been put aside`.
 
 Let\'s focus on the misspelling issue. What we need to do here is modify
 the incorrect spelling and replace it with the correct value. First,

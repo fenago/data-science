@@ -1,5 +1,8 @@
 
-6. How to Assess Performance
+<img align="right" src="./logo.png">
+
+
+Lab 6. How to Assess Performance
 ============================
 
 

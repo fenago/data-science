@@ -1,5 +1,8 @@
 
-12. Feature Engineering
+<img align="right" src="./logo.png">
+
+
+Lab 12. Feature Engineering
 =======================
 
 

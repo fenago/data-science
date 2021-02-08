@@ -1,5 +1,7 @@
+<img align="right" src="./logo.png">
 
-2. Regression
+
+Lab 2. Regression
 =============
 
 

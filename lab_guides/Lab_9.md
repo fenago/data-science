@@ -1,5 +1,8 @@
 
-9. Interpreting a Machine Learning Model
+<img align="right" src="./logo.png">
+
+
+Lab 9. Interpreting a Machine Learning Model
 ========================================
 
 

@@ -1,5 +1,8 @@
 
-14. Dimensionality Reduction
+<img align="right" src="./logo.png">
+
+
+Lab 14. Dimensionality Reduction
 ============================
 
 
