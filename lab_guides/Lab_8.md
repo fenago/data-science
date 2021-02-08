@@ -784,42 +784,9 @@ dataset we will use contains 1,797 labeled images of handwritten digits.
 ![](./images/B15019_08_14.jpg)
 
 
-Caption: Using pandas to visualize the results
-
-
-
-Advantages and Disadvantages of Grid Search
--------------------------------------------
-
-The primary advantage of the grid search compared to a manual search is
-that it is an automated process that one can simply set and forget.
-Additionally, you have the power to dictate the exact
-hyperparameterizations evaluated, which can be a good thing when you
-have prior knowledge of what kind of hyperparameterizations might work
-well in your context. It is also easy to understand exactly what will
-happen during the search thanks to the explicit definitions of the grid.
-
-The major drawback of the grid search strategy is that it is
-computationally very expensive; that is, when the number of
-hyperparameterizations to try increases substantially, processing times
-can be very slow. Also, when you define your grid, you may inadvertently
-omit an hyperparameterization that would in fact be optimal. If it is
-not specified in your grid, it will never be tried
 
 To overcome these drawbacks, we will be looking at random search in the
 next section.
-
-
-Random Search
-=============
-
-
-Instead of searching through every hyperparameterizations in a
-pre-defined set, as is the case with a grid search, in a random search
-we sample from a distribution of possibilities by assuming each
-hyperparameter to be a random variable. Before we go through the process
-in depth, it will be helpful to briefly review what random variables are
-and what we mean by a distribution.
 
 
 
@@ -830,6 +797,7 @@ Random Variables and Their Distributions
 ![](./images/B15019_08_15.jpg)
 
 Caption: Probability mass function for the discrete uniform distribution
+
 
 The following code will allow us to see the form of this distribution
 with 10 possible values of X.
@@ -900,9 +868,7 @@ p_X_1 = stats.norm.pdf(x=x, loc=0.0, scale=1.0**2)
 p_X_2 = stats.norm.pdf(x=x, loc=0.0, scale=1.5**2)
 ```
 
-Note
-
-In this case, `loc` corresponds to 𝜇, while `scale`
+**Note:** In this case, `loc` corresponds to 𝜇, while `scale`
 corresponds to the standard deviation, which is the square root of
 `𝜎``2`, hence why we square the inputs.
 
@@ -1017,9 +983,7 @@ samples = stats.gamma.rvs(a=1, loc=1, scale=2, \
                           size=n_iter, random_state=100)
 ```
 
-Note
-
-We set a random state to ensure reproducible results.
+**Note** We set a random state to ensure reproducible results.
 
 Plotting a histogram of the sample, as shown in the following figure,
 reveals a shape that approximately conforms to the distribution that we
@@ -1086,16 +1050,13 @@ The output will be as follows:
 
 ![](./images/B15019_08_22.jpg)
 
-Caption: Output for the random search process
 
-Note
-
-The results will be different, depending on the data used.
 
 It is always beneficial to visualize results where possible. Plotting 𝛼
 by negative mean squared error as a scatter plot makes it clear that
 venturing away from 𝛼 = 1 does not result in improvements in predictive
 performance:
+
 
 ```
 plt.scatter(df_result.alpha, \
@@ -1108,7 +1069,6 @@ The output will be as follows:
 
 ![](./images/B15019_08_23.jpg)
 
-Caption: Plotting the scatter plot
 
 The fact that we found the optimal 𝛼 to be 1 (its default value) is a
 special case in hyperparameter tuning in that the optimal
@@ -1189,9 +1149,7 @@ The output will be as follows:
 
 Caption: Output for tuning using RandomizedSearchCV
 
-Note
-
-The preceding results may vary, depending on the data.
+Note: The preceding results may vary, depending on the data.
 
 
 
@@ -1351,12 +1309,6 @@ The following steps will help you complete the exercise.
 ![](./images/B15019_08_26.jpg)
 
 
-    Caption: Top five hyperparameterizations
-
-    Note
-
-    You may get slightly different results. However, the values you
-    obtain should largely agree with those in the preceding output.
 
 9.  The last step is to visualize the result. Including every
     parameterization will result in a cluttered plot, so we will filter

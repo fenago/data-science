@@ -75,21 +75,12 @@ from the DataFrame:
 ```
 target = df.pop('Activity')
 ```
+
 Now the response variable is contained in the variable called
 `target` and all the features are in the DataFrame called
 `df`.
 
-Now we are going to split the dataset into training and testing sets.
-The model uses the training set to learn relevant parameters in
-predicting the response variable. The test set is used to check whether
-a model can accurately predict unseen data. We say the model is
-overfitting when it has learned the patterns relevant only to the
-training set and makes incorrect predictions about the testing set. In
-this case, the model performance will be much higher for the training
-set compared to the testing one. Ideally, we want to have a very similar
-level of performance for the training and testing sets. This topic will
-be covered in more depth in *Lab 7*, *The Generalization of Machine
-Learning Models*.
+
 
 The `sklearn` package provides a function called
 `train_test_split()` to randomly split the dataset into two
@@ -116,6 +107,7 @@ class from `sklearn.ensemble`:
 ```
 from sklearn.ensemble import RandomForestClassifier
 ```
+
 Now we can instantiate the Random Forest classifier with some
 hyperparameters. Remember from *Lab 1, Introduction to Data Science
 in Python*, a hyperparameter is a type of parameter the model can\'t
@@ -203,15 +195,9 @@ The output will be as follows:
 
 ![](./images/B15019_04_06.jpg)
 
-Caption: Accuracy score on the training set
 
 
-Remember, in the last section, we split the dataset into training and
-testing sets. We used the training set to fit the model and assess its
-predictive power on it. But it hasn\'t seen the observations from the
-testing set at all, so we can use it to assess whether our model is
-capable of generalizing unseen data. Let\'s calculate the accuracy score
-for the testing set:
+Let\'s calculate the accuracy score for the testing set:
 
 ```
 test_preds = rf_model.predict(X_test)
@@ -438,94 +424,15 @@ score:
 
 
 
-Number of Trees Estimator
--------------------------
 
-Now that we know how to fit a Random Forest classifier and assess its
-performance, it is time to dig into the details. In the coming sections,
-we will learn how to tune some of the most important hyperparameters for
-this algorithm. As mentioned in *Lab 1, Introduction to Data Science
-in Python*, hyperparameters are parameters that are not learned
-automatically by machine learning algorithms. Their values have to be
-set by data scientists. These hyperparameters can have a huge impact on
-the performance of a model, its ability to generalize to unseen data,
-and the time taken to learn patterns from the data.
 
-The first hyperparameter you will look at in this section is called
-`n_estimators`. This hyperparameter is responsible for
-defining the number of trees that will be trained by the
-`RandomForest` algorithm.
-
-Before looking at how to tune this hyperparameter, we need to understand
-what a tree is and why it is so important for the
-`RandomForest` algorithm.
-
-A tree is a logical graph that maps a decision and its outcomes at each
-of its nodes. Simply speaking, it is a series of yes/no (or true/false)
-questions that lead to different outcomes.
-
-A leaf is a special type of node where the model will make a prediction.
-There will be no split after a leaf. A single node split of a tree may
-look like this:
-
-![](./images/B15019_04_14.jpg)
-
-Caption: Example of a single tree node
-
-A tree node is composed of a question and two outcomes depending on
-whether the condition defined by the question is met or not. In the
-preceding example, the question is `is avg_rss12 > 41?` If the
-answer is yes, the outcome is the `bending_1` leaf and if not,
-it will be the `sitting` leaf.
-
-A tree is just a series of nodes and leaves combined together:
-
-![](./images/B15019_04_15.jpg)
-
-Caption: Example of a tree
-
-In the preceding example, the tree is composed of three nodes with
-different questions. Now, for an observation to be predicted as
-`sitting`, it will need to meet the conditions:
-`avg_rss13 <= 41`, `var_rss > 0.7`, and
-`avg_rss13 <= 16.25`.
-
-The `RandomForest` algorithm will build this kind of tree
-based on the training data it sees. We will not go through the
-mathematical details about how it defines the split for each node but,
-basically, it will go through every column of the dataset and see which
-split value will best help to separate the data into two groups of
-similar classes. Taking the preceding example, the first node with the
-`avg_rss13 > 41` condition will help to get the group of data
-on the left-hand side with mostly the `bending_1` class. The
-`RandomForest` algorithm usually builds several of this kind
-of tree and this is the reason why it is called a forest.
-
-As you may have guessed now, the `n_estimators` hyperparameter
-is used to specify the number of trees the `RandomForest`
-algorithm will build. For example (as in the previous exercise), say we
-ask it to build 10 trees. For a given observation, it will ask each tree
-to make a prediction. Then, it will average those predictions and use
-the result as the final prediction for this input. For instance, if, out
-of 10 trees, 8 of them predict the outcome `sitting`, then the
-`RandomForest` algorithm will use this outcome as the final
-prediction.
-
-Note
-
-If you don\'t pass in a specific `n_estimators`
-hyperparameter, it will use the default value. The default depends on
-the version of scikit-learn you\'re using. In early versions, the
-default value is 10. From version 0.22 onwards, the default is 100. You
-can find out which version you are using by executing the following
-code:
+You can find out which version you are using by executing the following code:
 
 `import sklearn`
 
 `sklearn.__version__`
 
-For more information, see here:
-<https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html>
+
 
 In general, the higher the number of trees is, the better the
 performance you will get. Let\'s see what happens with
@@ -1118,31 +1025,8 @@ print(accuracy_score(y_test, test_preds9))
 
 The output will be as follows:
 
-![Caption: Accuracy scores for the training and testing sets for
-min\_samples\_leaf=25 ](./images/B15019_04_31.jpg)
+![](./images/B15019_04_31.jpg)
 
-Caption: Accuracy scores for the training and testing sets for
-min\_samples\_leaf=25
-
-Both accuracies for the training and testing sets decreased but they are
-quite close to each other now. So, we will keep this value
-(`25`) as the optimal one for this dataset as the performance
-is still OK and we are not overfitting too much.
-
-When choosing the optimal value for this hyperparameter, you need to be
-careful: a value that\'s too low will increase the chance of the model
-overfitting, but on the other hand, setting a very high value will lead
-to underfitting (the model will not accurately predict the right
-outcome).
-
-For instance, if you have a dataset of `1000` rows, if you set
-`min_samples_leaf` to `400`, then the model will not
-be able to find good splits to predict `5` different classes.
-In this case, the model can only create one single split and the model
-will only be able to predict two different classes instead of
-`5`. It is good practice to start with low values first and
-then progressively increase them until you reach satisfactory
-performance.
 
 
 
@@ -1257,13 +1141,6 @@ We will be using the same zoo dataset as in the previous exercise.
     
 ![](./images/B15019_04_33.jpg)
 
-
-    Caption: Accuracy scores for the training and testing sets
-
-    The accuracy score decreased for both the training and testing sets
-    compared to the best result we got in the previous exercise. Now the
-    difference between the training and testing sets\' accuracy scores
-    is much smaller so our model is overfitting less.
 
 11. Instantiate another `RandomForestClassifier` with
     `random_state=42`, `n_estimators=30`,

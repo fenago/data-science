@@ -641,20 +641,7 @@ dataset, refer to the following note. Let\'s get started:
 ![](./images/B15019_11_15.jpg)
 
 
-    Caption: List of columns and their assigned data types
 
-    Note
-
-    The preceding output has been truncated.
-
-    From *Lab 10*, *Analyzing a Dataset* you know that the
-    `Id`, `MSSubClass`, `OverallQual`, and
-    `OverallCond` columns have been incorrectly classified as
-    numerical variables. They have a finite number of unique values and
-    you can\'t perform any mathematical operations on them. For example,
-    it doesn\'t make sense to add, remove, multiply, or divide two
-    different values from the `Id` column. Therefore, you need
-    to convert them into categorical variables.
 
 6.  Using the `astype()` method, convert the `'Id'`
     column into a categorical variable, as shown in the following code
@@ -693,14 +680,6 @@ dataset, refer to the following note. Let\'s get started:
     
 ![](./images/B15019_11_16.jpg)
 
-
-    Caption: List of categories for the four newly converted
-    variables
-
-    Now, these four columns have been converted into categorical
-    variables. From the output of *Step 5*, we can see that there are a
-    lot of variables of the `object` type. Let\'s have a look
-    at them and see if they need to be converted as well.
 
 9.  Create a new DataFrame called `obj_df` that will only
     contain variables of the `object` type using the
@@ -1348,15 +1327,7 @@ You should get the following output:
 
 ![](./images/B15019_11_38.jpg)
 
-Caption: Rows with missing values in CustomerID
-
-This time, all the transactions look normal, except they are missing
-values for the `CustomerID` column; all the other variables
-have been filled in with values that seem genuine. There is no other way
-to infer the missing values for the `CustomerID` column. These
-rows represent almost 25% of the dataset, so we can\'t remove them.
-
-However, most algorithms require a value for each observation, so you
+Most algorithms require a value for each observation, so you
 need to provide one for these cases. We will use the
 `.fillna()` method from `pandas` to do this. Provide
 the value to be imputed as `Missing` and use
@@ -1384,15 +1355,6 @@ df.isna().sum()
 You should get the following output:
 
 ![](./images/B15019_11_40.jpg)
-
-Caption: Summary of missing values for each variable
-
-You have successfully fixed all the missing values in this dataset.
-These methods also work when we want to handle missing numerical
-variables. We will look at this in the following exercise. All you need
-to do is provide a numerical value when you want to impute a value with
-`.fillna()`.
-
 
 
 Exercise 11.04: Fixing Missing Values for the Horse Colic Dataset
@@ -1699,47 +1661,39 @@ The following figure illustrates a list of unique values for gaming:
 
 ![](./images/B15019_11_49.jpg)
 
-Caption: List of unique values for gaming
 
 The following figure displays the data types of each column:
 
 ![](./images/B15019_11_50.jpg)
 
-Caption: Data types of each column
 
 The following figure displays the updated data types of each column:
 
 ![](./images/B15019_11_51.jpg)
 
-Caption: Data types of each column
 
 The following figure displays the number of missing values for numerical
 variables:
 
 ![](./images/B15019_11_52.jpg)
 
-Caption: Number of missing values for numerical variables
 
 The following figure displays the list of unique values for
 `int_corr`:
 
 ![](./images/B15019_11_53.jpg)
 
-Caption: List of unique values for \'int\_corr\'
 
 The following figure displays the list of unique values for numerical
 variables:
 
 ![](./images/B15019_11_54.jpg)
 
-Caption: List of unique values for numerical variables
 
 The following figure displays the number of missing values for numerical
 variables:
 
 ![](./images/B15019_11_55.jpg)
-
-Caption: Number of missing values for numerical variables
 
 
 Summary

@@ -81,12 +81,6 @@ The following steps will help you to complete this exercise:
     ```
 
 
-    Note
-
-    The `#` symbol in the code snippet above denotes a code
-    comment. Comments are added into code to help explain specific bits
-    of logic.
-
     The `pd.read_csv()` function\'s arguments are the filename
     as a string and the limit separator of a CSV, which is
     `";"`. After reading the file, the DataFrame is printed
@@ -289,23 +283,12 @@ their age. We will be using a line graph for this exercise.
 
 The following steps will help you to complete this exercise:
 
-1.  Begin by defining the hypothesis.
-
-    The first step in the verification process will be to define a
-    hypothesis about the relationship. A hypothesis can be based on your
-    experiences, domain knowledge, some published pieces of knowledge,
-    or your business intuitions.
-
-    Let\'s first define our hypothesis on age and propensity to buy term
+1.  Let\'s first define our hypothesis on age and propensity to buy term
     deposits:
 
     *The propensity to buy term deposits is more with elderly customers
     compared to younger ones*. This is our hypothesis.
 
-    Now that we have defined our hypothesis, it is time to verify its
-    veracity with the data. One of the best ways to get business
-    intuitions from data is by taking cross-sections of our data and
-    visualizing them.
 
 2.  Import the pandas and altair packages:
     ```

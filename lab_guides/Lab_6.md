@@ -77,13 +77,6 @@ The following steps will help you complete the exercise:
 ![](./images/B15019_06_01.jpg)
 
 
-    Caption: The car dataset without headers
-
-    Note
-
-    Alternatively, you can enter the dataset URL in the browser to view
-    the dataset.
-
     `CSV` files normally have the name of each column written
     in the first row of the data. For instance, have a look at this
     dataset\'s CSV file, which you used in *Lab 3, Binary
@@ -1374,19 +1367,6 @@ The following steps will help you accomplish this task:
 
 ![](./images/B15019_06_35.jpg)
 
-
-    Caption: Reading the dataset
-
-    You will need to do a few things to work with this file. Skip 15
-    rows and specify the column headers and read the file without an
-    index.
-
-    The code shows how you do that by creating a Python list to hold
-    your column headers and then read in the file using
-    `read_csv()`. The parameters that you pass in are the
-    file\'s location, the column headers as a Python list, the name of
-    the index column (in this case, it is None), and the number of rows
-    to skip.
 
     The `head()` method will print out the top five rows and
     should look similar to the following:

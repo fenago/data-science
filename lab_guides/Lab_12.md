@@ -38,14 +38,7 @@ You should get the following output.
 
 ![](./images/B15019_12_01.jpg)
 
-Caption: First five rows of the Online Retail dataset
 
-Next, we are going to load all the public holidays in the UK into
-another `pandas` DataFrame. From *Lab 10*, *Analyzing a
-Dataset* we know the records of this dataset are only for the years 2010
-and 2011. So we are going to extract public holidays for those two
-years, but we need to do so in two different steps as the API provided
-by `date.nager` is split into single years only.
 
 Let\'s focus on 2010 first:
 
@@ -759,17 +752,6 @@ You should get the following output:
 ```
 30
 ```
-`30` is the number of unique values for the
-`Country_bin` column. So we reduced the number of unique
-values in this column from `38` to `30`:
-
-We just saw how to group categorical values together, but the same
-process can be applied to numerical values as well. For instance, it is
-quite common to group people\'s ages into bins such as 20s (20 to 29
-years old), 30s (30 to 39), and so on.
-
-Have a look at *Exercise 12.02*, *Binning the YearBuilt variable from
-the AMES Housing dataset*.
 
 
 
@@ -1768,8 +1750,3 @@ of a dataset are and identifying data quality issues. We saw how to
 handle and fix some of the most frequent issues (duplicate rows, type
 conversion, value replacement, and missing values) using
 `pandas`\' APIs. Finally, we went through several feature engineering techniques.
-
-The next lab opens a new part of this course that presents data
-science use cases end to end. *Lab 13*, *Imbalanced Datasets*, will
-walk you through an example of an imbalanced dataset and how to deal
-with such a situation.

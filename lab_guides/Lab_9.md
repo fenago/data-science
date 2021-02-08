@@ -364,11 +364,8 @@ The output will be as shown in the following figure:
 
 ![](./images/B15019_09_12.jpg)
 
-Caption: Feature importance of a Random Forest model
 
-Note
-
-Due to randomization, you may get a slightly different result.
+**Note:** Due to randomization, you may get a slightly different result.
 
 It might be a little difficult to evaluate which importance value
 corresponds to which variable from this output. Let\'s create a
@@ -1378,18 +1375,8 @@ We will be using the same dataset as in the previous exercise.
     You should get the following output:
 
     
-![Caption: LIME output for the third observation of the testing
-    set ](./images/B15019_09_41.jpg)
+![](./images/B15019_09_41.jpg)
 
-
-Caption: LIME output for the third observation of the testing set
-
-
-You have completed the last exercise of this lab. You saw how to use
-LIME to interpret the prediction of single observations. We learned that
-the `a1pop`, `a2pop`, and `a3pop` features
-have a strong negative impact on the first and third observations of the
-training set.
 
 
 

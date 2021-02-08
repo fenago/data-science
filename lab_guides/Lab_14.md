@@ -1693,45 +1693,6 @@ The following steps will help you complete this exercise:
 
 
 
-From this exercise, you may come up with a few questions:
-
-- How do you think we can improve the classification results using
-    ICA?
-- Increasing the number of components results in a marginal increase
-    in the accuracy metrics.
-- Are there any other side effects because of the strategy adopted to
-    improve the results?
-
-Increasing the number of components also results in a longer training
-time for the logistic regression model.
-
-
-
-Factor Analysis
----------------
-
-Factor analysis is a technique that achieves dimensionality reduction by
-grouping variables that are highly correlated. Let\'s look at an example
-from our context of predicting advertisements.
-
-In our dataset, there could be many features that describe the geometry
-(the size and shape of an image in the ad) of the images on a web page.
-These features can be correlated because they refer to specific
-characteristics of an image.
-
-Similarly, there could be many features that describe the anchor text or
-phrases occurring in a URL, which are highly correlated. Factor analysis
-looks at correlated groups such as these from the data and then groups
-them into latent factors. Therefore, if there are 10 raw features
-describing the geometry of an image, factor analysis will group them
-into one feature that characterizes the geometry of an image. Each of
-these groups is called factors. As many correlated features are combined
-to form a group, the resulting number of features will be much smaller
-in comparison with the original dimensions of the dataset.
-
-Let\'s now see how factor analysis can be implemented as a technique for
-dimensionality reduction.
-
 
 
 Exercise 14.06: Dimensionality Reduction Using Factor Analysis
@@ -2015,18 +1976,7 @@ You should get the following output:
 
 ![](./images/B15019_14_35.jpg)
 
-Caption: Sample data frame
 
-What we will do next is sample some data points with the same shape as
-the data frame we created.
-
-Let\'s sample some data points from a normal distribution that has mean
-`0` and standard deviation of `0.1`. We touched
-briefly on normal distributions in *Lab 3, Binary Classification.* A
-normal distribution has two parameters. The first one is the mean, which
-is the average of all the data in the distribution, and the second one
-is standard deviation, which is a measure of how spread out the data
-points are.
 
 By assuming a mean and standard deviation, we will be able to draw
 samples from a normal distribution using the

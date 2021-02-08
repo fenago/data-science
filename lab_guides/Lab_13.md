@@ -148,10 +148,6 @@ Classification*, and you will look closely at the metrics:
     ```
 
 
-    After the categorical values are transformed, they must be combined
-    with the scaled numerical values of the data frame to get the
-    feature-engineered dataset.
-
 10. Create the independent variables, `X`, and dependent
     variables, `Y`, from the combined dataset for modeling, as
     in the following code snippet:
@@ -171,12 +167,8 @@ Classification*, and you will look closely at the metrics:
     The output is as follows:
 
     
-![Caption: The independent variables and the combined data
-    (truncated) ](./images/B15019_13_03.jpg)
+![](./images/B15019_13_03.jpg)
 
-
-    Caption: The independent variables and the combined data
-    (truncated)
 
     We are now ready for the modeling task. Let\'s first import the
     necessary packages.

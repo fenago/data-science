@@ -232,12 +232,6 @@ The following steps will help you to complete this exercise:
     ```
 
 
-    The use of the backslash character, `\`, on *line 4* in
-    the preceding code snippet is to enforce the continuation of code on
-    to a new line in Python. The `\` character is not required
-    if you are entering the full line of code into a single line in
-    your notebook.
-
     You should get the following output:
 
     
