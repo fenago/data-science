@@ -65,21 +65,6 @@ The output will be as follows:
 
 ![](./images/B15019_09_03.jpg)
 
-Caption: Coefficients of the linear regression model
-
-A large positive or a large negative number for a feature coefficient
-means it has a strong influence on the outcome. On the other hand, if
-the coefficient is close to 0, this means the variable does not have
-much impact on the prediction.
-
-From this table, we can see that column `s1` has a very low
-coefficient (a large negative number) so it negatively influences the
-final prediction. If `s1` increases by a unit of 1, the
-prediction value will decrease by `-792.184162`. On the other
-hand, `bmi` has a large positive number
-(`519.839787`) on the prediction, so the risk of diabetes is
-highly linked to this feature: an increase in body mass index (BMI)
-means a significant increase in the risk of diabetes.
 
 
 
@@ -1245,55 +1230,6 @@ exp.show_in_notebook()
 The output will be as follows:
 
 ![](./images/B15019_09_35.jpg)
-
-Caption: Output of LIME
-
-Note
-
-Your output may differ slightly. This is due to the random sampling
-process of LIME.
-
-There is a lot of information in the preceding output. Let\'s go through
-it a bit at a time. The left-hand side shows the prediction
-probabilities for the two classes of the target variable. For this
-observation, the model thinks there is a 0.85 probability that the
-predicted value will be malignant:
-
-![](./images/B15019_09_36.jpg)
-
-Caption: Prediction probabilities from LIME
-
-The right-hand side shows the value of each feature for this
-observation. Each feature is color-coded to highlight its contribution
-toward the possible classes of the target variable. The list sorts the
-features by decreasing importance. In this example, the mean perimeter,
-mean area, and area error contributed to the model to increase the
-probability toward class 1. All the other features influenced the model
-to predict outcome 0:
-
-![](./images/B15019_09_37.jpg)
-
-Caption: Value of the feature for the observation of interest
-
-Finally, the central part shows how each variable contributed to the
-final prediction. In this example, the `worst concave points`
-and `worst compactness` variables led to an increase of,
-respectively, 0.10 and 0.05 probability in predicting outcome 0. On the
-other hand, `mean perimeter` and `mean area` both
-contributed to an increase of 0.03 probability of predicting class 1:
-
-![](./images/B15019_09_38.jpg)
-
-Caption: Contribution of each feature to the final prediction
-
-It\'s as simple as that. With LIME, we can easily see how each variable
-impacted the probabilities of predicting the different outcomes of the
-model. As you saw, the LIME package not only computes the local
-approximation but also provides a visual representation of its results.
-It is much easier to interpret than looking at raw outputs. It is also
-very useful for presenting your findings and illustrating how different
-features influenced the prediction of a single observation.
-
 
 
 Exercise 9.05: Local Interpretation with LIME

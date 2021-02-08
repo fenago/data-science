@@ -38,6 +38,7 @@ You should get the following output:
  'metric_params': None, 'n_jobs': None, 'n_neighbors': 5, 
  'p': 2, 'weights': 'uniform'}
 ```
+
 A dictionary of all the hyperparameters is now printed to the screen,
 revealing their default settings. Notice `k`, our number of
 nearest neighbors, is set to `5`.
@@ -133,37 +134,6 @@ covered in *Lab 7, The Generalization of Machine Learning Models*,
 our goal being to predict incidences of malignant or benign breast
 cancer based on cell measurements sourced from the affected breast
 sample.
-
-
-These are the important attributes of the dataset:
-
-- ID number
-- Diagnosis (M = malignant, B = benign)
-- 3-32)
-
-10 real-valued features are computed for each cell nucleus as follows:
-
-- Radius (mean of distances from the center to points on the
-    perimeter)
-
-- Texture (standard deviation of grayscale values)
-
-- Perimeter
-
-- Area
-
-- Smoothness (local variation in radius lengths)
-
-- Compactness (perimeter\^2 / area - 1.0)
-
-- Concavity (severity of concave portions of the contour)
-
-- Concave points (number of concave portions of the contour)
-
-- Symmetry
-
-- Fractal dimension (refers to the complexity of the tissue
-    architecture; \"coastline approximation\" - 1)
 
 
 The following steps will help you complete this exercise:
@@ -381,15 +351,7 @@ The output will be as follows:
 
 Caption: Average precisions for all folds
 
-We can see from the output that `k = 5` is the best
-hyperparameterization found, with a mean precision score of roughly 94%.
-Increasing `k` to `7` didn\'t significantly improve
-performance. It is important to note that the only parameter we are
-changing here is k and that each time the k-NN estimator is initialized,
-it is done with the remaining hyperparameters set to their default
-values.
-
-To make this point clear, we can run the same loop, this time just
+We can run the same loop, this time just
 printing the hyperparameterization that will be tried:
 
 ```
@@ -511,27 +473,6 @@ The output will be as follows:
  'metric_params': None, 'n_jobs': None, 'n_neighbors': 7, 
  'p': 2, 'weights': 'distance'}
 ```
-This implementation, while great for demonstrating how the grid search
-process works, may not practical when trying to evaluate estimators that
-have `3`, `4`, or even `10` different
-types of hyperparameters, each with a multitude of possible settings.
-
-To carry on in this way will mean writing and keeping track of multiple
-`for` loops, which can be tedious. Thankfully,
-`scikit-learn`\'s `model_selection` module gives us
-a method called `GridSearchCV` that is much more
-user-friendly. We will be looking at this in the topic ahead.
-
-
-GridSearchCV
-============
-
-
-`GridsearchCV` is a method of tuning wherein the model can be
-built by evaluating the combination of parameters mentioned in a grid.
-In the following figure, we will see how `GridSearchCV` is
-different from manual search and look at grid search in a muchdetailed
-way in a table format.
 
 
 
@@ -882,48 +823,10 @@ and what we mean by a distribution.
 Random Variables and Their Distributions
 ----------------------------------------
 
-A random variable is non-constant (its value can change) and its
-variability can be described in terms of distribution. There are many
-different types of distributions, but each falls into one of two broad
-categories: discrete and continuous. We use discrete distributions to
-describe random variables whose values can take only whole numbers, such
-as counts.
-
-An example is the count of visitors to a theme park in a day, or the
-number of attempted shots it takes a golfer to get a hole-in-one.
-
-We use continuous distributions to describe random variables whose
-values lie along a continuum made up of infinitely small increments.
-Examples include human height or weight, or outside air temperature.
-Distributions often have parameters that control their shape.
-
-Discrete distributions can be described mathematically using what\'s
-called a probability mass function, which defines the exact probability
-of the random variable taking a certain value. Common notation for the
-left-hand side of this function is `P(X=x)`, which in plain
-English means that the probability that the random variable
-`X` equals a certain value `x` is `P`.
-Remember that probabilities range between `0` (impossible) and
-`1` (certain).
-
-By definition, the summation of each `P(X=x)` for all possible
-`x`\'s will be equal to 1, or if expressed another way, the
-probability that `X` will take any value is 1. A simple
-example of this kind of distribution is the discrete uniform
-distribution, where the random variable `X` will take only one
-of a finite range of values and the probability of it taking any
-particular value is the same for all values, hence the term uniform.
-
-For example, if there are 10 possible values the probability that
-`X` is any particular value is exactly 1/10. If there were 6
-possible values, as in the case of a standard 6-sided die, the
-probability would be 1/6, and so on. The probability mass function for
-the discrete uniform distribution is:
 
 ![](./images/B15019_08_15.jpg)
 
-Caption: Probability mass function for the discrete uniform
-distribution
+Caption: Probability mass function for the discrete uniform distribution
 
 The following code will allow us to see the form of this distribution
 with 10 possible values of X.
@@ -966,34 +869,7 @@ The output will be as follows:
 
 ![](./images/B15019_08_16.jpg)
 
-Caption: Visualizing the bar chart
 
-In the visual output, we see that the probability of `X` being
-a specific whole number between 1 and 10 is equal to 1/10.
-
-Note
-
-Other discrete distributions you commonly see include the binomial,
-negative binomial, geometric, and Poisson distributions, all of which we
-encourage you to investigate. Type these terms into a search engine to
-find out more.
-
-Distributions of continuous random variables are a bit more challenging
-in that we cannot calculate an exact `P(X=x)` directly because
-`X` lies on a continuum. We can, however, use integration to
-approximate probabilities between a range of values, but this is beyond
-the scope of this course. The relationship between `X` and
-probability is described using a probability density function,
-`P(X)`. Perhaps the most well-known continuous distribution is
-the normal distribution, which visually takes the form of a bell.
-
-The normal distribution has two parameters that describe its shape, mean
-(`𝜇`) and variance (`𝜎`[2]). The
-probability density function for the normal distribution is:
-
-![](./images/B15019_08_17.jpg)
-
-Caption: Probability density function for the normal distribution
 
 The following code shows two normal distributions with the same mean
 (`𝜇`` = 0`) but different variance parameters
@@ -1157,15 +1033,6 @@ plt.ylabel('sample count')
 The output will be as follows:
 
 ![](./images/B15019_08_21.jpg)
-
-Caption: Visualization of the sample distribution
-
-A model will then be fitted for each value of 𝛼 sampled and assessed for
-performance. As we have seen with the other approaches to hyperparameter
-tuning in this lab, performance will be assessed using k-fold
-cross-validation (with `k =10`) but because we are dealing
-with a regression problem, the performance metric will be the test-set
-negative MSE.
 
 Using this metric means larger values are better. We will store the
 results in a dictionary with each 𝛼 value as the key and the
@@ -1503,34 +1370,11 @@ The following steps will help you complete the exercise.
     The output will be as follows:
 
     
-![Caption: Visualizing the test scores of the top-performing
-    models ](./images/B15019_08_27.jpg)
+![](./images/B15019_08_27.jpg)
 
 
 Caption: Visualizing the test scores of the top-performing models
 
-
-
-Advantages and Disadvantages of a Random Search
------------------------------------------------
-
-Because a random search takes a finite sample from a range of possible
-hyperparameterizations (`n_iter` in
-`model_selection.RandomizedSearchCV`), it is feasible to
-expand the range of your hyperparameter search beyond what would be
-practical with a grid search. This is because a grid search has to try
-everything in the range, and setting a large range of values may be too
-slow to process. Searching this wider range gives you the chance of
-discovering a truly optimal solution.
-
-Compared to the manual and grid search strategies, you do sacrifice a
-level of control to obtain this benefit. The other consideration is that
-setting up random search is a bit more involved than other options in
-that you have to specify distributions. There is always a chance of
-getting this wrong. That said, if you are unsure about what
-distributions to use, stick with discrete or continuous uniform for the
-respective variable types as this will assign an equal probability of
-selection to all options.
 
 
 

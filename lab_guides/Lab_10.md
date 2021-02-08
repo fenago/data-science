@@ -23,27 +23,6 @@ Exploring Your Data
 ===================
 
 
-If you are running your project by following the CRISP-DM methodology,
-the first step will be to discuss the project with the stakeholders and
-clearly define their requirements and expectations. Only once this is
-clear can you start having a look at the data and see whether you will
-be able to achieve these objectives.
-
-After receiving a dataset, you may want to make sure that the dataset
-contains the information you need for your project. For instance, if you
-are working on a supervised project, you will check whether this dataset
-contains the target variable you need and whether there are any missing
-or incorrect values for this field. You may also check how many
-observations (rows) and variables (columns) there are. These are the
-kind of questions you will have initially with a new dataset. This
-section will introduce you to some techniques you can use to get the
-answers to these questions.
-
-For the rest of this section, we will be working with a dataset
-containing transactions from an online retail store.
-
-
-
 Our dataset is an Excel spreadsheet. Luckily, the `pandas`
 package provides a method we can use to load this type of file:
 `read_excel()`.
@@ -155,17 +134,8 @@ df.dtypes
 
 You should get the following output:
 
-![Caption: Description of the data type for each column of the
-DataFrame ](./images/B15019_10_03.jpg)
+![](./images/B15019_10_03.jpg)
 
-Caption: Description of the data type for each column of the
-DataFrame
-
-From this output, we can see that the `InvoiceDate` column is
-a date type (`datetime64[ns]`), `Quantity` is an
-integer (`int64`), and that `UnitPrice` and
-`CustomerID` are decimal numbers (`float64`). The
-remaining columns are text (`object`).
 
 The `pandas` package provides a single method that can display
 all the information we have seen so far, that is, the `info()`
@@ -228,18 +198,7 @@ You should get the following output:
 
 Caption: Displaying the first five rows using the head() method
 
-The output of the `head()` method shows that the
-`InvoiceNo`, `StockCode`, and `CustomerID`
-columns are unique identifier fields for each purchasing invoice, item
-sold, and customer. The `Description` field is text describing
-the item sold. `Quantity` and `UnitPrice` are the
-number of items sold and their unit price, respectively.
-`Country` is a text field that can be used for specifying
-where the customer or the item is located or from which country version
-of the online store the order has been made. In a real project, you may
-reach out to the team who provided this dataset and confirm what the
-meaning of the `Country` column is, or any other column
-details that you may need, for that matter.
+
 
 With `pandas`, you can specify the number of top rows to be
 displayed with the `head()` method by providing an integer as
@@ -294,23 +253,7 @@ df.sample(n=5, random_state=1)
 
 You should get the following output:
 
-![Caption: Displaying five random sampled rows using the sample()
-method ](./images/B15019_10_08.jpg)
-
-Caption: Displaying five random sampled rows using the sample()
-method
-
-In this output, we can see an additional value in the
-`Country` column: `Germany`. We can also notice a
-few interesting points:
-
-- `InvoiceNo` can also contain alphabetical letters (row
-    `94,801` starts with a `C`, which may have a
-    special meaning).
-- `Quantity` can have negative values: `-2` (row
-    `94801`).
-- `CustomerID` contains missing values: `NaN` (row
-    `210111`).
+![](./images/B15019_10_08.jpg)
 
 
 
@@ -382,12 +325,6 @@ The following steps will help you to complete this exercise:
 ![](./images/B15019_10_09.jpg)
 
 
-    Caption: List of columns in the housing dataset
-
-    We can infer the type of information contained in some of the
-    variables by looking at their names, such as `LotArea`
-    (property size), `YearBuilt` (year of construction), and
-    `SalePrice` (property sale price).
 
 7.  Print out the type of each variable contained in this DataFrame
     using the `dtypes` attribute from the `pandas`
@@ -706,17 +643,6 @@ You should get the following output:
 -80995
 ```
 
-The lowest value in this variable is extremely low. We can think that
-having negative values is possible for returned items, but here, the
-minimum (`-80995`) is very low. This, again, will be something
-to be confirmed with the relevant people in your organization.
-
-Now, we are going to have a look at the central tendency of this column.
-**Central tendency** is a statistical term referring to the central
-point where the data will cluster around. The most famous central
-tendency measure is the average (or mean). The average is calculated by
-summing all the values of a column and dividing them by the number of
-values.
 
 If we plot the `Quantity `column on a graph with its average,
 it would look as follows:
@@ -769,12 +695,6 @@ You should get the following output:
 ```
 3.0
 ```
-
-The median value for this column is 3, which is quite different from the
-mean (`9.55`) we found earlier. This tells us that there are
-some outliers in this dataset and we will have to decide on how to
-handle them after we\'ve done more investigation (this will be covered
-in *Lab 11*, *Data Preparation*).
 
 We can also evaluate the spread of this column (how much the data points
 vary from the central point). A common measure of spread is the standard

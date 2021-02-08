@@ -133,17 +133,6 @@ The following steps will help you complete the exercise:
     two new DataFrames called `training_df` and
     `eval_df`.
 
-    You specify a value of `0.8` for `train_size` so
-    that `80%` of the data is assigned to
-    `training_df`.
-
-    `random_state` ensures that your experiments are
-    reproducible. Without `random_state`, the data is split
-    differently every time using a different random number. With
-    `random_state`, the data is split the same way every time.
-    We will be studying `random_state` in depth in the next
-    lab.
-
 8.  Check the information of `training_df`:
 
     ```
@@ -635,13 +624,6 @@ The following steps will help you complete the exercise:
     ```
 
 
-    In this step, you the compute cross-validation scores and store the
-    result in a Python list, which you call `_scores`. You do
-    this using `cross_cal_score`. The function requires the
-    following four parameters: the model to make use of (in our case,
-    it\'s called `_lr`); the features of the dataset; the
-    labels of the dataset; and the number of cross-validation splits to
-    create (five, in our case).
 
 7.  Now, display the scores as shown in the following code snippet:
 
@@ -659,16 +641,6 @@ The following steps will help you complete the exercise:
 
 
 Caption: Printing the cross-validation scores
-
-
-
-LogisticRegressionCV
-====================
-
-
-`LogisticRegressionCV` is a class that implements
-cross-validation inside it. This class will train multiple
-`LogisticRegression` models and return the best one.
 
 
 
@@ -859,137 +831,6 @@ The following steps will help you complete the exercise:
 ![](./images/B15019_07_26.jpg)
 
 
-Caption: Computing the R2 score
-
-
-
-Hyperparameter Tuning with GridSearchCV
-=======================================
-
-
-`GridSearchCV` will take a model and parameters and train one
-model for each permutation of the parameters. At the end of the
-training, it will provide access to the parameters and the model scores.
-This is called hyperparameter tuning and you will be looking at this in
-much more depth in *Lab 8, Hyperparameter Tuning*.
-
-The usual practice is to make use of a small training set to find the
-optimal parameters using hyperparameter tuning and then to train a final
-model with all of the data.
-
-Before the next exercise, let\'s take a brief look at decision trees,
-which are a type of model or estimator.
-
-
-
-Decision Trees
---------------
-
-A decision tree works by generating a separating hyperplane or a
-threshold for the features in data. It does this by considering every
-feature and finding the correlation between the spread of the values in
-that feature and the label that you are trying to predict.
-
-Consider the following data about balloons. The label you need to
-predict is called `inflated`. This dataset is used for
-predicting whether the balloon is inflated or deflated given the
-features. The features are:
-
-- `color`
-- `size`
-- `act`
-- `age`
-
-The following table displays the distribution of features:
-
-![](./images/B15019_07_27.jpg)
-
-Caption: Tabular data for balloon features
-
-Now consider the following charts, which are visualized depending on the
-spread of the features against the label:
-
-- If you consider the `Color` feature, the values are
-    `PURPLE` and `YELLOW`, but the number of
-    observations is the same, so you can\'t infer whether the balloon is
-    inflated or not based on the color, as you can see in the following
-    figure:
-    
-![](./images/B15019_07_28.jpg)
-
-
-Caption: Barplot for the color feature
-
-- The `Size` feature has two values: `LARGE` and
-    `SMALL`. These are equally spread, so we can\'t infer
-    whether the balloon is inflated or not based on the color, as you
-    can see in the following figure:
-    
-![](./images/B15019_07_29.jpg)
-
-
-Caption: Barplot for the size feature
-
-- The `Act` feature has two values: `DIP` and
-    `STRETCH`. You can see from the chart that the majority of
-    the `STRETCH` values are inflated. If you had to make a
-    guess, you could easily say that if `Act` is
-    `STRETCH`, then the balloon is inflated. Consider the
-    following figure:
-    
-![](./images/B15019_07_30.jpg)
-
-
-Caption: Barplot for the act feature
-
-- Finally, the `Age` feature also has two values:
-    `ADULT` and `CHILD`. It\'s also visible from the
-    chart that the `ADULT` value constitutes the majority of
-    inflated balloons:
-    
-![](./images/B15019_07_31.jpg)
-
-
-Caption: Barplot for the age feature
-
-The two features that are useful to the decision tree are
-`Act` and `Age`. The tree could start by considering
-whether `Act` is `STRETCH`. If it is, the prediction
-will be true. This tree would look like the following figure:
-
-![](./images/B15019_07_32.jpg)
-
-Caption: Decision tree with depth=1
-
-The left side evaluates to the condition being false, and the right side
-evaluates to the condition being true. This tree has a depth of 1. F
-means that the prediction is false, and T means that the prediction is
-true.
-
-To get better results, the decision tree could introduce a second level.
-The second level would utilize the `Age` feature and evaluate
-whether the value is `ADULT`. It would look like the following
-figure:
-
-![](./images/B15019_07_33.jpg)
-
-Caption: Decision tree with depth=2
-
-This tree has a depth of 2. At the first level, it predicts true if
-`Act` is `STRETCH`. If `Act` is not
-`STRETCH`, it checks whether `Age` is
-`ADULT`. If it is, it predicts true, otherwise, it predicts
-false.
-
-The decision tree can have as many levels as you like but starts to
-overfit at a certain point. As with everything in data science, the
-optimal depth depends on the data and is a hyperparameter, meaning you
-need to try different values to find the optimal one.
-
-In the following exercise, we will be making use of grid search with
-cross-validation to find the best parameters for a decision tree
-estimator.
-
 
 
 Exercise 7.07: Using Grid Search with Cross-Validation to Find the Best Parameters for a Model
@@ -1090,12 +931,6 @@ The following steps will help you complete the exercise:
     from sklearn.model_selection import GridSearchCV
     ```
 
-
-    In this step, you import `numpy`. NumPy is a numerical
-    computation library. You alias it as `np`. You also import
-    `DecisionTreeClassifier`, which you use to create decision
-    trees. Finally, you import `GridSearchCV`, which will use
-    cross-validation to train multiple models.
 
 9.  Instantiate the decision tree:
 
