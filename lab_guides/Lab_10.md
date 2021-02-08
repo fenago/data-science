@@ -68,6 +68,7 @@ information, we just need to call the `.shape` attribute from
 ```
 df.shape
 ```
+
 You should get the following output:
 
 ```
@@ -85,6 +86,7 @@ of rows (index `0`):
 ```
 df.shape[0]
 ```
+
 You should get the following output:
 
 ```
@@ -95,6 +97,7 @@ Similarly, we can get the number of columns with the second index:
 ```
 df.shape[1]
 ```
+
 You should get the following output:
 
 ```
@@ -114,6 +117,7 @@ content by calling it directly:
 ```
 df
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_01.jpg)
@@ -126,6 +130,7 @@ To access the names of the columns for this DataFrame, we can call the
 ```
 df.columns
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_02.jpg)
@@ -147,6 +152,7 @@ snippet:
 ```
 df.dtypes
 ```
+
 You should get the following output:
 
 ![Caption: Description of the data type for each column of the
@@ -168,6 +174,7 @@ method:
 ```
 df.info()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_04.jpg)
@@ -214,6 +221,7 @@ default, `pandas` will display the first five rows:
 ```
 df.head()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_05.jpg)
@@ -241,6 +249,7 @@ rows:
 ```
 df.head(10)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_06.jpg)
@@ -260,6 +269,7 @@ Here, we will display the last eight rows:
 ```
 df.tail(8)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_07.jpg)
@@ -281,6 +291,7 @@ parameter:
 ```
 df.sample(n=5, random_state=1)
 ```
+
 You should get the following output:
 
 ![Caption: Displaying five random sampled rows using the sample()
@@ -313,7 +324,7 @@ and looking at some of its rows.
 
 The following steps will help you to complete this exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` package:
     ```
@@ -483,6 +494,7 @@ limited number of values, such as `Country`:
 ```
 df['Country'].nunique()
 ```
+
 You should get the following output:
 
 ```
@@ -496,6 +508,7 @@ these results: `unique()`:
 ```
 df['Country'].unique()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_14.jpg)
@@ -518,6 +531,7 @@ number of occurrences as a ratio, respectively:
 ```
 df['Country'].value_counts(dropna=False, normalize=True)
 ```
+
 You should get the following output:
 
 ![Caption: A truncated list of unique values and their occurrence ](./images/B15019_10_15.jpg)
@@ -539,7 +553,7 @@ the categorical variables of this dataset. To do so, we will implement
 our own `describe` functions.
 
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas `package:
     ```
@@ -668,6 +682,7 @@ use the `.max()` method:
 ```
 df['Quantity'].max()
 ```
+
 You should get the following output:
 
 ```
@@ -684,6 +699,7 @@ method:
 ```
 df['Quantity'].min()
 ```
+
 You should get the following output:
 
 ```
@@ -719,6 +735,7 @@ We can get the average value of a feature by using the
 ```
 df['Quantity'].mean()
 ```
+
 You should get the following output:
 
 ```
@@ -746,6 +763,7 @@ get this value:
 ```
 df['Quantity'].median()
 ```
+
 You should get the following output:
 
 ```
@@ -769,6 +787,7 @@ measure:
 ```
 df['Quantity'].std()
 ```
+
 You should get the following output:
 
 ```
@@ -785,6 +804,7 @@ most of these descriptive statistics with one single line of code:
 ```
 df.describe()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_21.jpg)
@@ -823,7 +843,7 @@ the numerical variables of this dataset. To do so, we will implement our
 own `describe `functions.
 
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` package:
     ```
@@ -1038,6 +1058,7 @@ one single line of code, like this:
 alt.Chart(sample_df).mark_circle()\
    .encode(x='Quantity', y='UnitPrice')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_27.jpg)
@@ -1055,6 +1076,7 @@ the `Country` column:
 alt.Chart(sample_df).mark_circle()\
    .encode(x='Quantity', y='UnitPrice', color='Country')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_28.jpg)
@@ -1080,6 +1102,7 @@ alt.Chart(sample_df).mark_circle()\
            tooltip=['InvoiceNo','StockCode','Description',\
                     'InvoiceDate','CustomerID']).interactive()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_29.jpg)
@@ -1135,6 +1158,7 @@ alt.Chart(sample_df).mark_bar()\
    .encode(alt.X("UnitPrice:Q", bin=True), \
            y='count()')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_30.jpg)
@@ -1153,6 +1177,7 @@ alt.Chart(sample_df).mark_bar()\
    .encode(alt.X("UnitPrice:Q", bin=alt.Bin(step=5)), \
            y='count()')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_31.jpg)
@@ -1173,6 +1198,7 @@ alt.Chart(sample_df).mark_bar()\
    .encode(alt.X("Quantity:Q", bin=alt.Bin(step=10)), \
            y='count()')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_32.jpg)
@@ -1202,6 +1228,7 @@ each of its values:
 alt.Chart(sample_df).mark_bar()\
    .encode(x='Country',y='count()')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_33.jpg)
@@ -1229,6 +1256,7 @@ alt.Chart(sample_df).mark_bar()\
    .encode(alt.X('yearmonth(InvoiceDate):O'),\
            y='count()')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_10_34.jpg)
@@ -1287,6 +1315,7 @@ columns using the `mark_boxplot()` method:
 alt.Chart(sample_df).mark_boxplot()\
    .encode(x='Country:O', y='Quantity:Q')
 ```
+
 You should receive the following output:
 
 ![](./images/B15019_10_37.jpg)
@@ -1319,7 +1348,7 @@ Note
 You will be using the same Ames housing dataset that was used in the
 previous exercises.
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` and `altair` packages:
     ```

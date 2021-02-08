@@ -85,7 +85,7 @@ logistic regression model, as you did in *Lab 3*, *Binary
 Classification*, and you will look closely at the metrics:
 
 
-1.  Open a new notebook in Google Colab.
+1.  Open a new notebook in Jupyter.
 
 2.  Next, import `pandas` and load the data from the GitHub
     repository:
@@ -411,6 +411,7 @@ print('Percentage of positive class :',\
       (y_train[y_train=='no'].value_counts()\
        /len(y_train) ) * 100)
 ```
+
 You should get the following output:
 
 ```
@@ -549,7 +550,7 @@ balanced dataset, you will fit a logistic regression model and then
 analyze the results:
 
 
-1.  Open a new Colab notebook for this exercise.
+1.  Open a new Jupyter notebook for this exercise.
 
 2.  Perform the initial 12 steps of *Exercise 13.01*, *Benchmarking the
     Logistic Regression Model on the Dataset*, such that the dataset is
@@ -867,7 +868,7 @@ Implementation of SMOTE and MSMOTE
 
 `SMOTE` and `MSMOTE` can be implemented from a
 package called `smote-variants` in Python. The library can be
-installed through `pip install` in the Colab notebook as shown
+installed through `pip install` in the Jupyter notebook as shown
 here:
 
 ```

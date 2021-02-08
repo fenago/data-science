@@ -12,27 +12,6 @@ as no target variables are defined beforehand. We will focus
 specifically on the k-means algorithm, and see how to standardize and
 process data for use in cluster analysis.
 
-By the end of this lab, you will be able to load and visualize data
-and clusters with scatter plots; prepare data for cluster analysis;
-perform centroid clustering with k-means; interpret clustering results
-and determine the optimal number of clusters for a given dataset.
-
-
-Clustering with k-means
-=======================
-
-
-We will perform cluster analysis on this dataset for two specific
-variables (or columns): `Average net tax` and
-`Average total deductions`. Our objective is to find groups
-(or clusters) of postcodes sharing similar patterns in terms of tax
-received and money deducted. Here is a scatter plot of these two
-variables:
-
-![](./images/B15019_05_03.jpg)
-
-Caption: Scatter plot of the ATO dataset
-
 
 
 Exercise 5.01: Performing Your First Clustering Analysis on the ATO Dataset
@@ -42,7 +21,7 @@ In this exercise, we will be using k-means clustering on the ATO dataset
 and observing the different clusters that the dataset divides itself
 into, after which we will conclude by analyzing the output:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Next, load the required Python packages: `pandas` and
     `KMeans` from `sklearn.cluster`.
@@ -129,31 +108,6 @@ into, after which we will conclude by analyzing the output:
 ![](./images/B15019_05_05.jpg)
 
 
-    Caption: The last five rows of the ATO DataFrame
-
-    Now that we have our data, let\'s jump straight to what we want to
-    do: find clusters.
-
-    As you saw in the previous labs, `sklearn` provides
-    the exact same APIs for training different machine learning
-    algorithms, such as:
-
-    - Instantiate an algorithm with the specified hyperparameters
-        (here it will be KMeans(hyperparameters)).
-
-    - Fit the model with the training data with the method
-        `.fit()`.
-
-    - Predict the result with the given input data with the method
-        `.predict()`.
-
-        Note
-
-        Here, we will use all the default values for the k-means
-        hyperparameters except for the `random_state` one.
-        Specifying a fixed random state (also called a **seed**) will
-        help us to get reproducible results every time we have to rerun
-        our code.
 
 7.  Instantiate k-means with a random state of `42` and save
     it into a variable called `kmeans`:
@@ -185,10 +139,6 @@ into, after which we will conclude by analyzing the output:
 ![](./images/B15019_05_06.jpg)
 
 
-    Caption: Summary of the fitted kmeans and its hyperparameters
-
-    We just ran our first clustering algorithm in just a few lines of
-    code.
 
 10. See which cluster each data point belongs to by using the
     `.predict()` method:
@@ -204,16 +154,6 @@ into, after which we will conclude by analyzing the output:
     
 ![](./images/B15019_05_07.jpg)
 
-
-    Caption: Output of the k-means predictions
-
-    Note
-
-    Although we set a `random_state` value, you may still get
-    an output with different cluster numbers than the one shown above.
-    This will depend on the version of scikit-learn you are using. The
-    output above was generated using version 0.22.2. You can find out
-    which version you are using by executing the following code:
 
     `import sklearn`
 
@@ -246,54 +186,8 @@ Caption: Cluster number assigned to the first five postcodes
 Interpreting k-means Results
 ============================
 
-
-After training our k-means algorithm, we will likely be interested in
-analyzing its results in more detail. Remember, the objective of cluster
-analysis is to group observations with similar patterns together. But
-how can we see whether the groupings found by the algorithm are
-meaningful? We will be looking at this in this section by using the
-dataset results we just generated.
-
-One way of investigating this is to analyze the dataset row by row with
-the assigned cluster for each observation. This can be quite tedious,
-especially if the size of your dataset is quite big, so it would be
-better to have a kind of summary of the cluster results.
-
-If you are familiar with Excel spreadsheets, you are probably thinking
-about using a pivot table to get the average of the variables for each
-cluster. In SQL, you would have probably used a `GROUP BY`
-statement. If you are not familiar with either of these, you may think
-of grouping each cluster together and then calculating the average for
-each of them. The good news is that this can be easily achieved with the
-`pandas` package in Python. Let\'s see how this can be done
-with an example.
-
 To create a pivot table similar to an Excel one, we will be using the
-`pivot_table()` method from `pandas`. We need to
-specify the following parameters for this method:
-
-- `values`: This parameter corresponds to the numerical
-    columns you want to calculate summaries for (or aggregations), such
-    as getting averages or counts. In an Excel pivot table, it is also
-    called `values`. In our dataset, we will use the
-    `Average net tax` and `Average total deductions`
-    variables.
-
-- `index`: This parameter is used to specify the columns you
-    want to see summaries for. In our case, it will be the
-    `cluster` column. In a pivot table in Excel, this
-    corresponds with the `Rows` field.
-
-- `aggfunc`: This is where you will specify the aggregation
-    functions you want to summarize the data with, such as getting
-    averages or counts. In Excel, this is the `Summarize by`
-    option in the `values` field. An example of how to use the
-    `aggfunc` method is shown below.
-
-    Note
-
-    Run the code below in the same notebook as you used for the previous
-    exercise.
+`pivot_table()` method from `pandas`. Run the code below in the same notebook as you used for the previous exercise.
 
 ```
 import numpy as np
@@ -301,6 +195,7 @@ df.pivot_table(values=['Average net tax', \
                        'Average total deductions'], \
                index='cluster', aggfunc=np.mean)
 ```
+
 Note
 
 We will be using the `numpy` implementation of
@@ -344,6 +239,7 @@ scatter_plot.encode(x='Average net tax', \
                     y='Average total deductions', \
                     color='cluster:N')
 ```
+
 Note
 
 You may have noticed that we added `:N` at the end of the
@@ -377,6 +273,7 @@ scatter_plot.encode(x='Average net tax', \
                              'Average total deductions'])\
                     .interactive()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_11.jpg)
@@ -398,7 +295,7 @@ k-means and visualize its results based on postcode values sorted by
 business income and expenses. The following steps will help you complete
 this exercise:
 
-1.  Open a new Colab notebook for this exercise.
+1.  Open a new Jupyter notebook for this exercise.
 
 2.  Now `import` the required packages (`pandas`,
     `sklearn`, `altair`, and `numpy`):
@@ -491,12 +388,9 @@ this exercise:
     You should get the following output:
 
     
-![Caption: Results of the clusters assigned to the last 10
-    observations ](./images/B15019_05_14.jpg)
+![](./images/B15019_05_14.jpg)
 
 
-    Caption: Results of the clusters assigned to the last 10
-    observations
 
 9.  Save the predicted clusters back to the DataFrame by creating a new
     column called `'cluster'` and print the last
@@ -512,12 +406,9 @@ this exercise:
     You should get the following output:
 
     
-![Caption: The last 10 rows of the ATO dataset with the added
-    cluster column ](./images/B15019_05_15.jpg)
+![](./images/B15019_05_15.jpg)
 
 
-    Caption: The last 10 rows of the ATO dataset with the added
-    cluster column
 
 10. Generate a pivot table with the averages of the two columns for each
     cluster value using the `pivot_table` method from the
@@ -603,47 +494,6 @@ Choosing the Number of Clusters
 ===============================
 
 
-In the previous sections, we saw how easy it is to fit the k-means
-algorithm on a given dataset. In our ATO dataset, we found 8 different
-clusters that were mainly defined by the values of the
-`Average net tax` variable.
-
-But you may have asked yourself: \"*Why 8 clusters? Why not 3 or 15
-clusters?*\" These are indeed excellent questions. The short answer is
-that we used k-means\' default value for the hyperparameter
-`n_cluster`, defining the number of clusters to be found, as
-8.
-
-As you will recall from *Lab 2*, *Regression*, and *Lab 4*,
-*Multiclass Classification with RandomForest*, the value of a
-hyperparameter isn\'t learned by the algorithm but has to be set
-arbitrarily by you prior to training. For k-means, `n_cluster`
-is one of the most important hyperparameters you will have to tune.
-Choosing a low value will lead k-means to group many data points
-together, even though they are very different from each other. On the
-other hand, choosing a high value may force the algorithm to split close
-observations into multiple ones, even though they are very similar.
-
-Looking at the scatter plot from the ATO dataset, eight clusters seems
-to be a lot. On the graph, some of the clusters look very close to each
-other and have similar values. Intuitively, just by looking at the plot,
-you could have said that there were between two and four different
-clusters. As you can see, this is quite suggestive, and it would be
-great if there was a function that could help us to define the right
-number of clusters for a dataset. Such a method does indeed exist, and
-it is called the **Elbow** method.
-
-This method assesses the compactness of clusters, the objective being to
-minimize a value known as **inertia**. More details and an explanation
-about this will be provided later in this lab. For now, think of
-inertia as a value that says, for a group of data points, how far from
-each other or how close to each other they are.
-
-Let\'s apply this method to our ATO dataset. First, we will define the
-range of cluster numbers we want to evaluate (between 1 and 10) and save
-them in a DataFrame called `clusters`. We will also create an
-empty list called `inertia`, where we will store our
-calculated values.
 
 Note
 
@@ -674,6 +524,7 @@ Now we can use our list of `inertia` values in the
 clusters['inertia'] = inertia
 clusters
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_18.jpg)
@@ -689,6 +540,7 @@ Then, we need to plot a line chart using `altair` with the
 alt.Chart(clusters).mark_line()\
                    .encode(x='cluster_range', y='inertia')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_19.jpg)
@@ -701,18 +553,6 @@ You don\'t have to save each of the `altair` objects in a
 separate variable; you can just append the methods one after the other
 with \"`.".`
 
-Now that we have plotted the inertia value against the number of
-clusters, we need to find the optimal number of clusters. What we need
-to do is to find the inflection point in the graph, where the inertia
-value starts to decrease more slowly (that is, where the slope of the
-line almost reaches a 45-degree angle). Finding the right **inflection
-point** can be a bit tricky. If you picture this line chart as an arm,
-what we want is to find the center of the Elbow (now you know where the
-name for this method comes from). So, looking at our example, we will
-say that the optimal number of clusters is three. If we kept adding more
-clusters, the inertia would not decrease drastically and add any value.
-This is the reason why we want to find the middle of the Elbow as the
-inflection point.
 
 Now let\'s retrain our `Kmeans` with this hyperparameter and
 plot the clusters as shown in the following code snippet:
@@ -729,35 +569,10 @@ scatter_plot.encode(x='Average net tax', \
                              'Average total deductions'])\
                     .interactive()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_20.jpg)
-
-Caption: Scatter plot of the three clusters
-
-This is very different compared to our initial results. Looking at the
-three clusters, we can see that:
-
-- The first cluster (red) represents postcodes with low values for
-    both average net tax and total deductions.
-
-- The second cluster (blue) is for medium average net tax and low
-    average total deductions.
-
-- The third cluster (orange) is grouping all postcodes with average
-    net tax values above 35,000.
-
-    Note
-
-    It is worth noticing that the data points are more spread in the
-    third cluster; this may indicate that there are some outliers in
-    this group.
-
-This example showed us how important it is to define the right number of
-clusters before training a k-means algorithm if we want to get
-meaningful groups from data. We used a method called the Elbow method to
-find this optimal number.
-
 
 
 Exercise 5.03: Finding the Optimal Number of Clusters
@@ -768,7 +583,7 @@ In this exercise, we will apply the Elbow method to the same data as in
 Expenses*, to find the optimal number of clusters, before fitting a
 k-means model:
 
-1.  Open a new Colab notebook for this exercise.
+1.  Open a new Jupyter notebook for this exercise.
 
 2.  Now `import` the required packages (`pandas`,
     `sklearn`, and `altair`):
@@ -972,41 +787,6 @@ Initializing Clusters
 =====================
 
 
-Since the beginning of this lab, we\'ve been referring to k-means
-every time we\'ve fitted our clustering algorithms. But you may have
-noticed in each model summary that there was a hyperparameter called
-`init` with the default value as k-means++. We were, in fact,
-using k-means++ all this time.
-
-The difference between k-means and k-means++ is in how they initialize
-clusters at the start of the training. k-means randomly chooses the
-center of each cluster (called the **centroid**) and then assigns each
-data point to its nearest cluster. If this cluster initialization is
-chosen incorrectly, this may lead to non-optimal grouping at the end of
-the training process. For example, in the following graph, we can
-clearly see the three natural groupings of the data, but the algorithm
-didn\'t succeed in identifying them properly:
-
-![](./images/B15019_05_26.jpg)
-
-Caption: Example of non-optimal clusters being found
-
-k-means++ is an attempt to find better clusters at initialization time.
-The idea behind it is to choose the first cluster randomly and then pick
-the next ones, those further away, using a probability distribution from
-the remaining data points. Even though k-means++ tends to get better
-results compared to the original k-means, in some cases, it can still
-lead to non-optimal clustering.
-
-Another hyperparameter data scientists can use to lower the risk of
-incorrect clusters is `n_init`. This corresponds to the number
-of times k-means is run with different initializations, the final model
-being the best run. So, if you have a high number for this
-hyperparameter, you will have a higher chance of finding the optimal
-clusters, but the downside is that the training time will be longer. So,
-you have to choose this value carefully, especially if you have a large
-dataset.
-
 Let\'s try this out on our ATO dataset by having a look at the following
 example.
 
@@ -1038,6 +818,7 @@ alt.Chart(df).mark_circle()\
                               'Average total deductions']) \
              .interactive()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_27.jpg)
@@ -1066,6 +847,7 @@ alt.Chart(df).mark_circle()\
                               'Average total deductions'])\
                     .interactive()
 ```
+
 You should get the following output:
 
 ![Caption: Clustering results with n\_init as 5 and init as
@@ -1087,7 +869,7 @@ In this exercise, we will use the same data as in *Exercise 5.02*,
 try different values for the `init` and `n_init`
 hyperparameters and see how they affect the final clustering result:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the required packages, which are `pandas`,
     `sklearn`, and `altair`:
@@ -1258,30 +1040,6 @@ Calculating the Distance to the Centroid
 ========================================
 
 
-We\'ve talked a lot about similarities between data points in the
-previous sections, but we haven\'t really defined what this means. You
-have probably guessed that it has something to do with how close or how
-far observations are from each other. You are heading in the right
-direction. It has to do with some sort of distance measure between two
-points. The one used by k-means is called **squared Euclidean distance**
-and its formula is:
-
-![](./images/B15019_05_32.jpg)
-
-Caption: The squared Euclidean distance formula
-
-If you don\'t have a statistical background, this formula may look
-intimidating, but it is actually very simple. It is the sum of the
-squared difference between the data coordinates. Here, *x* and *y* are
-two data points and the index, *i*, represents the number of
-coordinates. If the data has two dimensions, *i* equals 2. Similarly, if
-there are three dimensions, then *i* will be 3.
-
-Let\'s apply this formula to the ATO dataset.
-
-First, we will grab the values needed -- that is, the coordinates from
-the first two observations -- and print them:
-
 Note
 
 Open the notebook you were using for *Exercise 5.01*, *Performing Your
@@ -1295,19 +1053,12 @@ y = X.iloc[1,].values
 print(x)
 print(y)
 ```
+
 You should get the following output:
 
-![Caption: Extracting the first two observations from the ATO
-dataset ](./images/B15019_05_33.jpg)
+![](./images/B15019_05_33.jpg)
 
-Caption: Extracting the first two observations from the ATO dataset
 
-Note
-
-In pandas, the `iloc` method is used to subset the rows or
-columns of a DataFrame by index. For instance, if we wanted to grab row
-number 888 and column number 6, we would use the following syntax:
-`dataframe.iloc[888, 6]`.
 
 The coordinates for `x` are `(27555, 2071)` and the
 coordinates for `y` are `(28142, 3804)`. Here, the
@@ -1318,27 +1069,14 @@ axis of the two data points and sum them:
 squared_euclidean = (x[0] - y[0])**2 + (x[1] - y[1])**2
 print(squared_euclidean)
 ```
+
 You should get the following output:
 
 ```
 3347858
 ```
-k-means uses this metric to calculate the distance between each data
-point and the center of its assigned cluster (also called the centroid).
-Here is the basic logic behind this algorithm:
 
-1.  Choose the centers of the clusters (the centroids) randomly.
-2.  Assign each data point to the nearest centroid using the squared
-    Euclidean distance.
-3.  Update each centroid\'s coordinates to the newly calculated center
-    of the data points assigned to it.
-4.  Repeat *Steps 2* and *3* until the clusters converge (that is, until
-    the cluster assignment doesn\'t change anymore) or until the maximum
-    number of iterations has been reached.
 
-That\'s it. The k-means algorithm is as simple as that. We can extract
-the centroids after fitting a k-means model with
-`cluster_centers_`.
 
 Let\'s see how we can plot the centroids in an example.
 
@@ -1359,6 +1097,7 @@ centroids = pd.DataFrame(centroids, \
                                   'Average total deductions'])
 print(centroids)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_34.jpg)
@@ -1379,6 +1118,7 @@ chart1 = alt.Chart(df).mark_circle()\
                    .interactive()
 chart1
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_35.jpg)
@@ -1398,6 +1138,7 @@ chart2 = alt.Chart(centroids).mark_circle(size=100)\
                    .interactive()
 chart2
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_36.jpg)
@@ -1410,6 +1151,7 @@ And now we combine the two charts, which is extremely easy with
 ```
 chart1 + chart2
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_37.jpg)
@@ -1427,7 +1169,7 @@ In this exercise, we will be coding the first iteration of k-means in
 order to assign data points to their closest cluster centroids. The
 following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Now `import` the required packages, which are
     `pandas`, `sklearn`, and `altair`:
@@ -1682,12 +1424,8 @@ following steps will help you complete the exercise:
     You should get the following output:
 
     
-![Caption: The first five rows of the ATO DataFrame with the
-    assigned cluster number for the first row](./images/B15019_05_40.jpg)
+![](./images/B15019_05_40.jpg)
 
-
-    Caption: The first five rows of the ATO DataFrame with the
-    assigned cluster number for the first row
 
 21. Repeat *Steps 15* to *19* for the next `4` rows to
     calculate their distances from the centroids and find the cluster
@@ -1769,73 +1507,10 @@ following steps will help you complete the exercise:
 
 ![Caption: Scatter plot of the random centroids and the first five](./images/B15019_05_42.jpg)
 
-Caption: Scatter plot of the random centroids and the first fiveobservations
 
 
-Standardizing Data
-==================
 
-
-You\'ve already learned a lot about the k-means algorithm, and we are
-close to the end of this lab. In this final section, we will not
-talk about another hyperparameter (you\'ve already been through the main
-ones) but a very important topic: **data processing**.
-
-Fitting a k-means algorithm is extremely easy. The trickiest part is
-making sure the resulting clusters are meaningful for your project, and
-we have seen how we can tune some hyperparameters to ensure this. But
-handling input data is as important as all the steps you have learned
-about so far. If your dataset is not well prepared, even if you find the
-best hyperparameters, you will still get some bad results.
-
-Let\'s have another look at our ATO dataset. In the previous section,
-*Calculating the Distance to the Centroid*, we found three different
-clusters, and they were mainly defined by the
-`'Average net tax'` variable. It was as if k-means didn\'t
-take into account the second variable,
-`'Average total deductions'`, at all. This is in fact due to
-these two variables having very different ranges of values and the way
-that squared Euclidean distance is calculated.
-
-Squared Euclidean distance is weighted more toward high-value variables.
-Let\'s take an example to illustrate this point with two data points
-called A and B with respective x and y coordinates of (1, 50000) and
-(100, 100000). The squared Euclidean distance between A and B will be
-(100000 - 50000)\^2 + (100 - 1)\^2. We can clearly see that the result
-will be mainly driven by the difference between 100,000 and 50,000:
-50,000\^2. The difference of 100 minus 1 (99\^2) will account for very
-little in the final result.
-
-But if you look at the ratio between 100,000 and 50,000, it is a factor
-of 2 (100,000 / 50,000 = 2), while the ratio between 100 and 1 is a
-factor of 100 (100 / 1 = 100). Does it make sense for the higher-value
-variable to \"dominate\" the clustering result? It really depends on
-your project, and this situation may be intended. But if you want things
-to be fair between the different axes, it\'s preferable to bring them
-all into a similar range of values before fitting a k-means model. This
-is the reason why you should always consider standardizing your data
-before running your k-means algorithm.
-
-There are multiple ways to standardize data, and we will have a look at
-the two most popular ones: **min-max scaling** and **z-score**. Luckily
-for us, the `sklearn` package has an implementation for both
-methods.
-
-The formula for min-max scaling is very simple: on each axis, you need
-to remove the minimum value for each data point and divide the result by
-the difference between the maximum and minimum values. The scaled data
-will have values ranging between 0 and 1:
-
-![](./images/B15019_05_43.jpg)
-
-Caption: Min-max scaling formula
-
-Let\'s look at min-max scaling with `sklearn` in the following
-example.
-
-Note
-
-Open the notebook you were using for *Exercise 5.01*, *Performing Your
+**Note:** Open the notebook you were using for *Exercise 5.01*, *Performing Your
 First Clustering Analysis on the ATO Dataset*, and earlier examples.
 Execute the code you already entered, and then continue at the end of
 the notebook with the following code.
@@ -1852,6 +1527,7 @@ Then, we fit it to our dataset:
 ```
 min_max_scaler.fit(X)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_44.jpg)
@@ -1865,6 +1541,7 @@ data:
 X_min_max = min_max_scaler.transform(X)
 X_min_max
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_45.jpg)
@@ -1878,6 +1555,7 @@ for both axes:
 X_min_max[:,0].min(), X_min_max[:,0].max(), \
 X_min_max[:,1].min(), X_min_max[:,1].max()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_46.jpg)
@@ -1909,6 +1587,7 @@ This time, instead of calling `fit()` and then
 X_scaled = standard_scaler.fit_transform(X)
 X_scaled
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_48.jpg)
@@ -1921,6 +1600,7 @@ Now we\'ll look at the minimum and maximum values for each axis:
 X_scaled[:,0].min(), X_scaled[:,0].max(), \
 X_scaled[:,1].min(), X_scaled[:,1].max()
 ```
+
 You should get the following output:
 
 ![Caption: Minimum and maximum values of the z-score-standardized
@@ -1949,6 +1629,7 @@ alt.Chart(df).mark_circle()\
                               'Average total deductions'])\
                     .interactive()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_05_50.jpg)
@@ -1963,7 +1644,7 @@ In this final exercise, we will standardize the data using min-max
 scaling and the z-score and fit a k-means model for each method and see
 their impact on k-means:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Now import the required `pandas`, `sklearn`, and
     `altair` packages:
@@ -2179,12 +1860,6 @@ Caption: Scatter plot of the four clusters found
 Summary
 =======
 
-
-You are now ready to perform cluster analysis with the k-means algorithm
-on your own dataset. This type of analysis is very popular in the
-industry for segmenting customer profiles as well as detecting
-suspicious transactions or anomalies.
-
 We learned about a lot of different concepts, such as centroids and
 squared Euclidean distance. We went through the main k-means
 hyperparameters: `init` (initialization method),
@@ -2195,13 +1870,6 @@ importance of choosing the optimal number of clusters, initializing
 centroids properly, and standardizing data. You have learned how to use
 the following Python packages: `pandas`, `altair`,
 `sklearn`, and `KMeans`.
-
-In this lab, we only looked at k-means, but it is not the only
-clustering algorithm. There are quite a lot of algorithms that use
-different approaches, such as hierarchical clustering, principal
-component analysis, and the Gaussian mixture model, to name a few. If
-you are interested in this field, you now have all the basic knowledge
-you need to explore these other algorithms on your own.
 
 Next, you will see how we can assess the performance of these models and
 what tools can be used to make them even better.

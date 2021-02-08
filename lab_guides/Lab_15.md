@@ -124,7 +124,7 @@ Exercise 15.01: Loading, Exploring, and Cleaning the Data
 ---------------------------------------------------------
 
 In this exercise, we will download the credit card dataset, load it into
-our Colab notebook, and perform a few basic explorations. In addition,
+our Jupyter notebook, and perform a few basic explorations. In addition,
 we will also clean the dataset to remove unwanted characters.
 
 Note
@@ -134,9 +134,9 @@ UCI Machine Learning Repository.
 
 The following steps will help you to complete this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
-2.  Now, import `pandas` into your Colab notebook:
+2.  Now, import `pandas` into your Jupyter notebook:
     ```
     import pandas as pd
     ```
@@ -185,7 +185,7 @@ The following steps will help you to complete this exercise:
 ![](./images/B15019_15_03.jpg)
 
 
-    Caption: Loading data into the Colab notebook
+    Caption: Loading data into the Jupyter notebook
 
 5.  Change the classes to `1` and `0`.
 
@@ -401,7 +401,7 @@ methods, you want to fit a benchmark model on the dataset.
 
 Perform the following steps to complete this activity:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Implement all the appropriate steps from *Exercise 15.01*, *Loading,
     Exploring, and Cleaning the Data*, until you have split the dataset
@@ -435,7 +435,7 @@ and the KNN and random forest models, which were introduced in *Lab
 4*, *Multiclass Classification with RandomForest*, and *Lab 8*,
 *Hyperparameter Tuning*:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all the appropriate steps from *Exercise 15.01*, *Loading,
     Exploring, and Cleaning the Data*, to split the dataset into train
@@ -594,7 +594,7 @@ averaging technique. We will use the same base models, logistic
 regression, KNN, and random forest, which were used in *Exercise 15.02*,
 *Ensemble Model Using the Averaging Technique*:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all the steps from *Exercise 15.02*, *Ensemble Model Using
     the Averaging Technique*, up until predicting the probabilities of
@@ -855,7 +855,7 @@ voting technique. The individual learners we will select are similar to
 the ones that we chose in the previous exercises, that is, logistic
 regression, KNN, and random forest:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all the steps from *Exercise 15.01*, *Loading, Exploring,
     and Cleaning the Data*, up until the splitting of the dataset into
@@ -1066,7 +1066,7 @@ Exercise 15.05: Ensemble Learning Using Bagging
 In this exercise, we will implement an ensemble model using bagging. The
 individual learner we will select will be random forest:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all the steps from *Exercise 15.01*, *Loading, Exploring,
     and Cleaning the Data*, up until the splitting of the dataset into
@@ -1153,7 +1153,7 @@ The individual learner we will select will be the logistic regression
 model. The steps for implementing this algorithm are very similar to the
 bagging algorithm:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Execute all of the steps from *Exercise 15.01*, *Loading, Exploring,
     and Cleaning the Data*, up until the splitting of the dataset into
@@ -1238,7 +1238,7 @@ In this exercise, we will implement an ensemble model using stacking.
 The individual learners we will use are KNN and random forest. Our meta
 learner will be logistic regression:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all of the steps from *Exercise 15.01*, *Loading, Exploring,
     and Cleaning the Data*, up until the splitting of the dataset into
@@ -1335,7 +1335,7 @@ the results before selecting your final technique.
 
 The steps are as follows:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Implement all steps from *Exercise 15.01*, *Loading, Exploring, and
     Cleaning the Data,* up until the splitting of the dataset into train

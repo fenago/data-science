@@ -27,12 +27,7 @@ First, we need to load the data from the GitHub repository using
 `pandas` and then we will print its first five rows using the
 `head()` method.
 
-Note
 
-All the example code given outside of Exercises in this lab relates
-to this Activity Recognition dataset. It is recommended that all code
-from these examples is entered and run in a single Google Colab
-Notebook, and kept separate from your Exercise Notebooks.
 
 ```
 import pandas as pd
@@ -291,7 +286,7 @@ the type of an animal based on its attributes and check its accuracy
 score:
 
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` package:
     ```
@@ -634,7 +629,7 @@ values for the `n_estimators` hyperparameter:
 
 We will be using the same zoo dataset as in the previous exercise.
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas `package, `train_test_split`,
     `RandomForestClassifier`, and `accuracy_score`
@@ -846,6 +841,7 @@ test_preds4 = rf_model4.predict(X_test)
 print(accuracy_score(y_train, preds4))
 print(accuracy_score(y_test, test_preds4))
 ```
+
 You should get the following output:
 
 ![Caption: Accuracy scores for the training and testing sets and a
@@ -918,7 +914,7 @@ predicts animal type by trying two different values for the
 
 We will be using the same zoo dataset as in the previous exercise.
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` package, `train_test_split`,
     `RandomForestClassifier`, and `accuracy_score`
@@ -1202,7 +1198,7 @@ predicts animal type by trying two different values for the
 
 We will be using the same zoo dataset as in the previous exercise.
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` package, `train_test_split`,
     `RandomForestClassifier`, and `accuracy_score`
@@ -1540,7 +1536,7 @@ predicts animal type by trying two different values for the
 
 We will be using the same zoo dataset as in the previous exercise.
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` package, `train_test_split`,
     `RandomForestClassifier`, and `accuracy_score`

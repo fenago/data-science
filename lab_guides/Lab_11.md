@@ -89,6 +89,7 @@ for each row, `True` if the row is a duplicate and
 ```
 df.duplicated()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_01.jpg)
@@ -110,6 +111,7 @@ count of duplicates:
 ```
 df.duplicated().sum()
 ```
+
 You should get the following output:
 
 ```
@@ -133,6 +135,7 @@ and `CustomerID`, you need to use the following code:
 ```
 df[['InvoiceNo', 'StockCode', 'InvoiceDate', 'CustomerID']]
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_02.jpg)
@@ -147,6 +150,7 @@ can use the same API call with the output of the
 ```
 df[df.duplicated()]
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_03.jpg)
@@ -165,6 +169,7 @@ previous example:
 df.loc[df.duplicated(), ['InvoiceNo', 'StockCode', \
                          'InvoiceDate', 'CustomerID']]
 ```
+
 You should get the following output:
 
 ![Caption: Subsetting the duplicated rows and selected columns using
@@ -185,6 +190,7 @@ keep the last duplicate, you need to specify `keep='last'`:
 df.loc[df.duplicated(keep='last'), ['InvoiceNo', 'StockCode', \
                                     'InvoiceDate', 'CustomerID']]
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_05.jpg)
@@ -200,6 +206,7 @@ records as duplicates, you will have to use `keep=False`:
 df.loc[df.duplicated(keep=False), ['InvoiceNo', 'StockCode',\
                                    'InvoiceDate', 'CustomerID']]
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_06.jpg)
@@ -239,6 +246,7 @@ occurrence:
 ```
 df.drop_duplicates(keep='first')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_07.jpg)
@@ -263,6 +271,7 @@ are while only looking at the `InvoiceNo`,
 df.duplicated(subset=['InvoiceNo', 'StockCode', 'InvoiceDate',\
                       'CustomerID'], keep='first').sum()
 ```
+
 You should get the following output:
 
 ```
@@ -286,7 +295,7 @@ how to handle such issues so that the dataset only contains **unique**
 records. Let\'s get started:
 
 
-1.  Open a new **Colab** notebook.
+1.  Open a new **Jupyter** notebook.
 
 2.  Import the `pandas` package:
     ```
@@ -512,6 +521,7 @@ Finally, let\'s print the data type of each column:
 ```
 df.dtypes
 ```
+
 You should get the following output:
 
 ![Caption: The data type of each column of the Online Retail
@@ -543,6 +553,7 @@ its type to **object**:
 df = pd.read_excel(file_url, dtype={'CustomerID': 'category'})
 df.dtypes
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_12.jpg)
@@ -565,6 +576,7 @@ variable, you would do the following:
 df['InvoiceNo'] = df['InvoiceNo'].astype('category')
 df.dtypes
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_13.jpg)
@@ -582,6 +594,7 @@ all the values. They can be accessed using the
 ```
 df['InvoiceNo'].cat.categories
 ```
+
 You should get the following output:
 
 ![Caption: List of categories (possible values) for the InvoiceNo
@@ -636,7 +649,7 @@ dataset, refer to the following note. Let\'s get started:
 
 
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` package:
     ```
@@ -850,6 +863,7 @@ examples, such as `StockCode 23131`, the
 ```
 df.loc[df['StockCode'] == 23131, 'Description'].unique()
 ```
+
 You should get the following output
 
 ![](./images/B15019_11_20.jpg)
@@ -872,6 +886,7 @@ which is an exact copy of the `Description` column:
 ```
 df['StockCodeDescription'] = df['Description']
 ```
+
 You will use this new column to fix the misspelling issue. To do this,
 use the subsetting technique you learned about earlier in this lab.
 You need to use `.loc` and filter the rows and columns you
@@ -891,6 +906,7 @@ misspelling value has been fixed and is not present anymore:
 ```
 df.loc[df['StockCode'] == 23131, 'StockCodeDescription'].unique()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_21.jpg)
@@ -922,6 +938,7 @@ method:
 df.loc[df['StockCodeDescription']\
   .str.contains('MISEL', na=False),]
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_22.jpg)
@@ -947,6 +964,7 @@ Now, if you print all the rows that contain the misspelling of
 df.loc[df['StockCodeDescription']\
   .str.contains('MISEL', na=False),]
 ```
+
 You should get the following output
 
 ![](./images/B15019_11_23.jpg)
@@ -971,7 +989,7 @@ modified version of a dataset by listing all the finance officers in the
 USA. We are doing this because the dataset contains some incorrect
 values. Let\'s get started:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` package:
     ```
@@ -1307,6 +1325,7 @@ missing a value (`True`) or not (`False`):
 ```
 df.isna()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_34.jpg)
@@ -1321,6 +1340,7 @@ for each column:
 ```
 df.isna().sum()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_35.jpg)
@@ -1336,6 +1356,7 @@ observations for `Description`. You can use the output of the
 ```
 df[df['Description'].isna()]
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_36.jpg)
@@ -1371,6 +1392,7 @@ Now, look at the summary of the missing values for each variable:
 ```
 df.isna().sum()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_37.jpg)
@@ -1384,6 +1406,7 @@ As you can see, there are no more missing values in the
 ```
 df[df['CustomerID'].isna()]
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_38.jpg)
@@ -1406,6 +1429,7 @@ the value to be imputed as `Missing` and use
 df['CustomerID'].fillna('Missing', inplace=True)
 df[1443:1448]
 ```
+
 You should get the following output:
 
 ![Caption: Examples of rows where missing values for CustomerID
@@ -1419,6 +1443,7 @@ Let\'s see if we have any missing values in the dataset:
 ```
 df.isna().sum()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_11_40.jpg)
@@ -1446,7 +1471,7 @@ you want to find out more about the dataset\'s attributes. Let\'s get
 started:
 
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `pandas` package:
     ```

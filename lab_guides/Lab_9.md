@@ -92,7 +92,7 @@ customer drop-out ratio and extract its coefficients.
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the following packages: `pandas`,
     `train_test_split` from
@@ -438,7 +438,7 @@ We will be using the same dataset as in the previous exercise.
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the following packages: `pandas`,
     `train_test_split` from
@@ -784,7 +784,7 @@ We will using the same dataset as in the previous exercise.
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the following packages: `pandas`,
     `train_test_split` from
@@ -1043,7 +1043,7 @@ classifier model trained to predict the customer drop-out ratio.
 
 We will using the same dataset as in the previous exercise.
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the following packages: `pandas`,
     `train_test_split` from
@@ -1203,7 +1203,7 @@ rf_model = RandomForestClassifier(random_state=168)
 rf_model.fit(X_train, y_train)
 ```
 
-The `lime` package is not directly accessible on Google Colab,
+The `lime` package is not directly accessible on Jupyter,
 so we need to manually install it with the following command:
 
 ```
@@ -1305,7 +1305,7 @@ LIME.
 
 We will be using the same dataset as in the previous exercise.
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the following packages: `pandas`,
     `train_test_split` from

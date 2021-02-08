@@ -30,6 +30,7 @@ file_url = 'https://github.com/fenago/'\
 df = pd.read_excel(file_url)
 df.head()
 ```
+
 You should get the following output.
 
 ![](./images/B15019_12_01.jpg)
@@ -55,6 +56,7 @@ We can print its shape to see how many rows and columns it has:
 ```
 uk_holidays_2010.shape
 ```
+
 You should get the following output.
 
 ```
@@ -68,6 +70,7 @@ Let\'s print the first five rows of this DataFrame:
 ```
 uk_holidays_2010.head()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_02.jpg)
@@ -83,6 +86,7 @@ uk_holidays_2011 = pd.read_csv\
                     'Country/GB/2011/CSV')
 uk_holidays_2011.shape
 ```
+
 You should get the following output.
 
 ```
@@ -103,6 +107,7 @@ DataFrames:
 ```
 uk_holidays.shape
 ```
+
 You should get the following output:
 
 ```
@@ -187,6 +192,7 @@ df_left = pd.merge(df, uk_holidays, left_on='InvoiceDay', \
                    right_on='Date', how='left')
 df_left.shape
 ```
+
 You should get the following output:
 
 ```
@@ -199,6 +205,7 @@ first five rows:
 ```
 df_left.head()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_05.jpg)
@@ -239,6 +246,7 @@ df_right = df.merge(uk_holidays, left_on='InvoiceDay', \
                     right_on='Date', how='right')
 df_right.shape
 ```
+
 You should get the following output:
 
 ```
@@ -257,6 +265,7 @@ the following code snippet:
 ```
 df_right.head()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_07.jpg)
@@ -282,6 +291,7 @@ df_inner = df.merge(uk_holidays, left_on='InvoiceDay', \
                     right_on='Date', how='inner')
 df_inner.shape
 ```
+
 You should get the following output:
 
 ```
@@ -305,6 +315,7 @@ df_outer = df.merge(uk_holidays, left_on='InvoiceDay', \
                     right_on='Date', how='outer')
 df_outer.shape
 ```
+
 You should get the following output:
 
 ```
@@ -331,7 +342,7 @@ number of columns.
 
 The following steps will help you complete the exercise:
 
-1.  Open up a new Colab notebook.
+1.  Open up a new Jupyter notebook.
 
 2.  Now, begin with the `import` of the `pandas`
     package:
@@ -651,6 +662,7 @@ values:
 ```
 df['Country'].unique()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_13.jpg)
@@ -692,6 +704,7 @@ and `Singapore`) have been replaced by the value
 ```
 df['Country_bin'].unique()
 ```
+
 You should get the following output:
 
 ![Caption: List of unique values for the Country\_bin column after
@@ -709,6 +722,7 @@ df.loc[df['Country'].isin(m_east_countries), \
        'Country_bin'] = 'Middle East'
 df['Country_bin'].unique()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_15.jpg)
@@ -724,6 +738,7 @@ df.loc[df['Country'].isin(american_countries), \
        'Country_bin'] = 'America'
 df['Country_bin'].unique()
 ```
+
 You should get the following output:
 
 ![Caption: List of unique values for the Country\_bin column after
@@ -735,6 +750,7 @@ binning countries from North and South America
 ```
 df['Country_bin'].nunique()
 ```
+
 You should get the following output:
 
 ```
@@ -769,7 +785,7 @@ This dataset contains the list of residential home sales in the city of
 Ames, Iowa between 2010 and 2016.
 
 
-1.  Open up a new Colab notebook.
+1.  Open up a new Jupyter notebook.
 
 2.  Import the `pandas` and `altair` packages:
     ```
@@ -845,12 +861,6 @@ Ames, Iowa between 2010 and 2016.
 ![](./images/B15019_12_18.jpg)
 
 
-    Caption: First five rows of the AMES housing DataFrame
-
-    Note
-
-    The output is not shown on GitHub due to its limitations. If you run
-    this on your Colab file, the graph will be displayed.
 
     There weren\'t many properties sold in some of the years. So, you
     can group them by decades (groups of 10 years).
@@ -957,6 +967,7 @@ file_url = 'https://github.com/fenago/'\
 df = pd.read_excel(file_url)
 df.dtypes
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_21.jpg)
@@ -980,6 +991,7 @@ For instance, if you want to get the year of a date, you use the
 ```
 df['InvoiceDate'].dt.year
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_22.jpg)
@@ -994,6 +1006,7 @@ respectively. You can get the day of the week from a date using the
 ```
 df['InvoiceDate'].dt.dayofweek
 ```
+
 You should get the following output.
 
 ![](./images/B15019_12_23.jpg)
@@ -1009,6 +1022,7 @@ using pandas time-series offset object,
 ```
 df['InvoiceDate'] + pd.tseries.offsets.Day(3)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_24.jpg)
@@ -1022,6 +1036,7 @@ to get the previous business days, we do:
 ```
 df['InvoiceDate'] + pd.tseries.offsets.BusinessDay(-1)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_25.jpg)
@@ -1035,6 +1050,7 @@ want to get the first day of the month from a date, you do:
 ```
 df['InvoiceDate'] + pd.Timedelta(1, unit='MS')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_26.jpg)
@@ -1061,7 +1077,7 @@ The dataset we will be using in this exercise is the Financial Services
 Customer Complaints dataset
 
 
-1.  Open up a new Colab notebook.
+1.  Open up a new Jupyter notebook.
 
 2.  Import the `pandas` package:
     ```
@@ -1327,6 +1343,7 @@ will specify the `Country` column as the grouping column:
 ```
 df.groupby('Country').agg({'Quantity': 'sum'})
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_34.jpg)
@@ -1344,6 +1361,7 @@ columns as a list to the `.groupby()` method:
 ```
 df.groupby(['Country', 'StockCode']).agg({'Quantity': 'sum'})
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_35.jpg)
@@ -1371,6 +1389,7 @@ Then, we can add this new column in the `.groupby()` method:
 df.groupby(['Country', 'StockCode', \
             'Invoice_Date']).agg({'Quantity': 'sum'})
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_36.jpg)
@@ -1398,6 +1417,7 @@ df_agg = df.groupby(['Country', 'StockCode', 'Invoice_Date'])\
            .agg({'Quantity': 'sum'}).reset_index()
 df_agg.head()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_37.jpg)
@@ -1413,6 +1433,7 @@ df_merged = pd.merge(df, df_agg, how='left', \
                            'Invoice_Date'])
 df_merged
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_38.jpg)
@@ -1442,6 +1463,7 @@ df_merged.rename(columns={"Quantity_x": "Quantity", \
                  inplace=True)
 df_merged
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_39.jpg)
@@ -1457,6 +1479,7 @@ df_merged['QuantityRatio'] = df_merged['Quantity'] \
                              / df_merged['DailyQuantity']
 df_merged
 ```
+
 You should get the following output:
 
 ![](./images/B15019_12_40.jpg)
@@ -1481,7 +1504,7 @@ Note
 The dataset we will be using in this exercise is the Ames Housing
 dataset
 
-1.  Open up a new Colab notebook.
+1.  Open up a new Jupyter notebook.
 
 2.  Import the `pandas` and `altair` packages:
     ```

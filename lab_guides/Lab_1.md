@@ -10,47 +10,9 @@ This very first lab will introduce you to the field of data science
 and walk you through an overview of Python\'s core concepts and their
 application in the world of data science.
 
-By the end of this lab, you will be able to explain what data
-science is and distinguish between supervised and unsupervised learning.
-You will also be able to explain what machine learning is and
-distinguish between regression, classification, and clustering problems.
-You\'ll have learnt to create and manipulate different types of Python
-variable, including core variables, lists, and dictionaries. You\'ll be
-able to build a `for` loop, print results using f-strings,
-define functions, import Python packages and load data in different
-formats using `pandas`. You will also have had your first
-taste of training a model using scikit-learn.
-
-
-
-
-Overview of Python
-==================
-
-
-As mentioned earlier, Python is one of the most popular programming
-languages for data science. But before diving into Python\'s data
-science applications, let\'s have a quick introduction to some core
-Python concepts.
-
-
-
-Types of Variable
------------------
-
-In Python, you can handle and manipulate different types of variables.
-Each has its own specificities and benefits. We will not go through
-every single one of them but rather focus on the main ones that you will
-have to use in this course. For each of the following code examples, you
-can run the code in Google Colab to view the given output.
-
 
 
 ### Numeric Variables
-
-The most basic variable type is numeric. This can contain integer or
-decimal (or float) numbers, and some mathematical operations can be
-performed on top of them.
 
 Let\'s use an integer variable called `var1` that will take
 the value `8` and another one called `var2` with the
@@ -62,15 +24,12 @@ var1 = 8
 var2 = 160.88
 var1 + var2
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_03.jpg)
 
 Caption: Output of the addition of two variables
-
-In Python, you can perform other mathematical operations on numerical
-variables, such as multiplication (with the `*` operator) and
-division (with `/`).
 
 
 
@@ -93,6 +52,7 @@ In order to display the content of a variable, you can call the
 print(var3)
 print(var4)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_04.jpg)
@@ -106,6 +66,7 @@ For instance, if we want to print `Text:` before the values of
 ```
 print(f"Text: {var3} {var4}!")
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_05.jpg)
@@ -120,6 +81,7 @@ operator:
 ```
 var3 + var4
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_06.jpg)
@@ -139,6 +101,7 @@ like this:
 var5 = ['I', 'love', 'data', 'science']
 print(var5)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_07.jpg)
@@ -162,16 +125,9 @@ list, you do the following:
 print(var6[0])
 print(var6[2])
 ```
-Note
-
-In Python, all indexes start at `0`.
 
 
-Python provides an API to access a range of items using the
-`:` operator. You just need to specify the starting index on
-the left side of the operator and the ending index on the right side.
-The ending index is always excluded from the range. So, if you want to
-get the first three items (index 0 to 2), you should do as follows:
+If you want to get the first three items (index 0 to 2), you should do as follows:
 
 ```
 print(var6[0:3])
@@ -185,6 +141,7 @@ You can also iterate through every item of a list using a
 for item in var6:
     print(item)
 ```
+
 You should get the following output:
 
 
@@ -210,10 +167,7 @@ print(var6)
 
 ### Python Dictionary
 
-A dictionary contains multiple elements, like a **list**, but each element
-is organized as a key-value pair. A dictionary is not indexed by numbers
-but by keys. So, to access a specific value, you will have to call the
-item by its corresponding key. To define a dictionary in Python, you
+To define a dictionary in Python, you
 will use curly brackets, `{}`, and specify the keys and values
 separated by `:`, as shown here:
 
@@ -221,6 +175,8 @@ separated by `:`, as shown here:
 var7 = {'Topic': 'Data Science', 'Language': 'Python'}
 print(var7)
 ```
+
+
 You should get the following output:
 
 ![](./images/B15019_01_14.jpg)
@@ -234,11 +190,11 @@ do this:
 ```
 var7['Language']
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_15.jpg)
 
-Caption: Value for the \'Language\' key
 
 Note
 
@@ -251,6 +207,7 @@ snippet:
 ```
 var7.keys()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_16.jpg)
@@ -263,6 +220,7 @@ access all the values of a dictionary:
 ```
 var7.values()
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_17.jpg)
@@ -278,11 +236,11 @@ for key, value in var7.items():
     print(key)
     print(value)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_18.jpg)
 
-Caption: Output after iterating through the items of a dictionary
 
 You can add a new element in a dictionary by providing the key name like
 this:
@@ -300,15 +258,14 @@ command:
 del var7['Publisher']
 print(var7)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_20.jpg)
 
 Caption: Output of a dictionary after removing an item
 
-In *Exercise 1.01*, *Creating a Dictionary That Will Contain Machine
-Learning Algorithms*, we will be looking to use these concepts that
-we\'ve just looked at.
+
 
 
 
@@ -321,12 +278,8 @@ be covered in this course.
 
 The following steps will help you complete the exercise:
 
-Note
 
-Every exercise and activity in this course is to be executed on Google
-Colab.
-
-1.  Open on a new Colab notebook.
+1.  Open on a new Jupyter notebook.
 
 2.  Create a list called `algorithm` that will contain the
     following elements: `Linear Regression`,
@@ -638,6 +591,7 @@ pd.read_csv('https://raw.githubusercontent.com/fenago'\
             '/data-science/master/Lab01/'\
             'Dataset/csv_example.csv')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_29.jpg)
@@ -658,6 +612,7 @@ pd.read_excel('https://github.com/fenago'\
               '/data-science/blob/master'\
               '/Lab01/Dataset/excel_example.xlsx?raw=true')
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_31.jpg)
@@ -728,7 +683,7 @@ applications for each postcode and the corresponding suburb.
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the pandas package, as shown in the following code snippet:
     ```
@@ -891,6 +846,7 @@ provide the features and the target variable as input:
 ```
 rf_model.fit(features, target)
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_44.jpg)
@@ -909,6 +865,7 @@ as for the training step:
 preds = rf_model.predict(features)
 preds
 ```
+
 You should get the following output:
 
 ![](./images/B15019_01_45.jpg)
@@ -928,6 +885,7 @@ the ratio of correct predictions to the total number of observations:
 from sklearn.metrics import accuracy_score
 accuracy_score(target, preds)
 ```
+
 You should get the following output
 
 ![](./images/B15019_01_46.jpg)
@@ -947,7 +905,7 @@ harmful).
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the `load_breast_cancer` function from
     `sklearn.datasets`:
@@ -1145,10 +1103,3 @@ Then we walked you through what a DataFrame is and how to create one by
 loading data from different file formats using the famous pandas
 package. Finally, we learned how to use the sklearn package to train a
 machine learning model and make predictions with it.
-
-This was just a quick glimpse into the fascinating world of data
-science. In this course, you will learn much more and discover new
-techniques for handling data science projects from end to end.
-
-The next lab will show you how to perform a regression task on a
-real-world dataset.

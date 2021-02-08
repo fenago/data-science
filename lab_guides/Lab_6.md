@@ -16,65 +16,6 @@ evaluate the performance of logistic regression models using accuracy,
 precision, recall, and F1 score.
 
 
-Introduction
-============
-
-
-When you assess the performance of a model, you look at certain
-measurements or values that tell you how well the model is performing
-under certain conditions, and that helps you make an informed decision
-about whether or not to make use of the model that you have trained in
-the real world. Some of the measurements you will encounter in this
-lab are MAE, precision, recall, and R[2] score.
-
-You learned how to train a regression model in *Lab 2, Regression*,
-and how to train classification models in *Lab 3, Binary
-Classification*. Consider the task of predicting whether or not a
-customer is likely to purchase a term deposit, which you addressed in
-*Lab 3, Binary Classification*. You have learned how to train a
-model to perform this sort of classification. You are now concerned with
-how useful this model might be. You might start by training one model,
-and then evaluating how often the predictions from that model are
-correct. You might then proceed to train more models and evaluate
-whether they perform better than previous models you have trained.
-
-You have already seen an example of splitting data using
-`train_test_split` in *Exercise 3.06*, *A Logistic Regression
-Model for Predicting the Propensity of Term Deposit Purchases in a
-Bank*. You will go further into the necessity and application of
-splitting data in *Lab 7, The Generalization of Machine Learning
-Models*, but for now, you should note that it is important to split your
-data into one set that is used for training a model, and a second set
-that is used for validating the model. It is this validation step that
-helps you decide whether or not to put a model into production.
-
-
-Splitting Data
-==============
-
-
-You will learn more about splitting data in *Lab 7, The
-Generalization of Machine Learning Models*, where we will cover the
-following:
-
-- Simple data splits using `train_test_split`
-- Multiple data splits using cross-validation
-
-For now, you will learn how to split data using a function from
-`sklearn` called `train_test_split`.
-
-It is very important that you do not use all of your data to train a
-model. You must set aside some data for validation, and this data must
-not have been used previously for training. When you train a model, it
-tries to generate an equation that fits your data. The longer you train,
-the more complex the equation becomes so that it passes through as many
-of the data points as possible.
-
-When you shuffle the data and set some aside for validation, it ensures
-that the model learns to not overfit the hypotheses you are trying to
-generate.
-
-
 
 Exercise 6.01: Importing and Splitting Data
 -------------------------------------------
@@ -104,7 +45,7 @@ information:
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the required libraries:
 
@@ -113,20 +54,6 @@ The following steps will help you complete the exercise:
     from sklearn.model_selection import train_test_split
     ```
 
-
-    You started by importing a library called `pandas` in the
-    first line. This library is useful for reading files into a data
-    structure that is called a `DataFrame`, which you have
-    used in previous labs. This structure is like a spreadsheet or a
-    table with rows and columns that we can manipulate. Because you
-    might need to reference the library lots of times, we have created
-    an alias for it, `pd`.
-
-    In the second line, you import a function called
-    `train_test_split` from a module called
-    `model_selection`, which is within `sklearn`.
-    This function is what you will make use of to split the data that
-    you read in using `pandas`.
 
 3.  Create a Python list:
 
@@ -163,12 +90,7 @@ The following steps will help you complete the exercise:
 ![](./images/B15019_06_02.jpg)
 
 
-    Caption: CSV file without headers
 
-    But, in this case, the column name is missing. That is not a
-    problem, however. The code in this step creates a Python list called
-    `_headers` that contains the name of each column. You will
-    supply this list when you read in the data in the next step.
 
 4.  Read the data:
 
@@ -179,13 +101,6 @@ The following steps will help you complete the exercise:
                      names=_headers, index_col=None)
     ```
 
-
-    In this step, the code reads in the file using a function called
-    `read_csv`. The first parameter,
-    `'https://raw.githubusercontent.com/fenago/data-science/master/Lab06/Dataset/car.data'`,
-    is mandatory and is the location of the file. In our case, the file
-    is on the internet. It can also be optionally downloaded, and we can
-    then point to the local file\'s location.
 
     The second parameter (`names=_headers`) asks the function
     to add the row headers to the data after reading it in. The third
@@ -218,20 +133,6 @@ The following steps will help you complete the exercise:
                                             random_state=0)
     ```
 
-
-    The preceding code will split the DataFrame containing your data
-    into two new DataFrames. The first is called `training`
-    and is used for training the model. The second is called
-    `evaluation` and will be further split into two in the
-    next step. We mentioned earlier that you must separate your dataset
-    into a training and an evaluation dataset, the former for training
-    your model and the latter for evaluating your model.
-
-    At this point, the `train_test_split` function takes two
-    parameters. The first parameter is the data we want to split. The
-    second is the ratio we would like to split it by. What we have done
-    is specified that we want our evaluation data to be 30% of our data.
-
     Note
 
     The third parameter random\_state is set to 0 to ensure
@@ -248,62 +149,6 @@ The following steps will help you complete the exercise:
     This code is similar to the code in *Step 6*. In this step, the code
     splits our evaluation data into two equal parts because we specified
     `0.5`, which means `50%`.
-
-
-Assessing Model Performance for Regression Models
-=================================================
-
-
-When you create a regression model, you create a model that predicts a
-continuous numerical variable, as you learned in *Lab 2,
-Regression*. When you set aside your evaluation dataset, you have
-something that you can use to compare the quality of your model.
-
-What you need to do to assess your model quality is compare the quality
-of your prediction to what is called the ground truth, which is the
-actual observed value that you are trying to predict. Take a look at
-*Figure 6.4*, in which the first column contains the ground truth
-(called actuals) and the second column contains the predicted values:
-
-![](./images/B15019_06_04.jpg)
-
-Caption: Actual versus predicted values
-
-Line `0` in the output compares the actual value in our
-evaluation dataset to what our model predicted. The actual value from
-our evaluation dataset is `4.891`. The value that the model
-predicted is `4.132270`.
-
-Line `1` compares the actual value of `4.194` to
-what the model predicted, which is `4.364320`.
-
-In practice, the evaluation dataset will contain a lot of records, so
-you will not be making this comparison visually. Instead, you will make
-use of some equations.
-
-You would carry out this comparison by computing the loss. The loss is
-the difference between the actuals and the predicted values in the
-preceding screenshot. In data mining, it is called a **distance
-measure**. There are various approaches to computing distance measures
-that give rise to different loss functions. Two of these are:
-
-- Manhattan distance
-- Euclidean distance
-
-There are various loss functions for regression, but in this course, we
-will be looking at two of the commonly used loss functions for
-regression, which are:
-
-- Mean absolute error (MAE) -- this is based on Manhattan distance
-- Mean squared error (MSE) -- this is based on Euclidean distance
-
-The goal of these functions is to measure the usefulness of your models
-by giving you a numerical value that shows how much deviation there is
-between the ground truths and the predicted values from your models.
-
-Your mission is to train new models with consistently lower errors.
-Before we do that, let\'s have a quick introduction to some data
-structures.
 
 
 
@@ -334,11 +179,6 @@ temp_4 = 22
 temp_5 = 22
 ```
 
-In data science, you will frequently work with a large number of data
-points, such as hourly temperature measurements for an entire year. A
-more efficient way of storing lots of values is called a vector. Let\'s
-look at vectors in the next topic.
-
 
 
 ### Vectors
@@ -353,6 +193,7 @@ creating a Python list:
 ```
 temps_list = [23, 24, 23, 22, 22]
 ```
+
 You can create a vector from the list using the `.array()`
 method from `numpy` by first importing `numpy` and
 then using the following snippet:
@@ -361,6 +202,7 @@ then using the following snippet:
 import numpy as np
 temps_ndarray = np.array(temps_list)
 ```
+
 You can proceed to verify the data type using the following code
 snippet:
 
@@ -418,19 +260,10 @@ this:
 
 Caption: Shape of the temps\_ndarray vector
 
-Notice that the output consists of brackets, `(` and
-`)`, with a number and a comma. The single number followed by
-a comma implies that this object has only one dimension. The value of
-the number is the number of elements. The output is read as \"a vector
-with five elements.\" This is very important because it is very
-different from a matrix, which we will discuss next.
-
 
 
 ### Matrices
 
-A matrix is also made up of scalars but is different from a scalar in
-the sense that a matrix has both rows and columns3
 
 There are times when you need to convert between vectors and matrices.
 Let\'s revisit `temps_ndarray`. You may recall that it has
@@ -451,6 +284,7 @@ column. To see the new shape, use the following snippet:
 ```
 print(temps_matrix.shape)
 ```
+
 You will get the following output:
 
 ![](./images/B15019_06_09.jpg)
@@ -501,16 +335,11 @@ column using the following snippet:
 ```
 vector = temps_matrix.reshape(-1)
 ```
+
 You can print out the value of the vector to confirm that you get the
 following:
 
 ![](./images/B15019_06_12.jpg)
-
-Caption: The value of the vector
-
-Notice that you now have only one set of square brackets. You still have
-the same number of elements.
-
 
 
 
@@ -538,7 +367,7 @@ The following attributes are useful for our task:
 
 The following steps will help you to complete the exercise:
 
-1.  Open a new Colab notebook to write and execute your code.
+1.  Open a new Jupyter notebook to write and execute your code.
 
 2.  Next, import the libraries mentioned in the following code snippet:
 
@@ -701,20 +530,6 @@ The following steps will help you to complete the exercise:
 
 
 
-Mean Absolute Error
--------------------
-
-The **mean absolute error** (**MAE**) is an evaluation metric for
-regression models that measures the absolute distance between your
-predictions and the ground truth. The absolute distance is the distance
-regardless of the sign, whether positive or negative. For example, if
-the ground truth is 6 and you predict 5, the distance is 1. However, if
-you predict 7, the distance becomes -1. The absolute distance, without
-taking the signs into consideration, is 1 in both cases. This is called
-the **magnitude**. The MAE is computed by summing all of the magnitudes
-and dividing by the number of observations.
-
-
 
 Exercise 6.03: Computing the MAE of a Model
 -------------------------------------------
@@ -727,7 +542,7 @@ In this exercise, we will be calculating the MAE of a model.
 
 The following steps will help you with this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Import the necessary libraries:
 
@@ -765,14 +580,6 @@ The following steps will help you with this exercise:
     semi-colon. The Python list called `_headers` contains the
     names of the column headers.
 
-    In the next line, you make use of the function called
-    `read_csv`, which is contained in the `pandas`
-    library, to load the data. The first parameter specifies the file
-    location. The second parameter specifies the Python list that
-    contains the names of the columns in the data. The third parameter
-    specifies the character that is used to separate the columns in the
-    data.
-
 4.  Split the data into `features` and `labels` and
     into training and evaluation sets:
 
@@ -789,32 +596,6 @@ The following steps will help you with this exercise:
     ```
 
 
-    In this step, you split your data into training, validation, and
-    test datasets. In the first line, you create a `numpy`
-    array in two steps. In the first step, the `drop` method
-    takes a parameter with the name of the column to drop from the
-    DataFrame. In the second step, you use `values` to convert
-    the DataFrame into a two-dimensional `numpy` array that is
-    a tabular structure with rows and columns. This array is stored in a
-    variable called `features`.
-
-    In the second line, you convert the column into a `numpy`
-    array that contains the label that you would like to predict. You do
-    this by picking out the column from the DataFrame and then using
-    `values` to convert it into a `numpy` array.
-
-    In the third line, you split the `features` and
-    `labels` using `train_test_split` and a ratio of
-    80:20. The training data is contained in `X_train` for the
-    features and `y_train` for the labels. The evaluation
-    dataset is contained in `X_eval` and `y_eval`.
-
-    In the fourth line, you split the evaluation dataset into validation
-    and testing using `train_test_split`. Because you don\'t
-    specify the `test_size`, a value of `25%` is
-    used. The validation data is stored in `X_val `and
-    `y_val`, while the test data is stored in
-    `X_test` and `y_test`.
 
 5.  Create a simple linear regression model and train it:
 
@@ -841,13 +622,6 @@ The following steps will help you with this exercise:
     y_pred = model.predict(X_val)
     ```
 
-
-    At this point, your model is ready to use. You make use of the
-    `predict` method to predict on your data. In this case,
-    you are passing `X_val` as a parameter to the function.
-    Recall that `X_va`l is your validation dataset. The result
-    is assigned to a variable called `y_pred` and will be used
-    in the next step to compute the MAE of the model.
 
 7.  Compute the MAE:
 
@@ -904,7 +678,7 @@ score and loss of a new model.
 
 The following steps will help you with this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Import the required libraries:
 
@@ -923,19 +697,6 @@ The following steps will help you with this exercise:
     ```
 
 
-    In the first step, you will import libraries such as
-    `train_test_split`, `LinearRegression`, and
-    `mean_absolute_error`. We make use of a pipeline to
-    quickly transform our features and engineer new features using
-    `MinMaxScaler` and `PolynomialFeatures`.
-    `MinMaxScaler` reduces the variance in your data by
-    adjusting all values to a range between 0 and 1. It does this by
-    subtracting the mean of the data and dividing by the range, which is
-    the minimum value subtracted from the maximum value.
-    `PolynomialFeatures` will engineer new features by raising
-    the values in a column up to a certain power and creating new
-    columns in your DataFrame to accommodate them.
-
 3.  Read in the data from the dataset:
 
     ```
@@ -950,17 +711,6 @@ The following steps will help you with this exercise:
                      names=_headers, sep=';')
     ```
 
-
-    In this step, you will read in your data. While the data is stored
-    in a CSV, it doesn\'t have a first row that lists the names of the
-    columns. The Python list called `_headers` will hold the
-    column names that you will supply to the `pandas` method
-    called `read_csv`.
-
-    In the next line, you call the `read_csv`
-    `pandas` method and supply the location and name of the
-    file to be read in, along with the header names and the file
-    separator. Columns in the file are separated with a semi-colon.
 
 4.  Split the data into training and evaluation sets:
 
@@ -1006,18 +756,6 @@ The following steps will help you with this exercise:
              ('model', LinearRegression())]
     ```
 
-
-    In this step, you begin by creating a Python list called
-    `steps`. The list contains three tuples, each one
-    representing a transformation of a model. The first tuple represents
-    a scaling operation. The first item in the tuple is the name of the
-    step, which you call `scaler`. This uses
-    `MinMaxScaler` to transform the data. The second, called
-    `poly`, creates additional features by crossing the
-    columns of data up to the degree that you specify. In this case, you
-    specify `2`, so it crosses these columns up to a power
-    of 2. Next comes your `LinearRegression` model.
-
 6.  Create a pipeline:
 
     ```
@@ -1025,17 +763,6 @@ The following steps will help you with this exercise:
     model = Pipeline(steps)
     ```
 
-
-    In this step, you create an instance of `Pipeline` and
-    store it in a variable called `model`.
-    `Pipeline` performs a series of transformations, which are
-    specified in the steps you defined in the previous step. This
-    operation works because the transformers (`MinMaxScaler`
-    and `PolynomialFeatures`) implement two methods called
-    `fit()` and `fit_transform()`. You may recall
-    from previous examples that models are trained using the
-    `fit()` method that `LinearRegression`
-    implements.
 
 7.  Train the model:
 
@@ -1120,22 +847,16 @@ Repository. You will use this dataset to classify cars as either
 acceptable or unacceptable based on the following categorical features:
 
 - `buying`: the purchase price of the car
-
 - `maint`: the maintenance cost of the car
-
 - `doors`: the number of doors on the car
-
 - `persons`: the carrying capacity of the vehicle
-
 - `lug_boot`: the size of the luggage boot
-
 - `safety`: the estimated safety of the car
-
 
 
 The following steps will help you achieve the task:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the libraries you will need:
 
@@ -1320,7 +1041,7 @@ the code of this exercise.
 
 The following steps will help you achieve the task:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Import `confusion_matrix`:
 
@@ -1348,85 +1069,6 @@ The following steps will help you achieve the task:
 
     
 ![](./images/B15019_06_26.jpg)
-
-
-
-
-More on the Confusion Matrix
-----------------------------
-
-The confusion matrix helps you analyze the impact of the choices you
-would have to make if you put the model into production. Let\'s consider
-the example of predicting the presence of a disease based on the inputs
-to the model. This is a binary classification problem, where 1 implies
-that the disease is present and 0 implies the disease is absent. The
-confusion matrix for this model would have two columns and two rows.
-
-The first column would show the items that fall into class **0**. The
-first row would show the items that were correctly classified into class
-**0** and are called `true negatives`. The second row would
-show the items that were wrongly classified as **1** but should have
-been **0**. These are `false positives`.
-
-The second column would show the items that fall into class **1**. The
-first row would show the items that were wrongly classified into class 0
-when they should have been **1** and are
-called` false negatives`. Finally, the second row shows items
-that were correctly classified into class 1 and are called
-`true positives`.
-
-False positives are the cases in which the samples were wrongly
-predicted to be infected when they are actually healthy. The implication
-of this is that these cases would be treated for a disease that they do
-not have.
-
-False negatives are the cases that were wrongly predicted to be healthy
-when they actually have the disease. The implication of this is that
-these cases would not be treated for a disease that they actually have.
-
-The question you need to ask about this model depends on the nature of
-the disease and requires domain expertise about the disease. For
-example, if the disease is contagious, then the untreated cases will be
-released into the general population and could infect others. What would
-be the implication of this versus placing cases into quarantine and
-observing them for symptoms?
-
-On the other hand, if the disease is not contagious, the question
-becomes that of the implications of treating people for a disease they
-do not have versus the implications of not treating cases of a disease.
-
-It should be clear that there isn\'t a definite answer to these
-questions. The model would need to be tuned to provide performance that
-is acceptable to the users.
-
-
-
-Precision
----------
-
-Precision was introduced in *Lab 3, Binary Classification*; however,
-we will be looking at it in more detail in this lab. The precision
-is the total number of cases that were correctly classified as positive
-(called **true positive** and abbreviated as **TP**) divided by the
-total number of cases in that prediction (that is, the total number of
-entries in the row, both correctly classified (TP) and wrongly
-classified (FP) from the confusion matrix). Suppose 10 entries were
-classified as positive. If 7 of the entries were actually positive, then
-TP would be 7 and FP would be 3. The precision would, therefore, be 0.7.
-The equation is given as follows:
-
-![](./images/B15019_06_27.jpg)
-
-Caption: Equation for precision
-
-In the preceding equation:
-
-- `tp` is true positive -- the number of predictions that
-    were correctly classified as belonging to that class.
-- `fp` is false positive -- the number of predictions that
-    were wrongly classified as belonging to that class.
-- The function in `sklearn.metrics` to compute precision is
-    called `precision_score`. Go ahead and give it a try.
 
 
 
@@ -1477,23 +1119,6 @@ The following steps will help you achieve the task:
 
 
 
-Recall
-------
-
-Recall is the total number of predictions that were true divided by the
-number of predictions for the class, both true and false. Think of it as
-the true positive divided by the sum of entries in the column. The
-equation is given as follows:
-
-![](./images/B15019_06_29.jpg)
-
-Caption: Equation for recall
-
-The function for this is `recall_score`, which is available
-from `sklearn.metrics`.
-
-
-
 Exercise 6.08: Computing Recall for the Classification Model
 ------------------------------------------------------------
 
@@ -1512,7 +1137,7 @@ the code of this exercise.
 
 The following steps will help you accomplish the task:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Now, import the required libraries:
 
@@ -1549,42 +1174,6 @@ The following steps will help you accomplish the task:
 ![](./images/B15019_06_30.jpg)
 
 
-Caption: Recall score
-
-Note
-
-The recall score can vary, depending on the data.
-
-As you can see, we have calculated the recall score in the exercise,
-which is `0.622`. This means that of the total number of
-classes that were predicted, `62%` of them were correctly
-predicted. On its own, this value might not mean much until it is
-compared to the recall score from another model.
-
-
-
-Let\'s now move toward calculating the F1 score, which also helps
-greatly in evaluating the model performance, which in turn aids in
-making better decisions when choosing models.
-
-
-
-F1 Score
---------
-
-The F1 score is another important parameter that helps us to evaluate
-the model performance. It considers the contribution of both precision
-and recall using the following equation:
-
-![](./images/B15019_06_31.jpg)
-
-Caption: F1 score
-
-The F1 score ranges from 0 to 1, with 1 being the best possible score.
-You compute the F1 score using `f1_score` from
-`sklearn.metrics`.
-
-
 
 Exercise 6.09: Computing the F1 Score for the Classification Model
 ------------------------------------------------------------------
@@ -1604,7 +1193,7 @@ the code of this exercise.
 
 The following steps will help you accomplish the task:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Import the necessary modules:
 
@@ -1633,26 +1222,6 @@ The following steps will help you accomplish the task:
 
     
 ![](./images/B15019_06_32.jpg)
-
-
-Caption: F1 score
-
-
-By the end of this exercise, you will see that the `F1` score
-we achieved is `0.6746`. There is a lot of room for
-improvement, and you would engineer new features and train a new model
-to try and get a better F1 score.
-
-
-
-Accuracy
---------
-
-Accuracy is an evaluation metric that is applied to classification
-models. It is computed by counting the number of labels that were
-correctly predicted, meaning that the predicted label is exactly the
-same as the ground truth. The `accuracy_score()` function
-exists in `sklearn.metrics` to provide this value.
 
 
 
@@ -1709,24 +1278,6 @@ The following steps will help you accomplish the task:
 
 
 
-Thus, we have successfully calculated the accuracy of the model as being
-`0.876`. The goal of this exercise is to show you how to
-compute the accuracy of a model and to compare this accuracy value to
-that of another model that you will train in the future.
-
-
-
-Logarithmic Loss
-----------------
-
-The logarithmic loss (or log loss) is the loss function for categorical
-models. It is also called categorical cross-entropy. It seeks to
-penalize incorrect predictions. The `sklearn` documentation
-defines it as \"the negative log-likelihood of the true values given
-your model predictions.\"
-
-
-
 Exercise 6.11: Computing the Log Loss for the Classification Model
 ------------------------------------------------------------------
 
@@ -1744,7 +1295,7 @@ of the code of this exercise.
 
 The following steps will help you accomplish the task:
 
-1.  Open your Colab notebook and continue from where *Exercise 6.05*,
+1.  Open your Jupyter notebook and continue from where *Exercise 6.05*,
     *Creating a Classification Model for Computing Evaluation Metrics*,
     stopped.
 
@@ -1759,29 +1310,11 @@ The following steps will help you accomplish the task:
     `sklearn.metrics`.
 
 3.  Compute the log loss:
+
     ```
     _loss = log_loss(y_val, model.predict_proba(X_val))
     print(_loss)
     ```
-
-
-In this step, you compute the log loss and store it in a variable called
-`_loss`. You need to observe something very important:
-previously, you made use of `y_val`, the ground truths, and
-`y_pred`, the predictions.
-
-In this step, you do not make use of predictions. Instead, you make use
-of predicted probabilities. You see that in the code where you specify
-`model.predict_proba()`. You specify the validation dataset
-and it returns the predicted probabilities.
-
-The `print()` function causes the interpreter to render the
-log loss.
-
-This should look like the following:
-
-![](./images/B15019_06_34.jpg)
-
 
 
 
@@ -1792,8 +1325,6 @@ The goal of this exercise is to plot the ROC curve for a binary
 classification problem. The data for this problem is used to predict
 whether or not a mother will require a caesarian section to give birth.
 
-
-
 From the UCI Machine Learning Repository, the abstract for this dataset
 follows: \"This dataset contains information about caesarian section
 results of 80 pregnant women with the most important characteristics of
@@ -1802,7 +1333,7 @@ age, delivery number, delivery time, blood pressure, and heart status.
 
 The following steps will help you accomplish this task:
 
-1.  Open a Colab notebook file.
+1.  Open a Jupyter notebook file.
 
 2.  Import the required libraries:
 
@@ -2032,7 +1563,7 @@ with the execution of the code of this exercise.
 
 The following steps will help you accomplish the task:
 
-1.  Open a Colab notebook to the code for *Exercise 6.12*, *Computing
+1.  Open a Jupyter notebook to the code for *Exercise 6.12*, *Computing
     and Plotting ROC Curve for a Binary Classification Problem,* and
     continue writing your code.
 
@@ -2099,7 +1630,7 @@ model. You will make use of the car dataset for this exercise.
 
 The following steps will guide you toward the goal:
 
-1.  Open a Colab notebook.
+1.  Open a Jupyter notebook.
 
 2.  Import the required libraries:
     ```
@@ -2255,7 +1786,7 @@ into production.
 
 The steps to accomplish this task are:
 
-1.  Open a Colab notebook.
+1.  Open a Jupyter notebook.
 
 2.  Load the necessary libraries.
 

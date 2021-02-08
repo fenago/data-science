@@ -30,6 +30,7 @@ knn = neighbors.KNeighborsClassifier()
 # examine the defaults
 print(knn.get_params())
 ```
+
 You should get the following output:
 
 ```
@@ -75,6 +76,7 @@ knn = neighbors.KNeighborsClassifier(n_neighbors=15)
 # examine
 print(knn.get_params())
 ```
+
 You should get the following output:
 
 ```
@@ -82,6 +84,7 @@ You should get the following output:
  'metric_params': None, 'n_jobs': None, 'n_neighbors': 15, 
  'p': 2, 'weights': 'uniform'}
 ```
+
 You may have noticed that k is not the only hyperparameter available for
 k-NN classifiers. Setting multiple hyperparameters is as easy as
 specifying the relevant arguments. For example, let\'s increase the
@@ -165,7 +168,7 @@ These are the important attributes of the dataset:
 
 The following steps will help you complete this exercise:
 
-1.  Create a new notebook in Google Colab.
+1.  Create a new notebook in Jupyter.
 
 2.  Next, import `neighbors`, `datasets`, and
     `model_selection` from scikit-learn:
@@ -414,6 +417,7 @@ The output will be as follows:
  'metric_params': None, 'n_jobs': None, 'n_neighbors': 7, 
  'p': 2, 'weights': 'uniform'}
 ```
+
 You can see from the output that the only parameter we are changing is
 k; everything else remains the same in each iteration.
 
@@ -690,7 +694,7 @@ dataset we will use contains 1,797 labeled images of handwritten digits.
 
 
 
-1.  Create a new notebook in Google Colab.
+1.  Create a new notebook in Jupyter.
 
 2.  Import `datasets`, `svm`, and
     `model_selection` from scikit-learn:
@@ -1016,6 +1020,7 @@ p_X_1 = stats.norm.pdf(x=x, loc=0.0, scale=1.0**2)
 # second normal distribution with mean = 0, variance = 2.25
 p_X_2 = stats.norm.pdf(x=x, loc=0.0, scale=1.5**2)
 ```
+
 Note
 
 In this case, `loc` corresponds to 𝜇, while `scale`
@@ -1132,6 +1137,7 @@ n_iter = 100
 samples = stats.gamma.rvs(a=1, loc=1, scale=2, \
                           size=n_iter, random_state=100)
 ```
+
 Note
 
 We set a random state to ensure reproducible results.
@@ -1342,7 +1348,7 @@ forest can use when finding the best splits.
 
 The following steps will help you complete the exercise.
 
-1.  Create a new notebook in Google Colab.
+1.  Create a new notebook in Jupyter.
 
 2.  Import the data and isolate the features `X` and the
     target `y`:

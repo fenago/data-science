@@ -18,35 +18,10 @@ datasets in the real world.
 
 
 
-
-Business Context
-----------------
-
-The marketing head of your company comes to you with a problem she has
-been grappling with. Many customers have been complaining about the
-browsing experience of your company\'s website because of the number of
-advertisements that pop up during browsing. Your company wants to build
-an engine on your web server that identifies potential advertisements
-and then eliminates them even before they pop up.
-
-To help you to achieve this, you have been given a dataset that contains
-a set of possible advertisements on a variety of web pages. The features
-of the dataset represent the geometry of the images in the possible
-adverts, as well as phrases occurring in the URL, image URLs, anchor
-text, and words occurring near the anchor text. This dataset has also
-been labeled, with each possible ad given a label that says whether it
-is actually an advertisement or not. Using this dataset, you have to
-build a model that predicts whether something is an advertisement or
-not. You may think that this is a relatively simple problem that could
-be solved with any binary classification algorithm. However, there is a
-challenge in the dataset. The dataset has a large number of features.
-You have set out to solve this high-dimensional dataset challenge.
-
-
 Exercise 14.01: Loading and Cleaning the Dataset
 ------------------------------------------------
 
-In this exercise, we will download the dataset, load it in our Colab
+In this exercise, we will download the dataset, load it in our Jupyter
 notebook, and do some basic explorations, such as printing the
 dimensions of the dataset using the `.shape()` and
 `.describe()` functions, and also cleaning the dataset.
@@ -54,9 +29,9 @@ dimensions of the dataset using the `.shape()` and
 
 The following steps will help you complete this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
-2.  Now, `import pandas` into your Colab notebook:
+2.  Now, `import pandas` into your Jupyter notebook:
     ```
     import pandas as pd
     ```
@@ -82,14 +57,6 @@ The following steps will help you complete this exercise:
     ```
 
 
-    The `pd.read_csv()` function\'s arguments are the filename
-    as a string and the limit separator of a CSV file, which is
-    `","`. Please note that as there are no headers for the
-    dataset. We specifically mention this using the
-    `header = None` command. The last argument,
-    `error_bad_lines=False`, is to skip any errors in the
-    format of the file and then load data.
-
     After reading the file, the data frame is printed using the
     `.head()` function.
 
@@ -99,7 +66,7 @@ The following steps will help you complete this exercise:
 ![](./images/B15019_14_01.jpg)
 
 
-    Caption: Loading data into the Colab notebook
+    Caption: Loading data into the Jupyter notebook
 
 5.  Now, print the shape of the dataset, as shown in the following code
     snippet:
@@ -136,7 +103,7 @@ The following steps will help you complete this exercise:
 ![](./images/B15019_14_02.jpg)
 
 
-    Caption: Loading data into the Colab notebook
+    Caption: Loading data into the Jupyter notebook
 
     As we saw from the shape of the data, the dataset has
     `3279` examples with `1559 `variables. The
@@ -386,6 +353,7 @@ df = pd.np.array([[1, 2, 3], [4, 5, 6]])
 print(df.shape)
 df
 ```
+
 You should get the following output:
 
 ![](./images/B15019_14_08.jpg)
@@ -407,6 +375,7 @@ print(Newdf)
 # Finding the end time
 print("Total time:", round(time.time()-t0, 3), "s")
 ```
+
 You should get the following output:
 
 ![](./images/B15019_14_09.jpg)
@@ -451,7 +420,7 @@ Classification*.
 
 The steps to complete this activity are as follows:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Implement all steps from *Exercise 14.01*, *Loading and Cleaning the
     Dataset*, until the normalization of data. Derive the transformed
@@ -465,8 +434,7 @@ The steps to complete this activity are as follows:
 4.  Split the dataset into train and test sets.
 
 5.  Fit a logistic regression model on the new dataset and note the time
-    it takes to fit the model. Note the color change for the indicator
-    for RAM on your Colab notebook.
+    it takes to fit the model.
 
     **Expected Output**:
 
@@ -477,12 +445,6 @@ The steps to complete this activity are as follows:
     Total training time: 23.86 s
     ```
 
-
-    
-![](./images/B15019_14_10.jpg)
-
-
-    Caption: Google Colab RAM utilization
 
 6.  Predict on the test set and print the classification report and
     confusion matrix.
@@ -497,27 +459,6 @@ Caption: Confusion matrix and the classification report results
 
 
 
-In this activity, you will have created a high-dimensional dataset by
-replicating the columns of the existing database and identified that the
-resource utilization is quite high with this high dimensional dataset.
-The resource utilization indicator changed its color to orange because
-of the large dimensions. The longer time, `23.86` seconds,
-taken for modeling was also noticed on this dataset. You will have also
-predicted on the test set to get an accuracy level of around
-`97%` using the logistic regression model.
-
-First, you need to know why the color of RAM utilization on Colab
-changed to orange. Because of the huge dataset we created by
-replication, Colab had to use access RAM, due to which the color changed
-to orange.
-
-But, out of curiosity, what do you think the impact will be on the RAM
-utilization if you increased the replication from 300 to 500? Let\'s
-have a look at the following example.
-
-Note
-
-You don\'t need to perform this on your Colab notebook.
 
 We begin by defining the path of the dataset for the GitHub repository
 to our \"ads\" dataset:
@@ -543,14 +484,10 @@ Create a high-dimensional dataset with a scaling factor of
 # Creating a high dimension dataset
 X_hd = pd.DataFrame(pd.np.tile(adData, (1, 500)))
 ```
-You will see the following output:
 
-![](./images/B15019_14_12.jpg)
-
-Caption: Colab crashing
 
 From the output, you can see that the session crashes because all the
-RAM provided by Colab has been used. The session will restart, and you
+RAM provided by Jupyter has been used. The session will restart, and you
 will lose all your variables. Hence, it is always good to be mindful of
 the resources you are provided with, along with the dataset. As a data
 scientist, if you feel that a dataset is huge with many features but the
@@ -563,65 +500,9 @@ Strategies for Addressing High-Dimensional Datasets
 ===================================================
 
 
-In *Activity 14.01*, *Fitting a Logistic Regression Model on a
-High-Dimensional Dataset*, we witnessed the challenges of
-high-dimensional datasets. We saw how the resources were challenged when
-the replication factor was 300. You also saw that the notebook crashes
-when the replication factor is increased to 500. When the replication
-factor was 500, the number of features was around 750,000. In our case,
-our resources would fail to scale up even before we hit the 1 million
-mark on the number of features. Some modern-day datasets sometimes have
-hundreds of millions, or in many cases billions, of features. Imagine
-the kind of resources and time it would take to get any actionable
-insights from the dataset.
-
-Luckily, we have many robust methods for addressing high-dimensional
-datasets. Many of these techniques are very effective and have helped to
-address the challenges raised by huge datasets.
-
-Let\'s look at some of the techniques for dealing with high-dimensional
-datasets. In *Figure 14.14*, you can see the strategies we will be
-coming across in this lab to deal with such datasets:
-
 ![](./images/B15019_14_13.jpg)
 
-Caption: Strategies to address high dimensional datasets
 
-
-
-Backward Feature Elimination (Recursive Feature Elimination)
-------------------------------------------------------------
-
-The mechanism behind the backward feature elimination algorithm is the
-recursive elimination of features and building a model on those features
-that remain after all the elimination.
-
-Let\'s look under the hood of this algorithm step by step:
-
-1.  Initially, at a given iteration, the selected classification
-    algorithm is first trained on all the `n` features
-    available. For example, let\'s take the case of the original dataset
-    we had, which had `1,558` features. The algorithm starts
-    off with all the `1,558` features in the first iteration.
-2.  In the next step, we remove one feature at a time and train a model
-    with the remaining `n-1` features. This process is
-    repeated `n` times. For example, we first remove feature 1
-    and then fit a model using all the remaining 1,557 variables. In the
-    next iteration, we use feature `1` and instead, we
-    eliminate feature `2` and then fit the model. This process
-    is repeated `n` times (`1,558`) times.
-3.  For each of the models fitted, the performance of the model (using
-    measures such as accuracy) is calculated.
-4.  The feature whose replacement has resulted in the smallest change in
-    performance is removed permanently and *Step 2* is repeated with
-    `n-1` features.
-5.  The process is then repeated with `n-2` features and so
-    on.
-6.  The algorithm keeps on eliminating features until the threshold
-    number of features we require is reached.
-
-Let\'s take a look at the backward feature elimination algorithm in
-action for the augmented ads dataset in the next exercise.
 
 
 
@@ -636,7 +517,7 @@ exercise.
 
 The following steps will help you complete this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Implement all the initial steps similar to *Exercise 14.01*,
     *Loading and Cleaning the Dataset*, until scaling the dataset using
@@ -930,7 +811,7 @@ exercise.
 
 The following steps will help you complete this exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Implement all the initial steps similar to *Exercise 14.01*,
     *Loading and Cleaning the Dataset*, up until scaling the dataset
@@ -1200,6 +1081,7 @@ import matplotlib.pyplot as plt
 plt.scatter(X[:, 0], X[:, 1])
 plt.axis('equal')
 ```
+
 You should get the following output:
 
 ```
@@ -1233,6 +1115,7 @@ X_pca = pca.transform(X)
 print("Original data set:   ", X.shape)
 print("Data set after transformation:", X_pca.shape)
 ```
+
 You should get the following output:
 
 ```
@@ -1262,6 +1145,7 @@ plt.scatter(X[:, 0], X[:, 1], alpha=0.1)
 plt.scatter(X_reverse[:, 0], X_reverse[:, 1], alpha=0.9)
 plt.axis('equal');
 ```
+
 You should get the following output:
 
 ![](./images/B15019_14_23.jpg)
@@ -1305,7 +1189,7 @@ and we will be enhancing it with additional features for this exercise.
 
 The following steps will help you complete this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Implement the initial steps from *Exercise 14.01*, *Loading and
     Cleaning the Dataset*, up until scaling the dataset using the
@@ -1584,7 +1468,7 @@ features for this exercise.
 
 The following steps will help you complete this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Implement all the steps from *Exercise 14.01*, *Loading and Cleaning
     the Dataset*, up until scaling the dataset using
@@ -1856,7 +1740,7 @@ performance of the model.
 
 The following steps will help you complete this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Implement the same initial steps from *Exercise 14.01*, *Loading and
     Cleaning the Dataset*, up until scaling the dataset using the
@@ -2123,6 +2007,7 @@ df = pd.np.array([[1, 2, 3], [4, 5, 6]])
 print(df.shape)
 df
 ```
+
 You should get the following output:
 
 ![](./images/B15019_14_35.jpg)
@@ -2155,6 +2040,7 @@ mu, sigma = 0, 0.1
 noise = np.random.normal(mu, sigma, [2,3]) 
 noise.shape
 ```
+
 You should get the following output:
 
 ```
@@ -2170,6 +2056,7 @@ Print the sampled data frame:
 # Sampled data frame
 noise
 ```
+
 You will get something like the following output:
 
 ```
@@ -2185,6 +2072,7 @@ frame to get the new dataset:
 df_new = df + noise
 df_new
 ```
+
 You should get something like the following output:
 
 ```
@@ -2209,7 +2097,7 @@ dataset as we did in the previous section.
 
 The steps to complete this activity are as follows:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Normalize the original ads data and derive the transformed
     independent variable, `X_tran`.

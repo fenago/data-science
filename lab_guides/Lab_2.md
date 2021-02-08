@@ -14,326 +14,7 @@ function to transform inherently non-linear relationships between
 variables and to enable the application of the linear regression method
 of analysis will also be introduced.
 
-By the end of this lab, you will be able to identify and import the
-Python modules required for regression analysis; use the
-`pandas` module to load a dataset and prepare it for
-regression analysis; create a scatter plot of bivariate data and fit a
-regression line through it; use the methods available in the Python
-`statsmodels` module to fit a regression model to a dataset;
-explain the results of simple and multiple linear regression analysis;
-assess the goodness of fit of a linear regression model; and apply
-linear regression analysis as a tool for practical problem-solving.
 
-
-Introduction
-============
-
-
-The previous lab provided a primer to Python programming and an
-overview of the data science field. Data science is a relatively young
-multidisciplinary field of study. It draws its concepts and methods from
-the traditional fields of statistics, computer science, and the broad
-field of artificial intelligence (AI), especially the subfield of AI
-called machine learning:
-
-![](./images/B15019_02_01.jpg)
-
-Caption: The data science models
-
-As you can see in *Figure 2.1*, data science aims to make use of both
-**structured** and **unstructured** data, develop models that can be
-effectively used, make predictions, and also derive insights for
-decision making.
-
-A loose description of structured data will be any set of data that can
-be conveniently arranged into a table that consists of rows and columns.
-This kind of data is normally stored in database management systems.
-
-Unstructured data, however, cannot be conveniently stored in tabular
-form -- an example of such a dataset is a text document. To achieve the
-objectives of data science, a flexible programming language that
-effectively combines interactivity with computing power and speed is
-necessary. This is where the Python programming language meets the needs
-of data science and, as mentioned in *Lab 1*, *Introduction to Data
-Science in Python*, we will be using Python in this course.
-
-The need to develop models to make predictions and to gain insights for
-decisionmaking cuts across many industries. Data science is, therefore,
-finding uses in many industries, including healthcare, manufacturing and
-the process industries in general, the banking and finance sectors,
-marketing and e-commerce, the government, and education.
-
-In this lab, we will be specifically be looking at regression, which
-is one of the key methods that is used regularly in data science, in
-order to model relationships between variables, where the **target
-variable** (that is, the value you\'re looking for) is a real number.
-
-Consider a situation where a real estate business wants to understand
-and, if possible, model the relationship between the prices of property
-in a city and knowing the key attributes of the properties. This is a
-data science problem and it can be tackled using regression.
-
-This is because the target variable of interest, which is the price of a
-property, is a real number. Examples of the key attributes of a property
-that can be used to predict its value are as follows:
-
-- The age of the property
-- The number of bedrooms in a property
-- Whether the property has a pool or not
-- The area of land the property covers
-- The distance of the property from facilities such as railway
-    stations and schools
-
-Regression analysis can be employed to study this scenario, in which you
-have to create a function that maps the key attributes of a property to
-the target variable, which, in this case, is the price of a property.
-
-Regression analysis is part of a family of machine learning techniques
-called **supervised machine learning**. It is called supervised because
-the machine learning algorithm that learns the model is provided a kind
-of *question* and *answer* dataset to learn from. The *question* here is
-the key attribute and the *answer* is the property price for each
-property that is used in the study, as shown in the following figure:
-
-![](./images/B15019_02_02.jpg)
-
-Caption: Example of a supervised learning technique
-
-Once a model has been learned by the algorithm, we can provide the model
-with a question (that is, a set of attributes for a property whose price
-we want to find) for it to tell us what the answer (that is, the price)
-of that property will be.
-
-This lab is an introduction to linear regression and how it can be
-applied to solve practical problems like the one described previously in
-data science. Python provides a rich set of modules (libraries) that can
-be used to conduct rigorous regression analysis of various kinds. In
-this lab, we will make use of the following Python modules, among
-others: `pandas`, `statsmodels`,
-`seaborn`, `matplotlib`, and
-`scikit-learn`.
-
-
-Simple Linear Regression
-========================
-
-
-In *Figure 2.3*, you can see the crime rate per capita and the median
-value of owner-occupied homes for the city of Boston, which is the
-largest city of the Commonwealth of Massachusetts. We seek to use
-regression analysis to gain an insight into what drives crime rates in
-the city.
-
-Such analysis is useful to policy makers and society in general because
-it can help with decision-making directed toward the reduction of the
-crime rate, and hopefully the eradication of crime across communities.
-This can make communities safer and increase the quality of life in
-society.
-
-This is a data science problem and is of the supervised machine learning
-type. There is a dependent variable named `crime rate` (let\'s
-denote it *Y*), whose variation we seek to understand in terms of an
-independent variable, named
-`Median value of owner-occupied homes` (let\'s denote it *X*).
-
-In other words, we are trying to understand the variation in crime rate
-based on different neighborhoods.
-
-Regression analysis is about finding a function, under a given set of
-assumptions, that best describes the relationship between the dependent
-variable (*Y* in this case) and the independent variable (*X* in this
-case).
-
-When the number of independent variables is only one, and the
-relationship between the dependent and the independent variable is
-assumed to be a straight line, as shown in *Figure 2.3*, this type of
-regression analysis is called **simple linear regression**. The
-straight-line relationship is called the regression line or the line of
-**best** fit:
-
-![Caption: A scatter plot of the crime rate against the median value
-of owner-occupied homes ](./images/B15019_02_03.jpg)
-
-Caption: A scatter plot of the crime rate against the median value of
-owner-occupied homes
-
-In *Figure 2.3*, the regression line is shown as a solid black line.
-Ignoring the poor quality of the fit of the regression line to the data
-in the figure, we can see a decline in crime rate per capita as the
-median value of owner-occupied homes increases.
-
-From a data science point of view, this observation may pose lots of
-questions. For instance, what is driving the decline in crime rate per
-capita as the median value of owner-occupier homes increases? Are richer
-suburbs and towns receiving more policing resources than less fortunate
-suburbs and towns? Unfortunately, these questions cannot be answered
-with such a simple plot as we find in *Figure 2.3*. But the observed
-trend may serve as a starting point for a discussion to review the
-distribution of police and community-wide security resources.
-
-Returning to the question of how well the regression line fits the data,
-it is evident that almost one-third of the regression line has no data
-points scattered around it at all. Many data points are simply clustered
-on the horizontal axis around the zero (`0`) crime rate mark.
-This is not what you expect of a good regression line that fits the data
-well. A good regression line that fits the data well must sit amidst a
-*cloud* of data points.
-
-It appears that the relationship between the crime rate per capita and
-the median value of owner-occupied homes is not as linear as you may
-have thought initially.
-
-In this lab, we will learn how to use the logarithm function (a
-mathematical function for transforming values) to linearize the
-relationship between the crime rate per capita and the median value of
-owner-occupied homes, in order to improve the fit of the regression line
-to the data points on the scatter graph.
-
-We have ignored a very important question thus far. That is, *how can
-you determine the regression line for a given set of data?*
-
-A common method used to determine the regression line is called the
-method of least squares, which is covered in the next section.
-
-
-
-The Method of Least Squares
----------------------------
-
-The simple linear regression line is generally of the form shown in
-*Figure 2.4*, where β[0]{.subscript} and β[1]{.subscript} are unknown
-constants, representing the intercept and the slope of the regression
-line, respectively.
-
-The intercept is the value of the dependent variable (Y) when the
-independent variable (X) has a value of zero (0). The slope is a measure
-of the rate at which the dependent variable (Y) changes when the
-independent variable (X) changes by one (1). The unknown constants are
-called the **model coefficients** or **parameters**. This form of the
-regression line is sometimes known as the population regression line,
-and, as a probabilistic model, it fits the dataset approximately, hence
-the use of the symbol (`≈`) in *Figure 2.4*. The model is
-called probabilistic because it does not model all the variability in
-the dependent variable (Y) :
-
-![](./images/B15019_02_04.jpg)
-
-Caption: Simple linear regression equation
-
-Calculating the difference between the actual dependent variable value
-and the predicted dependent variable value gives an error that is
-commonly termed as the residual (ϵ[i]{.subscript}).
-
-Repeating this calculation for every data point in the sample, the
-residual (ϵ[i]{.subscript}) for every data point can be squared, to
-eliminate algebraic signs, and added together to obtain the **error sum
-of squares** **(ESS)**.
-
-The least squares method seeks to minimize the ESS.
-
-
-Multiple Linear Regression
-==========================
-
-
-In the simple linear regression discussed previously, we only have one
-independent variable. If we include multiple independent variables in
-our analysis, we get a multiple linear regression model. Multiple linear
-regression is represented in a way that\'s similar to simple linear
-regression.
-
-Let\'s consider a case where we want to fit a linear regression model
-that has three independent variables, X[1]{.subscript},
-X[2]{.subscript}, and X[3]{.subscript}. The formula for the multiple
-linear regression equation will look like *Figure 2.5*:
-
-![](./images/B15019_02_05.jpg)
-
-
-
-Estimating the Regression Coefficients (β[0, ]{.subscript}β[1, ]{.subscript}β[2]{.subscript} and β[3]{.subscript})
-------------------------------------------------------------------------------------------------------------------
-
-The regression coefficients in *Figure 2.5* are estimated using the same
-least squares approach that was discussed when simple linear regression
-was introduced. To satisfy the least squares method, the chosen
-coefficients must minimize the sum of squared residuals.
-
-Later in the lab, we will make use of the Python programming
-language to compute these coefficient estimates practically.
-
-
-
-Logarithmic Transformations of Variables
-----------------------------------------
-
-As has been mentioned already, sometimes the relationship between the
-dependent and independent variables is not linear. This limits the use
-of linear regression. To get around this, depending on the nature of the
-relationship, the logarithm function can be used to transform the
-variable of interest. What happens then is that the transformed variable
-tends to have a linear relationship with the other untransformed
-variables, enabling the use of linear regression to fit the data. This
-will be illustrated in practice on the dataset being analyzed later in
-the exercises of the course.
-
-
-
-Correlation Matrices
---------------------
-
-In *Figure 2.3*, we saw how a linear relationship between two variables
-can be analyzed using a straight-line graph. Another way of visualizing
-the linear relationship between variables is with a correlation matrix.
-A correlation matrix is a kind of cross-table of numbers showing the
-correlation between pairs of variables, that is, how strongly the two
-variables are connected (this can be thought of as how a change in one
-variable will cause a change in the other variable). It is not easy
-analyzing raw figures in a table. A correlation matrix can, therefore,
-be converted to a form of \"heatmap\" so that the correlation between
-variables can easily be observed using different colors. An example of
-this is shown in *Exercise 2.01*, *Loading and Preparing the Data for
-Analysis*.
-
-
-Conducting Regression Analysis Using Python
-===========================================
-
-
-Having discussed the basics of regression analysis, it is now time to
-get our hands dirty and actually do some regression analysis using
-Python.
-
-To begin with our analysis, we need to start a session in Python and
-load the relevant modules and dataset required.
-
-All of the regression analysis we will do in this lab will be based
-on the Boston Housing dataset. The dataset is good for teaching and is
-suitable for linear regression analysis. It presents the level of
-challenge that necessitates the use of the logarithm function to
-transform variables in order to achieve a better level of model fit to
-the data. The dataset contains information on a collection of properties
-in the Boston area and can be used to determine how the different
-housing attributes of a specific property affect the property\'s value.
-
-The column headings of the Boston Housing dataset CSV file can be
-explained as follows:
-
-- CRIM -- per capita crime rate by town
-- ZN -- proportion of residential land zoned for lots over 25,000
-    sq.ft.
-- INDUS -- proportion of non-retail business acres per town
-- CHAS -- Charles River dummy variable (= 1 if tract bounds river; 0
-    otherwise)
-- NOX -- nitric oxide concentration (parts per 10 million)
-- RM -- average number of rooms per dwelling
-- AGE -- proportion of owner-occupied units built prior to 1940
-- DIS -- weighted distances to five Boston employment centers
-- RAD -- index of accessibility to radial highways
-- TAX -- full-value property-tax rate per \$10,000
-- PTRATIO -- pupil-teacher ratio by town
-- LSTAT -- % of lower status of the population
-- MEDV -- median value of owner-occupied homes in \$1,000s
 
 
 Exercise 2.01: Loading and Preparing the Data for Analysis
@@ -346,10 +27,10 @@ data for analysis.
 
 The following steps will help you to complete this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Load the necessary Python modules by entering the following code
-    snippet into a single Colab notebook cell. Press the **Shift** and
+    snippet into a single Jupyter notebook cell. Press the **Shift** and
     **Enter** keys together to run the block of code:
 
     ```
@@ -367,19 +48,6 @@ The following steps will help you to complete this exercise:
     plt.style.use('seaborn')
     ```
 
-
-    The first line of the preceding code enables `matplotlib`
-    to display the graphical output of the code in the notebook
-    environment. The lines of code that follow use the
-    `import` keyword to load various Python modules into our
-    programming environment. This includes `patsy`, which is a
-    Python module. Some of the modules are given aliases for easy
-    referencing, such as the `seaborn` module being given the
-    alias `sns`. Therefore, whenever we refer to
-    `seaborn` in subsequent code, we use the alias
-    `sns`. The `patsy` module is imported without an
-    alias. We, therefore, use the full name of the `patsy`
-    module in our code where needed.
 
     The `plot_corr` and `train_test_split` functions
     are imported from the `statsmodels.graphics.correlation`
@@ -482,10 +150,7 @@ The following steps will help you to complete this exercise:
 
     Caption: DataFrames being renamed
 
-    Note
 
-    The preceding output is truncated. Please head to the GitHub
-    repository to find the entire output.
 
 9.  Inspect the data types of the columns in your DataFrame using the
     `.info()` function:
@@ -552,16 +217,6 @@ The following steps will help you to complete this exercise:
     parts. One part is used to develop the model and it is called a
     training set (`X_train` and `y_train` combined).
 
-    Note
-
-    Splitting your data into training and test subsets allows you to use
-    some of the data to train your model (that is, it lets you build a
-    model that learns the relationships between the variables), and the
-    rest of the data to test your model (that is, to see how well your
-    new model can make predictions when given new data). You will use
-    train-test splits throughout this course, and the concept will be
-    explained in more detail in *Lab 7, The Generalization Of
-    Machine Learning Models*.
 
 12. Calculate and plot a correlation matrix for the
     `train_data` set:
@@ -587,86 +242,6 @@ The following steps will help you to complete this exercise:
 ![](./images/B15019_02_11.jpg)
 
 
-Caption: Output with the expected heatmap
-
-
-
-
-The Correlation Coefficient
----------------------------
-
-In the previous exercise, we have seen how a correlation matrix heatmap
-can be used to visualize the relationships between pairs of variables.
-We can also see these same relationships in numerical form using the raw
-correlation coefficient numbers. These are values between -1 and 1,
-which represent how closely two variables are linked.
-
-Pandas provides a `corr` function, which when called on
-DataFrame provides a matrix (table) of the correlation of all numeric
-data types. In our case, running the code,
-`train_data.corr (method = 'pearson')`, in the Colab notebook
-provides the results in *Figure 2.12*.
-
-Note
-
-Pearson is the standard correlation coefficient for measuring the
-relationship between variables.
-
-It is important to note that *Figure 2.12* is symmetric along the left
-diagonal. The left diagonal values are correlation coefficients for
-features against themselves (and so all of them have a value of one
-(1)), and therefore are not relevant to our analysis. The data in
-*Figure 2.12* is what is presented as a plot in the output of *Step 12*
-in *Exercise 2.01*, *Loading and Preparing the Data for Analysis*.
-
-You should get the following output:
-
-![](./images/B15019_02_12.jpg)
-
-Caption: A correlation matrix of the training dataset
-
-Note
-
-The preceding output is truncated.
-
-Data scientists use the correlation coefficient as a statistic in order
-to measure the linear relationship between two numeric variables, X and
-Y. The correlation coefficient for a sample of bivariate data is
-commonly represented by r. In statistics, the common method to measure
-the correlation between two numeric variables is by using the Pearson
-correlation coefficient. Going forward in this lab, therefore, any
-reference to the correlation coefficient means the Pearson correlation
-coefficient.
-
-To practically calculate the correlation coefficient statistic for the
-variables in our dataset in this course, we use a Python function. What
-is important to this discussion is the meaning of the values the
-correlation coefficient we calculate takes. The correlation coefficient
-(r) takes values between +1 and -1.
-
-When r is equal to +1, the relationship between X and Y is such that
-both X and Y increase or decrease in the same direction perfectly. When
-r is equal to -1, the relationship between X and Y is such that an
-increase in X is associated with a decrease in Y perfectly and vice
-versa. When r is equal to zero (0), there is no linear relationship
-between X and Y.
-
-Having no linear relationship between X and Y does not mean that X and Y
-are not related; instead, it means that if there is any relationship, it
-cannot be described by a straight line. In practice, correlation
-coefficient values around 0.6 or higher (or -0.6 or lower) is a sign of
-a potentially exciting linear relationship between two variables, X and
-Y.
-
-The last column of the output of *Exercise 2.01*, *Loading and Preparing
-the Data for Analysis*, *Step 12*, provides r values for crime rate per
-capita against other features in color shades. Using the color bar, it
-is obvious that `radialHighwaysAccess`,
-`propTaxRate_per10K`, `nitrixOxide_pp10m`, and
-`pctLowerStatus` have the strongest correlation with crime
-rate per capita. This indicates that a possible linear relationship,
-between crime rate per capita and any of these independent variables,
-may be worth looking into.
 
 
 
@@ -683,7 +258,7 @@ median value of owner-occupied homes in towns in the city of Boston.
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook file and execute the steps up to and
+1.  Open a new Jupyter notebook file and execute the steps up to and
     including *Step 11* from *Exercise 2.01*, *Loading and Preparing the
     Data for Analysis*. This is shown in the code blocks below, starting
     with the import statements:
@@ -821,7 +396,7 @@ coefficients on the plot.
 
 The following steps will help you to complete this exercise:
 
-1.  Open a new Colab notebook file and execute all the steps up to *Step
+1.  Open a new Jupyter notebook file and execute all the steps up to *Step
     11* from *Exercise 2.01*, *Loading and Preparing the Data for
     Analysis*.
 
@@ -903,21 +478,6 @@ The following steps will help you to complete this exercise:
 
 
 
-The Statsmodels formula API
----------------------------
-
-In *Figure 2.3*, a solid line represents the relationship between the
-crime rate per capita and the median value of owner-occupied homes. But
-how can we obtain the equation that describes this line? In other words,
-how can we find the intercept and the slope of the straight-line
-relationship?
-
-Python provides a rich **Application Programming Interface** **(API)**
-for doing this easily. The statsmodels formula API enables the data
-scientist to use the formula language to define regression models that
-can be found in statistics literature and many dedicated statistical
-computer packages.
-
 
 
 Exercise 2.04: Fitting a Simple Linear Regression Model Using the Statsmodels formula API
@@ -930,7 +490,7 @@ formula API to create a linear regression model for Python to analyze.
 
 The following steps will help you complete this exercise:
 
-1.  Open a new Colab notebook file and import the required packages.
+1.  Open a new Jupyter notebook file and import the required packages.
     ```
     import pandas as pd
     import statsmodels.formula.api as smf
@@ -986,30 +546,6 @@ The following steps will help you complete this exercise:
 
 
 
-The Model Formula Language
---------------------------
-
-Python is a very powerful language liked by many developers. Since the
-release of version 0.5.0 of statsmodels, Python now provides a very
-competitive option for statistical analysis and modeling rivaling R and
-SAS.
-
-This includes what is commonly referred to as the R-style formula
-language, by which statistical models can be easily defined. Statsmodels
-implements the R-style formula language by using the `Patsy`
-Python library internally to convert formulas and data to the matrices
-that are used in model fitting.
-
-*Figure 2.16* summarizes the operators used to construct the
-`Patsy` formula strings and what they mean:
-
-![](./images/B15019_02_16.jpg)
-
-Caption: A summary of the Patsy formula syntax and examples
-
-
-
-
 Activity 2.01: Fitting a Log-Linear Model Using the Statsmodels Formula API
 ---------------------------------------------------------------------------
 
@@ -1030,11 +566,7 @@ The steps to complete this activity are as follows:
 
 Your output should look like the following figure:
 
-![Caption: A log-linear regression of crime rate per capita on the
-median value of owner-occupied homes ](./images/B15019_02_17.jpg)
-
-Caption: A log-linear regression of crime rate per capita on the
-median value of owner-occupied homes
+![](./images/B15019_02_17.jpg)
 
 
 
@@ -1047,9 +579,9 @@ the `patsy` formula string to define a linear regression model
 that includes more than one independent variable.
 
 To complete this activity, run the code in the following steps in your
-Colab notebook:
+Jupyter notebook:
 
-1.  Open a new Colab notebook file and import the required packages.
+1.  Open a new Jupyter notebook file and import the required packages.
     ```
     import statsmodels.formula.api as smf
     import pandas as pd

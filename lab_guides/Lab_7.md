@@ -16,207 +16,6 @@ be able to implement cross-validation to use limited data for testing
 and use regularization to reduce overfitting in models.
 
 
-Introduction
-============
-
-
-In the previous lab, you learned about model assessment using
-various metrics such as R2 score, MAE, and accuracy. These metrics help
-you decide which models to keep and which ones to discard. In this
-lab, you will learn some more techniques for training better models.
-
-Generalization deals with getting your models to perform well enough on
-data points that they have not encountered in the past (that is, during
-training). We will address two specific areas:
-
-- How to make use of as much of your data as possible to train a model
-- How to reduce overfitting in a model
-
-
-Overfitting
-===========
-
-
-A model is said to overfit the training data when it generates a
-hypothesis that accounts for every example. What this means is that it
-correctly predicts the outcome of every example. The problem with this
-scenario is that the model equation becomes extremely complex, and such
-models have been observed to be incapable of correctly predicting new
-observations.
-
-Overfitting occurs when a model has been over-engineered. Two of the
-ways in which this could occur are:
-
-- The model is trained on too many features.
-- The model is trained for too long.
-
-We\'ll discuss each of these two points in the following sections.
-
-
-
-Training on Too Many Features
------------------------------
-
-When a model trains on too many features, the hypothesis becomes
-extremely complicated. Consider a case in which you have one column of
-features and you need to generate a hypothesis. This would be a simple
-linear equation, as shown here:
-
-![](./images/B15019_07_01.jpg)
-
-Caption: Equation for a hypothesis for a line
-
-Now, consider a case in which you have two columns, and in which you
-cross the columns by multiplying them. The hypothesis becomes the
-following:
-
-![](./images/B15019_07_02.jpg)
-
-Caption: Equation for a hypothesis for a curve
-
-While the first equation yields a line, the second equation yields a
-curve, because it is now a quadratic equation. But the same two features
-could become even more complicated depending on how you engineer your
-features. Consider the following equation:
-
-![](./images/B15019_07_03.jpg)
-
-Caption: Cubic equation for a hypothesis
-
-The same set of features has now given rise to a cubic equation. This
-equation will have the property of having a large number of weights, for
-example:
-
-- The simple linear equation has one weight and one bias.
-- The quadratic equation has three weights and one bias.
-- The cubic equation has five weights and one bias.
-
-One solution to overfitting as a result of too many features is to
-eliminate certain features. The technique for this is called lasso
-regression.
-
-A second solution to overfitting as a result of too many features is to
-provide more data to the model. This might not always be a feasible
-option, but where possible, it is always a good idea to do so.
-
-
-
-Training for Too Long
----------------------
-
-The model starts training by initializing the vector of weights such
-that all values are equal to zero. During training, the weights are
-updated according to the gradient update rule. This systematically adds
-or subtracts a small value to each weight. As training progresses, the
-magnitude of the weights increases. If the model trains for too long,
-these model weights become too large.
-
-The solution to overfitting as a result of large weights is to reduce
-the magnitude of the weights to as close to zero as possible. The
-technique for this is called ridge regression.
-
-
-Underfitting
-============
-
-
-Consider an alternative situation in which the data has 10 features, but
-you only make use of 1 feature. Your model hypothesis would still be the
-following:
-
-![](./images/B15019_07_04.jpg)
-
-Caption: Equation for a hypothesis for a line
-
-However, that is the equation of a straight line, but your model is
-probably ignoring a lot of information. The model is over-simplified and
-is said to underfit the data.
-
-The solution to underfitting is to provide the model with more features,
-or conversely, less data to train on; but more features is the better
-approach.
-
-
-Data
-====
-
-
-In the world of machine learning, the data that you have is not used in
-its entirety to train your model. Instead, you need to separate your
-data into three sets, as mentioned here:
-
-- A training dataset, which is used to train your model and measure
-    the training loss.
-- An evaluation or validation dataset, which you use to measure the
-    validation loss of the model to see whether the validation loss
-    continues to reduce as well as the training loss.
-- A test dataset for final testing to see how well the model performs
-    before you put it into production.
-
-
-
-The Ratio for Dataset Splits
-----------------------------
-
-The evaluation dataset is set aside from your entire training data and
-is never used for training. There are various schools of thought around
-the particular ratio that is set aside for evaluation, but it generally
-ranges from a high of 30% to a low of 10%. This evaluation dataset is
-normally further split into a validation dataset that is used during
-training and a test dataset that is used at the end for a sanity check.
-If you are using 10% for evaluation, you might set 5% aside for
-validation and the remaining 5% for testing. If using 30%, you might set
-20% aside for validation and 10% for testing.
-
-To summarize, you might split your data into 70% for training, 20% for
-validation, and 10% for testing, or you could split your data into 80%
-for training, 15% for validation, and 5% for test. Or, finally, you
-could split your data into 90% for training, 5% for validation, and 5%
-for testing.
-
-The choice of what ratio to use is dependent on the amount of data that
-you have. If you are working with 100,000 records, for example, then 20%
-validation would give you 20,000 records. However, if you were working
-with 100,000,000 records, then 5% would give you 5 million records for
-validation, which would be more than sufficient.
-
-
-
-Creating Dataset Splits
------------------------
-
-At a very basic level, splitting your data involves random sampling.
-Let\'s say you have 10 items in a bowl. To get 30% of the items, you
-would reach in and take any 3 items at random.
-
-In the same way, because you are writing code, you could do the
-following:
-
-1.  Create a Python list.
-2.  Place 10 numbers in the list.
-3.  Generate 3 non-repeating random whole numbers from 0 to 9.
-4.  Pick items whose indices correspond to the random numbers
-    previously generated.
-    
-![](./images/B15019_07_05.jpg)
-
-
-Caption: Visualization of data splitting
-
-This is something you will only do once for a particular dataset. You
-might write a function for it. If it is something that you need to do
-repeatedly and you also need to handle advanced functionality, you might
-want to write a class for it.
-
-`sklearn` has a class called `train_test_split`,
-which provides the functionality for splitting data. It is available as
-`sklearn.model_selection.train_test_split`. This function will
-let you split a DataFrame into two parts.
-
-Have a look at the following exercise on importing and splitting data.
-
-
-
 Exercise 7.01: Importing and Splitting Data
 -------------------------------------------
 
@@ -246,7 +45,7 @@ CAR car acceptability
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Import the necessary libraries:
 
@@ -406,7 +205,7 @@ Data*.
 Note
 
 We going to refactor the code from the previous exercise. Hence, if you
-are using a new Colab notebook then make sure you copy the code from the
+are using a new Jupyter notebook then make sure you copy the code from the
 previous exercise. Alternatively, you can make a copy of the notebook
 used in *Exercise 7.01* and use the revised the code as suggested in the
 following steps.
@@ -467,22 +266,6 @@ The following steps will help you complete the exercise:
 
 
 
-
-Cross-Validation
-================
-
-
-Consider an example where you split your data into five parts of 20%
-each. You would then make use of four parts for training and one part
-for evaluation. Because you have five parts, you can make use of the
-data five times, each time using one part for validation and the
-remaining data for training.
-
-![](./images/B15019_07_13.jpg)
-
-Caption: Cross-validation
-
-
 Exercise 7.03: Creating a Five-Fold Cross-Validation Dataset
 ------------------------------------------------------------
 
@@ -492,7 +275,7 @@ and Splitting Data*.
 
 Note
 
-If you are using a new Colab notebook then make sure you copy the code
+If you are using a new Jupyter notebook then make sure you copy the code
 from *Exercise 7.01*, *Importing and Splitting Data*. Alternatively, you
 can make a copy of the notebook used in *Exercise 7.01* and then use the
 code as suggested in the following steps.
@@ -558,19 +341,6 @@ The following steps will help you complete the exercise:
     #first set
     train_indices, val_indices = next(indices)
     ```
-
-
-    In this step, you make use of the `next()` Python function
-    on the generator function. Using `next()` is the way that
-    you get a generator to return results to you. You asked for five
-    splits, so you can call `next()` five times on this
-    particular generator. Calling `next()` a sixth time will
-    cause the Python runtime to raise an exception.
-
-    The call to `next()` yields a tuple. In this case, it is a
-    pair of indices. The first one contains your training indices and
-    the second one contains your validation indices. You assign these to
-    `train_indices` and `val_indices`.
 
 7.  Create a training dataset as shown in the following code snippet:
 
@@ -656,7 +426,7 @@ generator function.
 
 The following steps will help you complete this exercise:
 
-1.  Open a new Colab notebook and repeat the steps you used to import
+1.  Open a new Jupyter notebook and repeat the steps you used to import
     data in *Exercise 7.01*, *Importing and Splitting Data*.
 
 2.  Define the number of splits you would like:
@@ -789,7 +559,7 @@ get the scores of models trained on those datasets.
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook and repeat *steps 1-6* that you took to
+1.  Open a new Jupyter notebook and repeat *steps 1-6* that you took to
     import data in *Exercise 7.01*, *Importing and Splitting Data*.
 
 2.  Encode the categorical variables in the dataset:
@@ -911,7 +681,7 @@ the Cars dataset that you worked with previously.
 
 The following steps will help you complete the exercise:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Import the necessary libraries:
 
@@ -1231,7 +1001,7 @@ use of the Cars dataset that you worked with previously.
 
 The following steps will help you complete the exercise:
 
-1.  Open a Colab notebook file.
+1.  Open a Jupyter notebook file.
 
 2.  Import `pandas`:
 
@@ -1486,7 +1256,7 @@ randomized search and cross-validation.
 
 The following steps will help you complete this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Import `pandas`:
 
@@ -1695,40 +1465,6 @@ In the preceding output, you see that the best estimator is
 and `max_depth=5`.
 
 
-In this exercise, you learned to make use of cross-validation and random
-search to find the best model using a combination of hyperparameters.
-This process is called hyperparameter tuning, in which you find the best
-combination of hyperparameters to use to train the model that you will
-put into production.
-
-
-Model Regularization with Lasso Regression
-==========================================
-
-
-As mentioned at the beginning of this lab models can overfit
-training data. One reason for this is having too many features with
-large coefficients (also called weights). The key to solving this type
-of overfitting problem is reducing the magnitude of the coefficients.
-
-You may recall that weights are optimized during model training. One
-method for optimizing weights is called gradient descent. The gradient
-update rule makes use of a differentiable loss function. Examples of
-differentiable loss functions are:
-
-- Mean Absolute Error (MAE)
-- Mean Squared Error (MSE)
-
-For lasso regression, a penalty is introduced in the loss function. The
-technicalities of this implementation are hidden by the class. The
-penalty is also called a regularization parameter.
-
-Consider the following exercise in which you over-engineer a model to
-introduce overfitting, and then use lasso regression to get better
-results.
-
-
-
 Exercise 7.09: Fixing Model Overfitting Using Lasso Regression
 --------------------------------------------------------------
 
@@ -1752,7 +1488,7 @@ without normalization.\"
 
 The following steps will help you complete the exercise:
 
-1.  Open a Colab notebook.
+1.  Open a Jupyter notebook.
 
 2.  Import the required libraries:
     ```
@@ -2310,7 +2046,7 @@ Overfitting Using Lasso Regression.*
 
 The following steps will help you complete the exercise:
 
-1.  Open a Colab notebook.
+1.  Open a Jupyter notebook.
 
 2.  Import the required libraries:
     ```
@@ -2854,30 +2590,19 @@ generalizes to previously unseen data.
 
 The steps to accomplish this task are:
 
-1.  Open a Colab notebook.
-
+1.  Open a Jupyter notebook.
 2.  Load the necessary libraries.
-
 3.  Read in the data from the `superconduct` folder.
-
 4.  Prepare the `X` and `y` variables.
-
 5.  Split the data into training and evaluation sets.
-
 6.  Create a baseline linear regression model.
-
 7.  Print out the R2 score and MSE of the model.
-
 8.  Create a pipeline to engineer polynomial features and train a linear
     regression model.
-
 9.  Print out the R2 score and MSE.
-
 10. Determine that this new model is overfitting.
-
 11. Create a pipeline to engineer polynomial features and train a ridge
     or lasso model.
-
 12. Print out the R2 score and MSE.
 
     The output will be as follows:
