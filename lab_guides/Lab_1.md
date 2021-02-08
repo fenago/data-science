@@ -16,10 +16,6 @@ application in the world of data science.
 
 ### Numeric Variables
 
-Let\'s use an integer variable called `var1` that will take
-the value `8` and another one called `var2` with the
-value `160.88`, and add them together with the `+`
-operator, as shown here:
 
 ```
 var1 = 8
@@ -37,10 +33,6 @@ Caption: Output of the addition of two variables
 
 ### Text Variables
 
-Another interesting type of variable is `string`, which
-contains textual information. You can create a variable with some
-specific text using the single or double quote, as shown in the
-following example:
 
 ```
 var3 = 'Hello, '
@@ -59,7 +51,6 @@ You should get the following output:
 
 ![](./images/B15019_01_04.jpg)
 
-Caption: Printing the two text variables
 
 
 For instance, if we want to print `Text:` before the values of
@@ -75,9 +66,8 @@ You should get the following output:
 
 Caption: Printing with f-strings
 
-You can also perform some text-related transformations with string
-variables, such as capitalizing or replacing characters. For instance,
-you can concatenate the two variables together with the `+`
+
+You can concatenate the two variables together with the `+`
 operator:
 
 ```
@@ -94,10 +84,6 @@ Caption: Concatenation of the two text variables
 
 ### Python List
 
-Another very useful type of variable is the list. It is a collection of
-items that can be changed (you can add, update, or remove items). To
-declare a list, you will need to use square brackets, `[]`,
-like this:
 
 ```
 var5 = ['I', 'love', 'data', 'science']
@@ -198,13 +184,8 @@ You should get the following output:
 ![](./images/B15019_01_15.jpg)
 
 
-Note
-
-Each key-value pair in a dictionary needs to be unique.
-
 Python provides a method to access all the key names from a dictionary,
-`.keys()`, which is used as shown in the following code
-snippet:
+`.keys()`
 
 ```
 var7.keys()
@@ -541,25 +522,9 @@ the `pandas` package are `DataFrame` and
 
 
 
-### DataFrame and Series
-
-
-![](./images/B15019_01_28.jpg)
-
-Caption: Components of a DataFrame
-
-
-In pandas, a DataFrame is represented by the `DataFrame`
-class. A `pandas` DataFrame is composed of `pandas`
-Series, which are 1-dimensional arrays. A `pandas` Series is
-basically a single column in a DataFrame.
-
-
 ### CSV Files
 
-CSV files use the comma character---`,`---to separate columns
-and newlines for a new row. The previous example of a DataFrame would
-look like this in a CSV file:
+The previous example of a DataFrame would look like this in a CSV file:
 
 ```
 algorithm,learning,type
@@ -578,15 +543,12 @@ the `pandas` package with the alias `pd`:
 ```
 import pandas as pd
 ```
+
+
 `pandas` provides a `.read_csv()` method to easily
 load a CSV file directly into a DataFrame. You just need to provide the
 path or the URL to the CSV file, as shown below.
 
-Note
-
-Watch out for the slashes in the string below. Remember that the
-backslashes ( `\` ) are used to split the code across multiple
-lines, while the forward slashes ( `/` ) are part of the URL.
 
 ```
 pd.read_csv('https://raw.githubusercontent.com/fenago'\
@@ -603,10 +565,7 @@ You should get the following output:
 
 ### Excel Spreadsheets
 
-Excel is a Microsoft tool and is very popular in the industry. It has
-its own internal structure for recording additional information, such as
-the data type of each cell or even Excel formulas. There is a specific
-method in `pandas` to load Excel spreadsheets called
+There is a specific method in `pandas` to load Excel spreadsheets called
 `.read_excel()`:
 
 ```
@@ -625,9 +584,7 @@ Caption: Dataframe after loading an Excel spreadsheet
 
 ### JSON
 
-JSON is a very popular file format, mainly used for transferring data
-from web APIs. Its structure is very similar to that of a Python
-dictionary with key-value pairs. The example DataFrame we used before
+The example DataFrame we used before
 would look like this in JSON format:
 
 ```
@@ -855,9 +812,6 @@ You should get the following output:
 
 Caption: Logs of the trained Random Forest model
 
-In the preceding output, we can see a Random Forest model with the
-default hyperparameters. You will be introduced to some of them in
-*Lab 4*, *Multiclass Classification with RandomForest*.
 
 Once trained, we can use the `.predict()` method to predict
 the target for one or more observations. Here we will use the same data

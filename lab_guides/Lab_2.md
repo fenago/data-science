@@ -63,8 +63,8 @@ The following steps will help you to complete this exercise:
     ```
     rawBostonData = pd.read_csv\
                     ('https://raw.githubusercontent.com/'\
-                     'fenago/The-Data-Science-'\
-                     'Workshop/master/Lab02/'\
+                     'fenago/data-science'\
+                     '/master/Lab02/'\
                      'Dataset/Boston.csv')
     ```
 
@@ -170,12 +170,6 @@ The following steps will help you to complete this exercise:
 
     Caption: The different data types in the dataset
 
-    The output shows that there are `506` rows
-    (`Int64Index: 506 entries`) in the dataset. There are also
-    `13` columns in total (`Data columns`). None of
-    the `13` columns has a row with a missing value (all
-    `506` rows are *non-null*). 10 of the columns have
-    floating-point (decimal) type data and three have integer type data.
 
 10. Now, calculate basic statistics for the numeric columns in the
     DataFrame:
@@ -208,16 +202,6 @@ The following steps will help you to complete this exercise:
     train_data = pd.concat([X_train, y_train], axis = 1)
     test_data = pd.concat([X_test, y_test], axis = 1)
     ```
-
-
-    We choose a test data size of 30%, which is `0.3`. The
-    `train_test_split` function is used to achieve this. We
-    set the seed of the random number generator so that we can obtain a
-    reproducible split each time we run this code. An arbitrary value of
-    `10` is used here. It is good model-building practice to
-    divide a dataset being used to develop a model into at least two
-    parts. One part is used to develop the model and it is called a
-    training set (`X_train` and `y_train` combined).
 
 
 12. Calculate and plot a correlation matrix for the
@@ -280,9 +264,10 @@ The following steps will help you complete the exercise:
     ```
     rawBostonData = pd.read_csv\
                     ('https://raw.githubusercontent.com/'\
-                     'fenago/The-Data-Science-'\
-                     'Workshop/master/Lab02/'
+                     'fenago/data-science'\
+                     '/master/Lab02/'
                      'Dataset/Boston.csv')
+
     rawBostonData = rawBostonData.dropna()
     rawBostonData = rawBostonData.drop_duplicates()
     renamedBostonData = rawBostonData.rename\

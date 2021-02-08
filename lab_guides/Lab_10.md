@@ -78,13 +78,7 @@ You should get the following output:
 ```
 8
 ```
-Usually, the first row of a dataset is the header. It contains the name
-of each column. By default, the `read_excel()` method assumes
-that the first row of the file is the header. If the `header`
-is stored in a different row, you can specify a different index for the
-header with the parameter header from `read_excel()`, such as
-`pd.read_excel(header=1)` for specifying the header column is
-the second row.
+
 
 Once loaded into a `pandas` DataFrame, you can print out its
 content by calling it directly:
@@ -112,12 +106,7 @@ You should get the following output:
 
 Caption: List of the column names for the online retail DataFrame
 
-The columns from this dataset are `InvoiceNo`,
-`StockCode`, `Description`, `Quantity`,
-`InvoiceDate`, `UnitPrice`, `CustomerID`,
-and `Country`. We can infer that a row from this dataset
-represents the sale of an article for a given quantity and price for a
-specific customer at a particular date.
+
 
 Looking at these names, we can potentially guess what types of
 information are contained in these columns, however, to be sure, we can
@@ -147,10 +136,6 @@ You should get the following output:
 
 Caption: Output of the info() method
 
-In just a few lines of code, we learned some high-level information
-about this dataset, such as its size, the column names, and their types.
-
-In the next section, we will analyze the content of a dataset.
 
 
 Analyzing Your Dataset
@@ -177,9 +162,6 @@ file_url = 'https://github.com/fenago/'\
 df = pd.read_excel(file_url)
 ```
 
-The `pandas` package provides several methods so that you can
-display a snapshot of your dataset. The most popular ones are
-`head()`, `tail()`, and `sample()`.
 
 The `head()` method will show the top rows of your dataset. By
 default, `pandas` will display the first five rows:
@@ -231,10 +213,7 @@ You should get the following output:
 
 Caption: Displaying the last eight rows using the tail() method
 
-It seems that we were right in assuming that the data is sorted in
-ascending order by the `InvoiceDate` column. We can also
-confirm that there is actually more than one value in the
-`Country` column.
+
 
 We can also use the `sample()` method to randomly pick a given
 number of rows from the dataset with the `n` parameter. You
@@ -448,11 +427,7 @@ You should get the following output:
 
 Caption: List of unique values for the \'Country\' column
 
-We can see that there are multiple countries from different continents,
-but most of them come from Europe. We can also see that there is a value
-called `Unspecified` and another one for
-`European Community`, which may be for all the countries of
-the eurozone that are not listed separately.
+
 
 Another very useful method from `pandas `is
 `value_counts()`. This method lists all the values from a
@@ -722,27 +697,7 @@ You should get the following output:
 
 Caption: Output of the describe() method
 
-We got the exact same values for the `Quantity` column as we
-saw previously. This method has calculated the descriptive statistics
-for the three numerical columns (`Quantity`,
-`UnitPrice`, and `CustomerID`).
 
-Even though the `CustomerID` column contains only numerical
-data, we know these values are used to identify each customer and have
-no mathematical meaning. For instance, it will not make sense to add
-customer ID `12680 to 17850` in the table or calculate the
-mean of these identifiers. This column is not actually numerical but
-categorical.
-
-The `describe()` method doesn\'t know this information and
-just noticed there are numbers, so it assumed this is a numerical
-variable. This is the perfect example of why you should understand your
-dataset perfectly and identify the issues to be fixed before feeding the
-data to an algorithm. In this case, we will have to change the type of
-this column to categorical. In *Lab 11*, *Data Preparation*, we will
-see how we can handle this kind of issue, but for now, we will look at
-some graphical tools and techniques that will help us have an even
-better understanding of the data.
 
 
 
@@ -839,13 +794,6 @@ own `describe `functions.
 ![](./images/B15019_10_23.jpg)
 
 
-    Caption: The display of the created function for the
-    \'SalePrice\' column
-
-    The sale price ranges from `34,900` to
-    `755,000 `with an average of `180,921`. The
-    median is slightly lower than the average, which tells us there are
-    some outliers with high sales prices.
 
 9.  Create a `for `loop that will call the created function
     for every element from the `num_cols` list:
@@ -863,54 +811,10 @@ own `describe `functions.
 
 
 
-Visualizing Your Data
-=====================
-
-
-In the previous section, we saw how to explore a new dataset and
-calculate some simple descriptive statistics. These measures helped
-summarize the dataset into interpretable metrics, such as the average or
-maximum values. Now it is time to dive even deeper and get a more
-granular view of each column using data visualization.
-
-In a data science project, data visualization can be used either for
-data analysis or communicating gained insights. Presenting results in a
-visual way that stakeholders can easily understand and interpret them in
-is definitely a must-have skill for any good data scientist.
-
-However, in this lab, we will be focusing on using data
-visualization for analyzing data. Most people tend to interpret
-information more easily on a graph than reading written information. For
-example, when looking at the following descriptive statistics and the
-scatter plot for the same variable, which one do you think is easier to
-interpret? Let\'s take a look:
-
-![](./images/B15019_10_25.jpg)
-
-Caption: Sample visual data analysis
-
-Even though the information shown with the descriptive statistics are
-more detailed, by looking at the graph, you have already seen that the
-data is stretched and mainly concentrated around the value 0. It
-probably took you less than 1 or 2 seconds to come up with this
-conclusion, that is, there is a cluster of points near the 0 value and
-that it gets reduced while moving away from it. Coming to this
-conclusion would have taken you more time if you were interpreting the
-descriptive statistics. This is the reason why data visualization is a
-very powerful tool for effectively analyzing data.
-
-
-
 Using the Altair API
 --------------------
 
-We will be using a package called `altair` (if you recall, we
-already briefly used it in *Lab 5*, *Performing Your First Cluster
-Analysis*). There are quite a lot of Python packages for data
-visualization on the market, such as `matplotlib`,
-`seaborn`, or `Bokeh`, and compared to them,
-`altair` is relatively new, but its community of users is
-growing fast thanks to its simple API syntax.
+
 
 Let\'s see how we can display a bar chart step by step on the online
 retail dataset.
@@ -994,10 +898,7 @@ You should get the following output:
 
 Caption: Scatter plot with colors based on the \'Country\' column
 
-We added the information from the `Country` column into the
-graph, but as we can see, there are too many values and it is hard to
-differentiate between countries: there are a lot of blue points, but it
-is hard to tell which countries they are representing.
+
 
 With `altair`, we can easily add some interactions on the
 graph in order to display more information for each observation; we just
@@ -1040,29 +941,7 @@ understand each variable. First, let\'s focus on numerical variables
 such as `UnitPrice` or `Quantity` in the online
 retail dataset.
 
-For this type of variable, a histogram is usually used to show the
-distribution of a given variable. The x axis of a histogram will show
-the possible values in this column and the y axis will plot the number
-of observations that fall under each value. Since the number of possible
-values can be very high for a numerical variable (potentially an
-infinite number of potential values), it is better to group these values
-by chunks (also called bins). For instance, we can group prices into
-bins of 10 steps (that is, groups of 10 items each) such as 0 to 10, 11
-to 20, 21 to 30, and so on.
 
-Let\'s look at this by using a real example. We will plot a histogram
-for `'UnitPrice'` using the `mark_bar()` and
-`encode()` methods with the following parameters:
-
-- `alt.X("UnitPrice:Q", bin=True)`: This is another
-    `altair `API syntax that allows you to tune some of the
-    parameters for the x axis. Here, we are telling altair to use the
-    `'UnitPrice'` column as the axis. `':Q'`
-    specifies that this column is quantitative data (that is, numerical)
-    and `bin=True` forces the grouping of the possible values
-    into bins.
-- `y='count()'`: This is used for calculating the number of
-    observations and plotting them on the y axis, like so:
 
 ```
 alt.Chart(sample_df).mark_bar()\
@@ -1095,11 +974,7 @@ You should get the following output:
 
 Caption: Histogram for UnitPrice with a bin step size of 5
 
-This is much better. With this step size, we can see that most of the
-observations have a unit price under 5 (almost 4,200 observations). We
-can also see that a bit more than 500 data points have a unit price
-under 10. The count of records keeps decreasing as the unit price
-increases.
+
 
 Let\'s plot the histogram for the `Quantity` column with a bin
 step size of 10:
@@ -1115,11 +990,6 @@ You should get the following output:
 ![](./images/B15019_10_32.jpg)
 
 Caption: Histogram for Quantity with a bin step size of 10
-
-In this histogram, most of the records have a positive quantity between
-0 and 30 (first three highest bins). There is also a bin with around 50
-observations that have a negative quantity from -10 to 0. As we
-mentioned earlier, these may be returned items from customers.
 
 
 
@@ -1186,36 +1056,6 @@ Boxplots
 ========
 
 
-Now, we will have a look at another specific type of chart called a
-**boxplot**. This kind of graph is used to display the distribution of a
-variable based on its quartiles. Quartiles are the values that split a
-dataset into quarters. Each quarter contains exactly 25% of the
-observations. For example, in the following sample data, the quartiles
-will be as follows:
-
-![](./images/B15019_10_35.jpg)
-
-Caption: Example of quartiles for the given data
-
-So, the first quartile (usually referred to as Q1) is 4; the second one
-(Q2), which is also the median, is 5; and the third quartile (Q3) is 8.
-
-A boxplot will show these quartiles but also additional information,
-such as the following:
-
-- The **interquartile range (or IQR)**, which corresponds to Q3 - Q1
-- The *lowest* value, which corresponds to Q1 - (1.5 \* IQR)
-- The *highest* value, which corresponds to Q3 + (1.5 \* IQR)
-- Outliers, that is, any point outside of the lowest and highest
-    points:
-    
-![](./images/B15019_10_36.jpg)
-
-
-Caption: Example of a boxplot
-
-With a boxplot, it is quite easy to see the central point (median),
-where 50% of the data falls under (IQR), and the outliers.
 
 Another benefit of using a boxplot is to plot the distribution of
 categorical variables against a numerical variable and compare them.
@@ -1233,17 +1073,6 @@ You should receive the following output:
 
 Caption: Boxplot of the \'Country\' and \'Quantity\' columns
 
-This chart shows us how the `Quantity` variable is distributed
-across the different countries for this dataset. We can see that
-`United Kingdom` has a lot of outliers, especially in the
-negative values. `Eire` is another country that has negative
-outliers. Most of the countries have very low value quantities except
-for `Japan`, `Netherlands`, and `Sweden`,
-who sold more items.
-
-In this section, we saw how to use the `altair` package to
-generate graphs that helped us get additional insights about the dataset
-and identify some potential issues.
 
 
 
@@ -1352,18 +1181,6 @@ previous exercises.
 
     Caption: Scatter plot of SalePrice and LotArea
 
-    There is clearly a correlation between the size of the property and
-    the sale price. If we look only at the properties with
-    `LotArea` under 50,000, we can see a linear relationship:
-    if we draw a straight line from the (`0,0`) coordinates to
-    the (`20000,800000`) coordinates, we can say that
-    `SalePrice` increases by 40,000 for each additional
-    increase of 1,000 for `LotArea`. The formula of this
-    straight line (or regression line) will be
-    `SalePrice = 40000 * LotArea / 1000`. We can also see
-    that, for some properties, although their size is quite high, their
-    price didn\'t follow this pattern. For instance, the property with a
-    size of 160,000 has been sold for less than 300,000.
 
 7.  Now, let\'s plot the histogram for `OverallCond`, but this
     time with the default bin step size, that is,
@@ -1384,14 +1201,7 @@ previous exercises.
 
     Caption: Histogram of OverallCond
 
-    We can see that the values contained in this column are discrete:
-    they can only take a finite number of values (any integer between
-    `1` and `9`). This variable is not numerical,
-    but ordinal: the order matters, but you can\'t perform some
-    mathematical operations on it such as adding value `2` to
-    value `8`. This column is an arbitrary mapping to assess
-    the overall quality of the property. In the next lab, we will
-    look at how we can change the type of such a column.
+
 
 8.  Build a boxplot with `OverallCond:O` (`':O'` is
     for specifying that this column is ordinal) on the *x* axis and
@@ -1413,12 +1223,6 @@ previous exercises.
 
     Caption: Boxplot of OverallCond
 
-    It seems that the `OverallCond` variable is in ascending
-    order: the sales price is higher if the condition value is high.
-    However, we will notice that `SalePrice` is quite high for
-    the value 5, which seems to represent a medium condition. There may
-    be other factors impacting the sales price for this category, such
-    as higher competition between buyers for such types of properties.
 
 9.  Now, let\'s plot a bar chart for `YrSold` as its *x* axis
     and `count()` as its *y* axis. Don\'t forget to specify
@@ -1439,10 +1243,6 @@ previous exercises.
 
     Caption: Bar chart of YrSold
 
-    We can see that, roughly, the same number of properties are sold
-    every year, except for 2010. From 2006 to 2009, there was, on
-    average, 310 properties sold per year, while there were only 170
-    in 2010.
 
 10. Plot a boxplot similar to the one shown in *Step 8* but for
     `YrSold` as its *x* axis:
@@ -1482,11 +1282,6 @@ previous exercises.
 
     Caption: Bar chart of Neighborhood
 
-    The number of sold properties differs, depending on their location.
-    The `'NAmes'` neighborhood has the higher number of
-    properties sold: over 220. On the other hand, neighborhoods such as
-    `'Blueste'` or `'NPkVill'` only had a few
-    properties sold.
 
 12. Let\'s analyze the relationship between `SalePrice` and
     `Neighborhood` by plotting a boxplot chart similar to the

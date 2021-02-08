@@ -6,15 +6,6 @@ Lab 13. Imbalanced Datasets
 
 
 
-Overview
-
-By the end of this lab, you will be able to identify use cases where
-datasets are likely to be imbalanced; formulate strategies for dealing
-with imbalanced datasets; build classification models, such as logistic
-regression models, after balancing datasets; and analyze classification
-metrics to validate whether adopted strategies are yielding the desired
-results.
-
 In this lab, you will be dealing with imbalanced datasets, which are
 very prevalent in real-life scenarios. You will be using techniques such
 as `SMOTE`, `MSMOTE`, and random undersampling to
@@ -73,10 +64,6 @@ Classification*, and you will look closely at the metrics:
     ```
 
 
-    In the preceding code snippet, we used a scaling function called
-    `RobustScaler()` to scale the numerical data.
-    `RobustScaler()` is a scaling function similar to
-    `MinMaxScaler` in *Lab 3*, *Binary Classification*.
 
 5.  After scaling the numerical data, we convert each of the columns to
     a scaled version, as in the following code snippet:
@@ -118,9 +105,6 @@ Classification*, and you will look closely at the metrics:
 
     Caption: bankData with scaled features
 
-    The categorical features in the dataset must be converted into
-    numerical values by transforming them into dummy values, which was
-    covered in *Lab 3*, *Binary Classification*.
 
 8.  Convert all the categorical variables to dummy variables using the
     `.get_dummies()` function:
@@ -170,8 +154,6 @@ Classification*, and you will look closely at the metrics:
 ![](./images/B15019_13_03.jpg)
 
 
-    We are now ready for the modeling task. Let\'s first import the
-    necessary packages.
 
 11. Now, `import` the necessary functions of
     `train_test_split()` and `LogisticRegression`
@@ -286,11 +268,6 @@ The recall value for any class can be represented as follows:
 
 ![](./images/B15019_13_09.jpg)
 
-
-
-Why do you think that the classifier is biased toward one class? The
-answer to this can be unearthed by looking at the class balance in the
-training set.
 
 The following code will generate the percentages of the classes in the
 training data:
@@ -660,45 +637,11 @@ analyze the results:
 
 
 
-Generating Synthetic Samples
-============================
-
-
-
-The way the `SMOTE` algorithm generates synthetic data is by
-looking at the neighborhood of minority classes and generating new data
-points within the neighborhood:
-
-![](./images/B15019_13_20.jpg)
-
-Caption: Dataset with two classes
-
-
-In creating synthetic points, an imaginary line connecting all the
-minority samples in the neighborhood is created and new data points are
-generated on this line, as shown in *Figure 13.16*, thereby balancing
-the dataset:
-
-![](./images/B15019_13_21.jpg)
-
-Caption: Connecting samples in a neighborhood
-
-
-
 Implementation of SMOTE and MSMOTE
 ----------------------------------
 
 `SMOTE` and `MSMOTE` can be implemented from a
-package called `smote-variants` in Python. The library can be
-installed through `pip install` in the Jupyter notebook as shown
-here:
-
-```
-!pip install smote-variants
-```
-
-
-Let\'s now implement both these methods and analyze the results.
+package called `smote-variants` in Python. Let\'s now implement both these methods and analyze the results.
 
 
 
@@ -733,13 +676,7 @@ analyze the results:
     ```
 
 
-    Note
-
-    The counts mentioned in this output can vary because of a
-    variability in the sampling process.
-
-    Next, we will be oversampling the training set using
-    `SMOTE`.
+    Next, we will be oversampling the training set using `SMOTE`.
 
 3.  Begin by importing `sv` and `numpy`:
 
@@ -750,12 +687,6 @@ analyze the results:
     ```
 
 
-    The library files that are required for oversampling the training
-    set include the `smote_variants` library, which we
-    installed earlier. This is imported as `sv`. The other
-    library that is required is `numpy`, as the training set
-    will have to be given a `numpy` array for the
-    `smote_variants` library.
 
 4.  Now, instantiate the `SMOTE` library to a variable called
     `oversampler` using the `sv.SMOTE()` function:
@@ -815,15 +746,7 @@ analyze the results:
     ```
 
 
-    Note
 
-    The counts mentioned in this output can vary because of variability
-    in the sampling process.
-
-    Now that we have generated synthetic points using `SMOTE`
-    and balanced the dataset, let\'s fit a logistic regression model on
-    the new sample and analyze the results using a confusion matrix and
-    a classification report.
 
 7.  Define the `LogisticRegression` function:
     ```

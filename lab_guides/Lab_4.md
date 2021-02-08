@@ -76,11 +76,6 @@ from the DataFrame:
 target = df.pop('Activity')
 ```
 
-Now the response variable is contained in the variable called
-`target` and all the features are in the DataFrame called
-`df`.
-
-
 
 The `sklearn` package provides a function called
 `train_test_split()` to randomly split the dataset into two
@@ -96,9 +91,6 @@ X_train, X_test, y_train, y_test = train_test_split\
                                     random_state=42)
 ```
 
-There are four different outputs to the `train_test_split()`
-function: the features for the training set, the target variable for the
-training set, the features for the testing set, and its target variable.
 
 Now that we have got our training and testing sets, we are ready for
 modeling. Let\'s first import the `RandomForestClassifier`
@@ -108,14 +100,10 @@ class from `sklearn.ensemble`:
 from sklearn.ensemble import RandomForestClassifier
 ```
 
-Now we can instantiate the Random Forest classifier with some
-hyperparameters. Remember from *Lab 1, Introduction to Data Science
-in Python*, a hyperparameter is a type of parameter the model can\'t
-learn but is set by data scientists to tune the model\'s learning
-process. This topic will be covered more in depth in *Lab 8,
-Hyperparameter Tuning*. For now, we will just specify the
+This topic will be covered more in depth in *Lab 8, Hyperparameter Tuning*. For now, we will just specify the
 `random_state` value. We will walk you through some of the key
 hyperparameters in the following sections:
+
 
 ```
 rf_model = RandomForestClassifier(random_state=1, \
@@ -160,15 +148,7 @@ Evaluating the Model\'s Performance
 ===================================
 
 
-In this lab, we will use a metric called **accuracy score**. It
-calculates the ratio between the number of correct predictions and the
-total number of predictions made by the model:
-
-![](./images/B15019_04_05.jpg)
-
-Caption: Formula for accuracy score
-
-For instance, if your model made 950 correct predictions out of 1,000
+If your model made 950 correct predictions out of 1,000
 cases, then the accuracy score would be 950/1000 = 0.95. This would mean
 that your model was 95% accurate on that dataset. The
 `sklearn` package provides a function to calculate this score
@@ -207,17 +187,6 @@ accuracy_score(y_test, test_preds)
 The output will be as follows:
 
 ![](./images/B15019_04_07.jpg)
-
-Caption: Accuracy score on the testing set
-
-OK. Now the accuracy has dropped drastically to `0.77`. The
-difference between the training and testing sets is quite big. This
-tells us our model is actually overfitting and learned only the patterns
-relevant to the training set. In an ideal case, the performance of your
-model should be equal or very close to equal for those two sets.
-
-In the next sections, we will look at tuning some Random Forest
-hyperparameters in order to reduce overfitting.
 
 
 
@@ -396,9 +365,6 @@ score:
 
     Caption: Accuracy score on the training set
 
-    Our model achieved an accuracy of `1` on the training set,
-    which means it perfectly predicted the target variable on all of
-    those observations. Let\'s check the performance on the testing set.
 
 17. Predict the outcome of the testing set with the
     `.predict()` method and save the results into a variable
@@ -473,14 +439,6 @@ The output will be as follows:
 ![](./images/B15019_04_17.jpg)
 
 Caption: Accuracy of RandomForest with n\_estimators = 50
-
-With `n_estimators = 50`, we respectively gained
-`1%` and `2%` on the accuracy scored for the
-training and testing sets, which is great. But the main drawback of
-increasing the number of trees is that it requires more computational
-power. So, it will take more time to train a model. In a real project,
-you will need to find the right balance between performance and training
-duration.
 
 
 
@@ -1249,11 +1207,7 @@ print(accuracy_score(y_test, test_preds11))
 
 The output will be as follows:
 
-![Caption: Accuracy scores for the training and testing sets for
-max\_features=0.7 ](./images/B15019_04_37.jpg)
-
-Caption: Accuracy scores for the training and testing sets for
-max\_features=0.7
+![ ](./images/B15019_04_37.jpg)
 
 With this ratio, both accuracy scores increased for the training and
 testing sets and the difference between them is less. Our model is
@@ -1275,17 +1229,9 @@ print(accuracy_score(y_test, test_preds12))
 
 The output will be as follows:
 
-![Caption: Accuracy scores for the training and testing sets for
-max\_features=\'log2\' ](./images/B15019_04_38.jpg)
+![](./images/B15019_04_38.jpg)
 
-Caption: Accuracy scores for the training and testing sets for
-max\_features=\'log2\'
 
-We got similar results as for the default value (`sqrt`) and
-`2`. Again, this is normal as the `log2` of
-`6` equals `2.58`. So, the optimal value we found
-for the `max_features` hyperparameter is `0.7` for
-this dataset.
 
 
 

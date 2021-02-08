@@ -1065,24 +1065,6 @@ The following steps will help you complete the exercise:
 
 Caption: Accessing the model
 
-In the preceding output, you see that the best model is
-`DecisionTreeClassifier` with a `max_depth` of
-`2`.
-
-
-
-Hyperparameter Tuning with RandomizedSearchCV
-=============================================
-
-
-Grid search goes over the entire search space and trains a model or
-estimator for every combination of parameters. Randomized search goes
-over only some of the combinations. This is a more optimal use of
-resources and still provides the benefits of hyperparameter tuning and
-cross-validation. You will be looking at this in depth in *Lab 8,
-Hyperparameter Tuning*.
-
-Have a look at the following exercise.
 
 
 

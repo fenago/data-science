@@ -59,13 +59,6 @@ into, after which we will conclude by analyzing the output:
     ```
 
 
-    In the next step, we will use the `pandas` package to load
-    our data into a DataFrame (think of it as a table, like on an Excel
-    spreadsheet, with a row index and column names).
-
-    Our input file is in `CSV` format, and `pandas`
-    has a method that can directly read this format, which is
-    `.read_csv()`.
 
 4.  Use the `usecols` parameter to subset only the columns we
     need rather than loading the entire dataset. We just need to provide
@@ -243,14 +236,7 @@ scatter_plot.encode(x='Average net tax', \
                     color='cluster:N')
 ```
 
-Note
 
-You may have noticed that we added `:N` at the end of the
-`cluster` column name. This extra parameter is used in
-`altair` to specify the type of value for this column.
-`:N` means the information contained in this column is
-categorical. `altair` automatically defines the color scheme
-to be used depending on the type of a column.
 
 You should get the following output:
 
@@ -282,11 +268,6 @@ You should get the following output:
 ![](./images/B15019_05_11.jpg)
 
 Caption: Interactive scatter plot of the clusters with tooltip
-
-Now we can easily hover over and inspect the data points near the
-cluster boundaries and find out that the threshold used to differentiate
-the purple cluster (6) from the red one (2) is close to 32,000 in
-`'Average Net Tax'`.
 
 
 
@@ -1565,18 +1546,9 @@ You should get the following output:
 
 Caption: Minimum and maximum values of the min-max-scaled data
 
-We can see that both axes now have their values sitting between 0 and 1.
 
-The **z-score** is calculated by removing the overall average from the
-data point and dividing the result by the standard deviation for each
-axis. The distribution of the standardized data will have a mean of 0
-and a standard deviation of 1:
 
-![](./images/B15019_05_47.jpg)
-
-Caption: Z-score formula
-
-To apply it with `sklearn`, first, we have to import the
+To apply **z-score** with `sklearn`, first, we have to import the
 relevant `StandardScaler` class and instantiate an object:
 
 ```
@@ -1805,7 +1777,7 @@ their impact on k-means:
     You should get the following output:
 
     
-![Caption: Scatter plot of k-means results using the](./images/B15019_05_54.jpg)
+![](./images/B15019_05_54.jpg)
 
 
 
@@ -1844,14 +1816,6 @@ The following steps will help you complete this activity:
 
 7.  Create a scatter plot of the clusters.
 
-    Note
-
-    This is the German Credit Dataset from the UCI Machine Learning
-    Repository.Even though all the columns in this
-    dataset are integers, most of them are actually categorical
-    variables. The data in these columns is not continuous. Only two
-    variables are really numeric. Those are the ones you will use for
-    your clustering.
 
 You should get something similar to the following output:
 

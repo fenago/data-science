@@ -108,10 +108,6 @@ The following steps will help you complete this exercise:
 
     Caption: Loading data into the Jupyter notebook
 
-    As we saw from the shape of the data, the dataset has
-    `3279` examples with `1559 `variables. The
-    variable set has both categorical and numerical variables. The
-    summary statistics are only derived for numerical data.
 
 7.  Separate the dependent and independent variables from our dataset,
     as shown in the following code snippet:
@@ -135,15 +131,6 @@ The following steps will help you complete this exercise:
     ```
 
 
-    As seen earlier, there are `1559` features in the dataset.
-    The first `1558` features are independent variables. They
-    are separated from the initial `adData` data frame using
-    the `.loc()` function and give the indexes of the
-    corresponding features (`0` to `1557`). The
-    independent variables are loaded into a new variable called
-    `X`. The dependent variable, which is the label of the
-    dataset, is loaded in variable `Y`. The shapes of the
-    dependent and independent variables are also printed.
 
 8.  Print the first `15` examples of the independent
     variables:
@@ -154,10 +141,6 @@ The following steps will help you complete this exercise:
     ```
 
 
-    You can print as many rows of the data by defining the number within
-    the `head()` function. Here, we have printed out the first
-    `15` rows of the data.
-
     The output is as follows:
 
     
@@ -166,14 +149,6 @@ The following steps will help you complete this exercise:
 
     Caption: First 15 examples of independent variables
 
-    From the output, we can see that there are many missing values in
-    the dataset, which are represented by `?`. For further
-    analysis, we have to remove these special characters and then
-    replace those cells with assumed values. One popular method of
-    replacing special characters is to impute the mean of the respective
-    feature. Let\'s adopt this strategy. However, before doing that,
-    let\'s look at the data types for this dataset to adopt a suitable
-    replacement strategy.
 
 9.  Print the data types of the dataset:
 
@@ -191,10 +166,6 @@ The following steps will help you complete this exercise:
 
     Caption: The data types in our dataset
 
-    From the output, we can see that the first four columns are of the
-    object type, which refers to string data, and the others are integer
-    data. When replacing the special characters in the data, we need to
-    be cognizant of the data types.
 
 10. Replace special characters with `NaN` values for the first
     four columns.
@@ -217,18 +188,6 @@ The following steps will help you complete this exercise:
     print(X.head(15))
     ```
 
-
-    To replace the first three columns, we loop through the columns
-    using the `for()` loop and also using the
-    `range()` function. Since the first three columns are of
-    the `object` or `string` type, we use the
-    `.str.replace()` function, which stands for \"string
-    replace\". After replacing the special characters, `?`, of
-    the data with `nan`, we convert the data type to
-    `float` with the `.values.astype(float)`
-    function, which is required for further processing. By printing the
-    first 15 examples, we can see that all special characters have been
-    replaced with `nan` or `NaN` values
 
     You should get the following output:
 
@@ -253,12 +212,6 @@ The following steps will help you complete this exercise:
         X[i] = X[i].replace("?", 'NaN').values.astype(float)
     ```
 
-
-    Note
-
-    For the integer features, we do not have `.str` before the
-    `.replace()` function, as these features are integer
-    values and not string values.
 
 12. Now, impute the mean of each column for the `NaN` values.
 
@@ -395,13 +348,6 @@ times with the `5` argument. We can see from the
 `shape()` function that the original data frame, which was of
 shape `(2,3)`, has been transformed into a data frame with a
 shape of `(2,15)`.
-
-Calculating the total time is done using the `time` library.
-To start the timing, we invoke the `time.time()` function. In
-the example, we store the initial time in a variable called
-`t0` and then subtract this from the end time to find the
-total time it takes for the process. Thus we have augmented and added
-more data frames to our exiting internet ads dataset.
 
 
 
@@ -1673,9 +1619,6 @@ The following steps will help you complete this exercise:
 
     Caption: Resulting confusion matrix
 
-    We can see that the ICA model has done a poor job in classifying the
-    ads. All the examples have been wrongly classified as non-ads. We
-    can conclude that ICA is not suitable for this dataset.
 
 13. Print the classification report:
 

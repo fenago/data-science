@@ -24,19 +24,15 @@ Exercise 15.01: Loading, Exploring, and Cleaning the Data
 ---------------------------------------------------------
 
 In this exercise, we will download the credit card dataset, load it into
-our Colab notebook, and perform a few basic explorations. In addition,
+our Jupyter notebook, and perform a few basic explorations. In addition,
 we will also clean the dataset to remove unwanted characters.
 
-Note
-
-The dataset that we will be using in this exercise was sourced from the
-UCI Machine Learning Repository.
 
 The following steps will help you to complete this exercise:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
-2.  Now, import `pandas` into your Colab notebook:
+2.  Now, import `pandas` into your Jupyter notebook:
     ```
     import pandas as pd
     ```
@@ -64,28 +60,14 @@ The following steps will help you to complete this exercise:
     ```
 
 
-    The `pd.read_csv()` function\'s arguments are the filename
-    as a string and the limit separator of a CSV file, which is
-    `,`.
 
-    Note
-
-    There are no headers for the dataset; we specifically mention this
-    using the `header = None` command.
-
-    We replace the missing values represented as `?` in the
-    dataset as `na` values using the
-    `na_values =  "?"` argument. This replacement is for ease
-    of further processing.
-
-    After reading the file, print the data frame using the
-    `.head()` function. You should get the following output:
+    After reading the file, print the data frame using the `.head()` function. You should get the following output:
 
     
 ![](./images/B15019_15_03.jpg)
 
 
-    Caption: Loading data into the Colab notebook
+    Caption: Loading data into the Jupyter notebook
 
 5.  Change the classes to `1` and `0`.
 
@@ -111,9 +93,6 @@ The following steps will help you to complete this exercise:
 
     Caption: Data frame after replacing special characters
 
-    In the preceding code snippet, `.loc()` was used to locate
-    the fifteenth column and replace the `+` and `-`
-    values with `1` and `0`, respectively.
 
 6.  Find the number of `null` values in the dataset.
 
@@ -138,8 +117,6 @@ The following steps will help you to complete this exercise:
 
     Caption: Summarizing null values in the dataset
 
-    As seen from the preceding output, there are many columns with
-    `null` values.
 
 7.  Now, print the shape and data types of each column:
 
@@ -177,11 +154,6 @@ The following steps will help you to complete this exercise:
     (653, 16)
     ```
 
-
-    As you can see, around 37 rows that, which had `na`
-    values, were removed. In the code snippet, we define
-    `axis = 0` in order to denote that the dropping of
-    `na` values should be done along the rows.
 
 9.  Verify that no `null` values exist:
 
@@ -301,7 +273,7 @@ methods, you want to fit a benchmark model on the dataset.
 
 Perform the following steps to complete this activity:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Implement all the appropriate steps from *Exercise 15.01*, *Loading,
     Exploring, and Cleaning the Data*, until you have split the dataset
@@ -335,7 +307,7 @@ and the KNN and random forest models, which were introduced in *Lab
 4*, *Multiclass Classification with RandomForest*, and *Lab 8*,
 *Hyperparameter Tuning*:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all the appropriate steps from *Exercise 15.01*, *Loading,
     Exploring, and Cleaning the Data*, to split the dataset into train
@@ -494,7 +466,7 @@ averaging technique. We will use the same base models, logistic
 regression, KNN, and random forest, which were used in *Exercise 15.02*,
 *Ensemble Model Using the Averaging Technique*:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all the steps from *Exercise 15.02*, *Ensemble Model Using
     the Averaging Technique*, up until predicting the probabilities of
@@ -608,17 +580,8 @@ regression, KNN, and random forest, which were used in *Exercise 15.02*,
 
 
 
-### Iteration 2 with Different Weights
+#### Iteration 2 with Different Weights
 
-From the first iteration, we saw that we got accuracy of
-`89%`. This metric is a reflection of the weights that we
-applied in the first iteration. Let\'s try to change the weights and see
-what effect it has on the metrics. The process of trying out various
-weights is based on our judgment of the dataset and the distribution of
-data. Let\'s say we feel that the data distribution is more linear, and
-therefore we decide to increase the weight for the linear regression
-model and decrease the weights of the other two models. Let\'s now try
-the new combination of weights in *iteration 2*:
 
 1.  Take the weighted average of the predictions.
 
@@ -690,7 +653,7 @@ voting technique. The individual learners we will select are similar to
 the ones that we chose in the previous exercises, that is, logistic
 regression, KNN, and random forest:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all the steps from *Exercise 15.01*, *Loading, Exploring,
     and Cleaning the Data*, up until the splitting of the dataset into
@@ -806,7 +769,7 @@ Exercise 15.05: Ensemble Learning Using Bagging
 In this exercise, we will implement an ensemble model using bagging. The
 individual learner we will select will be random forest:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all the steps from *Exercise 15.01*, *Loading, Exploring,
     and Cleaning the Data*, up until the splitting of the dataset into
@@ -893,7 +856,7 @@ The individual learner we will select will be the logistic regression
 model. The steps for implementing this algorithm are very similar to the
 bagging algorithm:
 
-1.  Open a new Colab notebook file.
+1.  Open a new Jupyter notebook file.
 
 2.  Execute all of the steps from *Exercise 15.01*, *Loading, Exploring,
     and Cleaning the Data*, up until the splitting of the dataset into
@@ -978,7 +941,7 @@ In this exercise, we will implement an ensemble model using stacking.
 The individual learners we will use are KNN and random forest. Our meta
 learner will be logistic regression:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Execute all of the steps from *Exercise 15.01*, *Loading, Exploring,
     and Cleaning the Data*, up until the splitting of the dataset into
@@ -1075,7 +1038,7 @@ the results before selecting your final technique.
 
 The steps are as follows:
 
-1.  Open a new Colab notebook.
+1.  Open a new Jupyter notebook.
 
 2.  Implement all steps from *Exercise 15.01*, *Loading, Exploring, and
     Cleaning the Data,* up until the splitting of the dataset into train

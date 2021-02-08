@@ -117,12 +117,6 @@ The output will be as follows:
  'p': 2, 'weights': 'distance'}
 ```
 
-In the output, you can see `n_neighbors` (`k`) is
-now set to `15`, and `weights` is now set to
-`distance`, rather than `uniform`.
-
-
-
 
 
 Let\'s implement manual hyperparameterization in the following exercise.
@@ -383,14 +377,6 @@ The output will be as follows:
  'p': 2, 'weights': 'uniform'}
 ```
 
-You can see from the output that the only parameter we are changing is
-k; everything else remains the same in each iteration.
-
-Simple, single-loop structures are fine for a grid search of a single
-hyperparameter, but what if we would like to try a second one? Remember
-that for k-NN we also have weights that can take values
-`uniform` or `distance`, the choice of which
-influences how k-NN learns how to classify points.
 
 To proceed, all we need to do is create a dictionary containing both the
 values of k and the weight functions we would like to try as separate
@@ -421,8 +407,7 @@ for k in grid['k']:
 
 The output will be as follows:
 
-![Caption: Average precision values for all folds for different
-values of k ](./images/B15019_08_05.jpg)
+![](./images/B15019_08_05.jpg)
 
 Caption: Average precision values for all folds for different values
 of k
@@ -550,17 +535,7 @@ will be evaluated for the k-NN estimator:
 Caption: Estimator parameterizations for the k-NN estimator
 
 Once the search is complete, we can examine the results by accessing and
-printing the `cv_results_` attribute. `cv_results_`
-is a dictionary containing helpful information regarding model
-performance under each hyperparameterization, such as the mean test-set
-value of your scoring metric (`mean_test_score`, the lower the
-better), the complete list of hyperparameterizations tried
-(`params`), and the model ranks as they relate to the
-`mean_test_score` (`rank_test_score`).
-
-The best model found will have rank = 1, the second-best model will have
-rank = 2, and so on, as you can see in *Figure 8.8*. The model fitting
-times are reported through `mean_fit_time`.
+printing the `cv_results_` attribute.
 
 Although not usually a consideration for smaller datasets, this value
 can be important because in some cases you may find that a marginal
@@ -734,13 +709,7 @@ dataset we will use contains 1,797 labeled images of handwritten digits.
 
     Caption: Results as a dictionary
 
-9.  For this exercise, we are primarily concerned with the test-set
-    performance of each distinct hyperparameterization. You can see the
-    first hyperparameterization through
-    `cv_spec.cv_results_['mean_test_score']`, and the second
-    through `cv_spec.cv_results_['params']`.
-
-    Let\'s convert the results dictionary to a `pandas`
+9.  Let\'s convert the results dictionary to a `pandas`
     DataFrame and find the best hyperparameterization:
 
     ```
@@ -761,10 +730,7 @@ dataset we will use contains 1,797 labeled images of handwritten digits.
 
     Caption: Parameterization results
 
-    Note
 
-    You may get slightly different results. However, the values you
-    obtain should largely agree with those in the preceding output.
 
 10. It is best practice to visualize any results you produce.
     `pandas` makes this easy. Run the following code to
@@ -842,9 +808,6 @@ The output will be as follows:
 
 
 
-The following code shows two normal distributions with the same mean
-(`𝜇`` = 0`) but different variance parameters
-(`𝜎``2 = 1` and `𝜎``2 = 2.25`).
 Let\'s first generate 100 evenly spaced values from `-10` to
 `10` using NumPy\'s `.linspace` method:
 
@@ -853,8 +816,8 @@ import numpy as np
 # range of xs
 x = np.linspace(-10, 10, 100)
 ```
-We then generate the approximate `X` probabilities for both
-normal distributions.
+
+
 
 Using `scipy.stats` is a good way to work with distributions,
 and its `pdf` method allows us to easily visualize the shape
@@ -894,13 +857,6 @@ Caption: Visualizing the normal distribution
 Simple Demonstration of the Random Search Process
 -------------------------------------------------
 
-Again, before we get to the scikit-learn implementation of random search
-parameter tuning, we will step through the process using simple Python
-tools. Up until this point, we have only been using classification
-problems to demonstrate tuning concepts, but now we will look at a
-regression problem. Can we find a model that\'s able to predict the
-progression of diabetes in patients based on characteristics such as BMI
-and age?
 
 
 We first load the data:

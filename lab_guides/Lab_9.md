@@ -26,12 +26,6 @@ Linear Model Coefficients
 =========================
 
 
-In *Lab 2, Regression*, and *Lab 3, Binary Classification*, you
-saw that linear regression models learn function parameters in the form
-of the following:
-
-![](./images/B15019_09_01.jpg)
-
 
 In `sklearn`, it is extremely easy to get the coefficient of a
 linear model; you just need to call the `coef_` attribute.
@@ -53,6 +47,7 @@ The output will be as follows:
 ![](./images/B15019_09_02.jpg)
 
 Caption: Coefficients of the linear regression parameters
+
 
 Let\'s create a DataFrame with these values and column names:
 
@@ -152,12 +147,6 @@ The following steps will help you complete the exercise:
 
     Caption: Statistical measures of the DataFrame
 
-    Note
-
-    The preceding figure is a truncated version of the output.
-
-    From this output, we can see the data is not standardized. The
-    variables have different scales.
 
 8.  Split the DataFrame into training and testing sets using
     `train_test_split()` with `test_size=0.3` and
@@ -932,58 +921,11 @@ alt.Chart(df).mark_circle(size=60)\
 
 The resulting plot is as follows:
 
-![Caption: Scatter plot of the worst concave points and target
-variables ](./images/B15019_09_28.jpg)
+![](./images/B15019_09_28.jpg)
 
-Caption: Scatter plot of the worst concave points and target
-variables
+Caption: Scatter plot of the worst concave points and target variables
 
-Note
 
-The preceding code and figure are just examples. We encourage you to
-analyze different features by changing the values assigned to
-`x` and `y` in the preceding code. For example, you
-can possibly analyze worst concavity versus worst perimeter by setting
-`x='worst concavity'` and `y='worst perimeter'` in
-the preceding code.
-
-From this plot, we can see:
-
-- Most cases with 1 for the target variable have values under 0.16 for
-    the worst concave points column.
-- Cases with a 0 value for the target have values of over 0.08 for
-    worst concave points.
-
-With this plot, we are not too sure about which outcome (0 or 1) we will
-get for the values between 0.08 and 0.16 for worst concave points. There
-are multiple possible reasons why the outcome of the observations within
-this range of values is uncertain, such as the fact that there are not
-many records that fall into this case, or other variables might
-influence the outcome for these cases. This is where a partial
-dependence plot can help.
-
-The logic is very similar to variable importance via permutation but
-rather than randomly replacing the values in a column, we will test
-every possible value within that column for all observations and see
-what predictions it leads to. If we take the example from figure 9.21,
-from the three observations we had originally, this method will create
-six new observations by keeping columns `X2` and
-`X3` as they were and replacing the values of `X1`:
-
-![](./images/B15019_09_29.jpg)
-
-Caption: Example of records generated from a partial dependence plot
-
-With this new data, we can see, for instance, whether the value 12
-really has a strong influence on predicting 1 for the target variable.
-The original records, with the values 42 and 1 for the `X1`
-column, lead to outcome 0 and only value 12 generated a prediction of 1.
-But if we take the same observations for `X1`, equal to 42 and
-1, and replace that value with 12, we can see whether the new
-predictions will lead to 1 for the target variable. This is exactly the
-logic behind a partial dependence plot, and it will assess all the
-permutations possible for a column and plot the average of
-the predictions.
 
 `sklearn` provides a function called
 `plot_partial_dependence()` to display the partial dependence
@@ -1006,17 +948,11 @@ training set, and the indices of the features to be analyzed:
 plot_partial_dependence(rf_model, df, \
                         features=[feature_index])
 ```
-![Caption: Partial dependence plot for the worst concave points
-column ](./images/B15019_09_30.jpg)
+
+
+![](./images/B15019_09_30.jpg)
 
 Caption: Partial dependence plot for the worst concave points column
-
-This partial dependence plot shows us that, on average, all the
-observations with a value under 0.17 for the worst concave points column
-will most likely lead to a prediction of 1 for the target (probability
-over 0.5) and all the records over 0.17 will have a prediction of 0
-(probability under 0.5).
-
 
 
 Exercise 9.04: Plotting Partial Dependence
@@ -1122,14 +1058,6 @@ We will using the same dataset as in the previous exercise.
 
     Caption: Partial dependence plot for a1pop
 
-    This partial dependence plot shows that, on average, the
-    `a1pop` variable doesn\'t affect the target variable much
-    when its value is below 2, but from there the target increases
-    linearly by 0.04 for each unit increase of `a1pop`. This
-    means if the population size of area 1 is below the value of 2, the
-    risk of churn is almost null. But over this limit, every increment
-    of population size for area 1 increases the chance of churn by
-    `4%`.
 
 10. Plot the partial dependence plot using
     `plot_partial_dependence()` from `sklearn` with
@@ -1150,27 +1078,11 @@ We will using the same dataset as in the previous exercise.
 
 Caption: Partial dependence plot for temp
 
-This partial dependence plot shows that, on average, the
-`temp` variable has a negative linear impact on the target
-variable: when `temp` increases by 1, the target variable will
-decrease by 0.12. This means if the temperature increases by a degree,
-the chance of leaving the queue decreases by 12%.
-
 
 
 Local Interpretation with LIME
 ==============================
 
-
-LIME is one way to get more visibility in such cases. The underlying
-logic of LIME is to approximate the original nonlinear model with a
-linear one. Then, it uses the coefficients of that linear model in order
-to explain the contribution of each variable, as we just saw in the
-preceding example. But rather than trying to approximate the entire
-model for the whole dataset, LIME tries to approximate it locally around
-the observation you are interested in. LIME uses the trained model to
-predict new data points near your observation and then fit a linear
-regression on that predicted data.
 
 Let\'s see how we can use it on the Breast Cancer dataset. First, we
 will load the data and train a Random Forest model:
@@ -1348,12 +1260,10 @@ We will be using the same dataset as in the previous exercise.
     You should get the following output:
 
     
-![Caption: LIME output for the first observation of the testing
-    set ](./images/B15019_09_40.jpg)
+![](./images/B15019_09_40.jpg)
 
 
-    Caption: LIME output for the first observation of the testing
-    set
+    Caption: LIME output for the first observation of the testing set
 
     This output shows that the predicted value for this observation is a
     0.02 chance of customer drop-out and it has been mainly influenced

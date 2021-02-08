@@ -6,39 +6,8 @@ Lab 3. Binary Classification
 ========================
 
 
-
-Overview
-
 In this lab, we will be using a real-world dataset and a supervised
 learning technique called classification to generate business outcomes.
-
-By the end of this lab, you will be able to formulate a data science
-problem statement from a business perspective; build hypotheses from
-various business drivers influencing a use case and verify the
-hypotheses using exploratory data analysis; derive features based on
-intuitions that are derived from exploratory analysis through feature
-engineering; build binary classification models using a logistic
-regression function and analyze classification metrics and formulate
-action plans for the improvement of the model.
-
-
-
-Understanding the Business Context
-==================================
-
-
-The marketing head of the bank where you are a data scientist approaches
-you with a problem they would like to be addressed. The marketing team
-recently completed a marketing campaign where they have collated a lot
-of information on existing customers. They require your help to identify
-which of these customers are likely to buy a term deposit plan. Based on
-your assessment of the customer base, the marketing team will chalk out
-strategies for target marketing. The marketing team has provided access
-to historical data of past campaigns and their outcomes---that is,
-whether the targeted customers really bought the term deposits or not.
-Equipped with the historical data, you have set out on the task to
-identify the customers with the highest propensity (an inclination) to
-buy term deposits.
 
 
 
@@ -80,13 +49,6 @@ The following steps will help you to complete this exercise:
     bankData.head()
     ```
 
-
-    The `pd.read_csv()` function\'s arguments are the filename
-    as a string and the limit separator of a CSV, which is
-    `";"`. After reading the file, the DataFrame is printed
-    using the `.head()` function. Note that the `#`
-    symbol in the code above denotes a comment. Comments are added into
-    code to help explain specific bits of logic.
 
     You should get the following output:
 
@@ -136,46 +98,12 @@ The following steps will help you to complete this exercise:
 
 
 
-Visualization for Exploratory Data Analysis
--------------------------------------------
+**Stacked bar charts**
 
-In this section, we will
-introduce some of the visualization techniques that will be used for
-EDA:
-
-- **Line graphs**:  Here is what a line graph looks like:
-
-    
-![](./images/B15019_03_04.jpg)
-
-
-Caption: Example of a line graph
-
-- **Histograms**: Here is what a histogram looks like:
-
-    
-![](./images/B15019_03_05.jpg)
-
-
-Caption: Example of a histogram
-
-- **Density plots**: Like histograms, density plots are also used for
-    visualizing the distribution of data. However, density plots give a
-    smoother representation of the distribution. We will be looking at
-    this later in this lab.
-
-    Here is what a density plot looks like:
-
-    
-![](./images/B15019_03_06.jpg)
-
-
-- **Stacked bar charts**: Let\'s create some dummy data and generate a stacked bar chart to
+    Let\'s create some dummy data and generate a stacked bar chart to
     check the proportion of jobs in different sectors.
 
-    Note
-
-    Do not execute any of the following code snippets until the final
+    **Note:** Do not execute any of the following code snippets until the final
     step. Enter all the code in the same cell.
 
     Import the library files required for the task:
@@ -450,10 +378,7 @@ historical data from the management of the bank and are asked to try to
 formulate a hypothesis between employment status and the propensity to
 buy term deposits.
 
-In *Exercise 3.02*, *Business Hypothesis Testing for Age versus
-Propensity for a Term Loan* we worked on a problem to find the
-relationship between age and the propensity to buy term deposits. In
-this activity, we will use a similar route and verify the relationship
+In this activity, we will use a verify the relationship
 between employment status and term deposit purchase propensity.
 
 The steps are as follows:
@@ -802,11 +727,6 @@ case of no loans:
     ```
 
 
-    The purpose of adding this small value is because, in the subsequent
-    steps, we will be multiplying three transformed variables together
-    to form a composite index. The small value is added to avoid the
-    variable values becoming 0 during the multiplying operation.
-
 10. Now, add two additional columns for introducing the transformed
     variables for loans and housing, as per the weighting approach
     discussed at the start of this exercise:
@@ -883,6 +803,7 @@ case of no loans:
     values by taking the quantiles and then mapping the quantiles to the
     propensity of term deposit purchases, as mentioned in *Exercise
     3.03*, *Feature Engineering -- Exploration of Individual Features*:
+
 
     ```
     # Finding the quantile
@@ -1106,13 +1027,8 @@ Histograms
 ----------
 
 Histograms are an effective way to plot the distribution of data and to
-identify skewness in data, if any. The histogram outputs of two columns
-of `bankData` are listed here. The histogram is plotted with
-the `pyplot` package from `matplotlib` using the
-`.hist()` function. The number of subplots we want to include
-is controlled by the `.subplots()` function. `(1,2)`
-in subplots would mean one row and two columns. The titles are set by
-the `set_title()` function:
+identify skewness in data, if any.
+
 
 ```
 # Histograms
@@ -1161,20 +1077,11 @@ Other Feature Engineering Methods
 ---------------------------------
 
 
-We will now look into two other similar data transformation techniques,
-namely, standard scaler and normalizer. Standard scaler standardizes
-data to a mean of 0 and standard deviation of 1. The mean is the average
-of the data and the standard deviation is a measure of the spread of
-data. By standardizing to the same mean and standard deviation,
-comparison across different distributions of data is enabled.
-
-The normalizer function normalizes the length of data. This means that
-each value in a row is divided by the normalization of the row vector to
-normalize the row. The normalizer function is applied on the rows while
-standard scaler is applied columnwise. The normalizer and standard
+The normalizer and standard
 scaler functions are important feature engineering steps that are
 applied to the data before downstream modeling steps. Let\'s look at
 both of these techniques:
+
 
 ```
 # Standardize data (0 mean, 1 stdev)
@@ -1403,12 +1310,6 @@ subsequent training phase:
 
     Caption: Generation of the confusion matrix
 
-    Note
-
-    The end results that you get will be different from what you see
-    here as it depends on the system you are using. This is because the
-    modeling part is stochastic in nature and there will always be
-    differences.
 
 11. Next, let\'s generate a `classification_report`:
 

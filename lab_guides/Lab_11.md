@@ -71,14 +71,7 @@ You should get the following output:
 ```
 5268
 ```
-Since the output of the `duplicated()` method is a
-`pandas` series of binary values for each row, you can also
-use it to subset the rows of a DataFrame. The `pandas` package
-provides different APIs for subsetting a DataFrame, as follows:
 
-- df\[\<rows\> or \<columns\>\]
-- df.loc\[\<rows\>, \<columns\>\]
-- df.iloc\[\<rows\>, \<columns\>\]
 
 The first API subsets the DataFrame by **row** or **column**. To filter
 specific columns, you can provide a list that contains their names. For
@@ -126,11 +119,10 @@ df.loc[df.duplicated(), ['InvoiceNo', 'StockCode', \
 
 You should get the following output:
 
-![Caption: Subsetting the duplicated rows and selected columns using
-.loc ](./images/B15019_11_04.jpg)
+![](./images/B15019_11_04.jpg)
 
-Caption: Subsetting the duplicated rows and selected columns using
-.loc
+Caption: Subsetting the duplicated rows and selected columns using .loc
+
 
 This preceding output shows that the first few duplicates are row
 numbers `517`, `527`, `537`, and so on. By
@@ -167,30 +159,9 @@ You should get the following output:
 
 Caption: Subsetting all the duplicated rows
 
-This time, rows `485` and `539` have been listed as
-duplicates. Now that you know how to identify duplicate observations,
-you can decide whether you wish to remove them from the dataset. As we
-mentioned previously, you must be careful when changing the data. You
-may want to confirm with the business that they are comfortable with you
-doing so. You will have to explain the reason why you want to remove
-these rows. In the Online Retail dataset, if you take rows
-`485` and `539` as an example, these two
-observations are identical. From a business perspective, this means that
-a specific customer (`CustomerID 17908`) has bought the same
-item (`StockCode 22111`) at the exact same date and time
-(`InvoiceDate 2010-12-01 11:45:00`) on the same invoice
-(`InvoiceNo 536409`). This is highly suspicious. When you\'re
-talking with the business, they may tell you that new software was
-released at that time and there was a bug that was splitting all the
-purchased items into single-line items.
 
-In this case, you know that you shouldn\'t remove these rows. On the
-other hand, they may tell you that duplication shouldn\'t happen and
-that it may be due to human error as the data was entered or during the
-data extraction step. Let\'s assume this is the case; now, it is safe
-for you to remove these rows.
 
-To do so, you can use the `drop_duplicates()` method from
+You can use the `drop_duplicates()` method from
 `pandas`. It has the same `keep` parameter as
 `duplicated()`, which specifies which duplicated record you
 want to keep or if you want to remove all of them. In this case, we want
@@ -207,10 +178,7 @@ You should get the following output:
 
 Caption: Dropping duplicate rows with keep=\'first\'
 
-The output of this method is a new DataFrame that contains unique
-records where only the first occurrence of duplicates has been kept. If
-you want to replace the existing DataFrame rather than getting a new
-DataFrame, you need to use the `inplace=True` parameter.
+
 
 The `drop_duplicates()` and `duplicated()` methods
 also have another very useful parameter: `subset`. This
@@ -231,13 +199,6 @@ You should get the following output:
 ```
 10677
 ```
-
-By looking only at these four columns instead of all of them, we can see
-that the number of duplicate rows has increased from `5268` to
-`10677`. This means that there are rows that have the exact
-same values as these four columns but have different values in other
-columns, which means they may be different records. In this case, it is
-better to use all the columns to identify duplicate records.
 
 
 
@@ -886,15 +847,6 @@ You should get the following output
 ![](./images/B15019_11_23.jpg)
 
 
-You just saw how easy it is to clean observations that have incorrect
-values using the `.str.contains` and
-`.str.replace()` methods that are provided by the
-`pandas` package. These methods can only be used for variables
-containing strings, but the same logic can be applied to numerical
-variables and can also be used to handle extreme values or outliers. You
-can use the ==, \>, \<, \>=, or \<= operator to subset the rows you want
-and then replace the observations with the correct values.
-
 
 
 Exercise 11.03: Fixing Incorrect Values in the State Column
@@ -960,13 +912,6 @@ values. Let\'s get started:
 
     Caption: List of unique values in the State column
 
-    All the states have been encoded into a two-capitalized character
-    format. As you can see, there are some incorrect values with
-    non-capitalized characters, such as `il` and
-    `iL` (they look like spelling errors for Illinois), and
-    unexpected values such as `8I`, `I`, and
-    `60`. In the next few steps, you are going to fix these
-    issues.
 
 7.  Print out the rows that have the `il` value in the
     `State` column using the `pandas`
@@ -989,11 +934,6 @@ values. Let\'s get started:
 
     Caption: Observations with a value of il
 
-    As you can see, all the cities with the `il` value are
-    from the state of Illinois. So, the correct `State` value
-    should be `IL`. You may be thinking that the following
-    values are also referring to Illinois: `Il`,
-    `iL`, and `Il`. We\'ll have a look at them next.
 
 8.  Now, create a `for` loop that will iterate through the
     following values in the `State` column: `Il`,
@@ -1017,12 +957,7 @@ values. Let\'s get started:
 
     Caption: Observations with the il value
 
-    Note
 
-    The preceding output has been truncated.
-
-    As you can see, all these cities belong to the state of Illinois.
-    Let\'s replace them with the correct values.
 
 9.  Create a condition mask (`il_mask`) to subset all the rows
     that contain the four incorrect values (`il`,
@@ -1215,11 +1150,6 @@ Handling Missing Values
 =======================
 
 
-So far, you have looked at a variety of issues when it comes to
-datasets. Now it is time to discuss another issue that occurs quite
-frequently: missing values. As you may have guessed, this type of issue
-means that certain values are missing for certain variables.
-
 The `pandas` package provides a method that we can use to
 identify missing values in a DataFrame: `.isna()`. Let\'s see
 it in action on the `Online Retail` dataset. First, you need
@@ -1279,13 +1209,7 @@ You should get the following output:
 
 Caption: Subsetting the rows with missing values for Description
 
-From the preceding output, you can see that all the rows with missing
-values have `0.0` as the unit price and are missing the
-`CustomerID` column. In a real project, you will have to
-discuss these cases with the business and check whether these
-transactions are genuine or not. If the business confirms that these
-observations are irrelevant, then you will need to remove them from the
-dataset.
+
 
 The `pandas` package provides a method that we can use to
 easily remove missing values: `.dropna()`. This method returns
@@ -1413,10 +1337,6 @@ started:
 
     Caption: The first five rows of the Horse Colic dataset
 
-    As you can see, the authors have used the `?` character
-    for missing values, but the `pandas` package thinks that
-    this is a normal value. You need to transform them into missing
-    values.
 
 6.  Reload the dataset into a `pandas` DataFrame using the
     `.read_csv()` method, but this time, add the

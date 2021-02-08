@@ -113,20 +113,7 @@ We got `28` records, which corresponds with the total number
 of public holidays in 2010 and 2011.
 
 In order to merge two DataFrames together, we need to have at least one
-common column between them, meaning the two DataFrames should have at
-least one column that contains the same type of information. In our
-example, we are going to merge this DataFrame using the `Date`
-column with the Online Retail DataFrame on the `InvoiceDate`
-column. We can see that the data format of these two columns is
-different: one is a date (`yyyy-mm-dd`) and the other is a
-datetime (`yyyy-mm-dd hh:mm:ss`).
-
-So, we need to transform the `InvoiceDate` column into date
-format (`yyyy-mm-dd`). One way to do it (we will see another
-one later in this lab) is to transform this column into text and
-then extract the first 10 characters for each cell using the
-`.str.slice()` method.
-
+common column between them.
 For example, the date 2010-12-01 08:26:00 will first be converted into a
 string and then we will keep only the first 10 characters, which will be
 2010-12-01. We are going to save these results into a new column called
@@ -144,44 +131,12 @@ The output is as follows:
 
 Caption: First five rows after creating InvoiceDay
 
-Now `InvoiceDay` from the online retail DataFrame and
-`Date` from the UK public holidays DataFrame have similar
-information, so we can merge these two DataFrames together using
-`.merge()` from `pandas`.
-
-There are multiple ways to join two tables together:
-
-- The left join
-- The right join
-- The inner join
-- The outer join
-
 
 
 ### The Left Join
 
-The left join will keep all the rows from the first DataFrame, which is
-the *Online Retail* dataset (the left-hand side) and join it to the
-matching rows from the second DataFrame, which is the *UK Public
-Holidays* dataset (the right-hand side), as shown in *Figure 12.04*:
 
-![](./images/B15019_12_04.jpg)
-
-Caption: Venn diagram for left join
-
-To perform a left join, we need to specify to the .merge() method the
-following parameters:
-
-- `how = 'left'` for a left join
-- `left_on = InvoiceDay` to specify the column used for
-    merging from the left-hand side (here, the `Invoiceday`
-    column from the Online Retail DataFrame)
-- `right_on = Date` to specify the column used for merging
-    from the right-hand side (here, the `Date` column from the
-    UK Public Holidays DataFrame)
-
-These parameters are clubbed together as shown in the following code
-snippet:
+Use the following code snippet:
 
 ```
 df_left = pd.merge(df, uk_holidays, left_on='InvoiceDay', \
@@ -190,6 +145,7 @@ df_left.shape
 ```
 
 You should get the following output:
+
 
 ```
 (541909, 17)
@@ -208,34 +164,12 @@ You should get the following output:
 
 Caption: First five rows of the left-merged DataFrame
 
-We can see that the eight columns from the public holidays DataFrame
-have been merged to the original one. If no row has been matched from
-the second DataFrame (in this case, the public holidays one),
-`pandas` will fill all the cells with missing values
-(`NaT` or `NaN`), as shown in *Figure 12.05*.
 
 
 
 ### The Right Join
 
-The right join is similar to the left join except it will keep all the
-rows from the second DataFrame (the right-hand side) and tries to match
-it with the first one (the left-hand side), as shown in *Figure 12.06*:
-
-![](./images/B15019_12_06.jpg)
-
-Caption: Venn diagram for right join
-
-We just need to specify the parameters:
-
-- `how` `= 'right`\' to the `.merge()`
-    method to perform this type of join.
-- We will use the exact same columns used for merging as the previous
-    example, which is `InvoiceDay` for the Online Retail
-    DataFrame and `Date` for the UK Public Holidays one.
-
-These parameters are clubbed together as shown in the following code
-snippet:
+Use the following code snippet:
 
 ```
 df_right = df.merge(uk_holidays, left_on='InvoiceDay', \
@@ -248,10 +182,7 @@ You should get the following output:
 ```
 (9602, 17)
 ```
-We can see there are fewer rows as a result of the right join, but it
-doesn\'t get the same number as for the Public Holidays DataFrame. This
-is because there are multiple rows from the Online Retail DataFrame that
-match one single date in the public holidays one.
+
 
 For instance, looking at the first rows of the merged DataFrame, we can
 see there were multiple purchases on January 4, 2011, so all of them
@@ -317,14 +248,7 @@ You should get the following output:
 ```
 (541932, 17)
 ```
-Before merging two tables, it is extremely important for you to know
-what your focus is. If your objective is to expand the number of
-features from an original dataset by adding the columns from another
-one, then you will probably use a left or right join. But be aware you
-may end up with more observations due to potentially multiple matches
-between the two tables. On the other hand, if you are interested in
-knowing which observations matched or didn\'t match between the two
-tables, you will either use an inner or outer join.
+
 
 
 
@@ -551,14 +475,6 @@ The following steps will help you complete the exercise:
     ```
 
 
-    We got exactly `2473` rows after merging, which is what we
-    expect as we used a left join and there was a one-to-one match on
-    the `Postcode` column from both original DataFrames. Also,
-    we now have `177` columns, which is the objective of this
-    exercise. But before concluding it, we want to see whether there are
-    any postcodes that didn\'t match between the two datasets. To do so,
-    we will be looking at one column from the right-hand side DataFrame
-    (the Postcode dataset) and see if there are any missing values.
 
 15. Print the total number of missing values from the
     `'State/Territory1'` column by combining the
@@ -1298,18 +1214,6 @@ Performing Data Aggregation
 ---------------------------
 
 
-In `pandas`, it is quite easy to perform data aggregation. We
-just need to combine the following methods successively:
-`.groupby()` and `.agg()`.
-
-We will need to specify the list of columns that will be grouped
-together to the `.groupby()` method. If you are familiar with
-pivot tables in Excel, this corresponds to the `Rows` field.
-
-The `.agg()` method expects a dictionary with the name of a
-column as a key and the aggregation function as a value such as
-`{'column_name': 'aggregation_function'}`. In an Excel pivot
-table, the aggregated column is referred to as `values`.
 
 Let\'s see how to do it on the Online Retail dataset. First, we need to
 import the data:
@@ -1353,10 +1257,7 @@ You should get the following output:
 
 Caption: Sum of Quantity per Country and StockCode
 
-We can see how many items have been sold for each country. We can note
-that Australia has sold the same quantity of products `20675`,
-`20676`, and `20677` (`216` each). This
-may indicate that these products are always sold together.
+
 
 We can add one more layer of information and get the number of items
 sold for each country, the product, and the date. To do so, we first
@@ -1381,13 +1282,6 @@ You should get the following output:
 
 Caption: Sum of Quantity per Country, StockCode, and Invoice\_Date
 
-We have generated a new DataFrame with the total quantity of items sold
-per country, item ID, and date. We can see the item with
-`StockCode 15036` was quite popular on `2011-05-17`
-in `Australia` -- there were `600` sold items. On
-the other hand, only `6` items of `Stockcode`
-`20665` were sold on `2011-03-24`
-in `Australia`.
 
 We can now merge this additional information back into the original
 DataFrame. But before that, there is an additional data transformation

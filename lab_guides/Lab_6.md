@@ -29,22 +29,7 @@ data is required so that you can evaluate the model later. This exercise
 will get you familiar with the process of splitting data; this is
 something you will be doing frequently.
 
-Note
-
-The Car dataset that you will be using in this lab was taken from the UCI Machine Learning Repository.
-
-This dataset is about cars. A text file is provided with the following
-information:
-
-- `buying` -- the cost of purchasing this vehicle
-- `maint` -- the maintenance cost of the vehicle
-- `doors` -- the number of doors the vehicle has
-- `persons` -- the number of persons the vehicle is capable
-    of transporting
-- `lug_boot` -- the cargo capacity of the vehicle
-- `safety` -- the safety rating of the vehicle
-- `car` -- this is the category that the model attempts to
-    predict
+**Note:** The Car dataset that you will be using in this lab was taken from the UCI Machine Learning Repository.
 
 The following steps will help you complete the exercise:
 
@@ -98,13 +83,6 @@ The following steps will help you complete the exercise:
     ```
 
 
-    The second parameter (`names=_headers`) asks the function
-    to add the row headers to the data after reading it in. The third
-    parameter (`index_col=None`) asks the function to generate
-    a new index for the table because the data doesn\'t contain an
-    index. The function will produce a DataFrame, which we assign to a
-    variable called `df`.
-
 5.  Print out the top five records:
 
     ```
@@ -157,13 +135,12 @@ In this section, we will look at different data structures, as follows.
 
 ### Scalars
 
-A scalar variable is a simple number, such as 23. Whenever you make use
-of numbers on their own, they are scalars. You assign them to variables,
-such as in the following expression:
+You assign them to variables, such as in the following expression:
 
 ```
 temperature = 23
 ```
+
 If you had to store the temperature for 5 days, you would need to store
 the values in 5 different values, such as in the following code snippet:
 
@@ -179,12 +156,7 @@ temp_5 = 22
 
 ### Vectors
 
-A vector is a collection of scalars. Consider the five temperatures in
-the previous code snippet. A vector is a data type that lets you collect
-all of the previous temperatures in one variable that supports
-arithmetic operations. Vectors look similar to Python lists and can be
-created from Python lists. Consider the following code snippet for
-creating a Python list:
+Consider the following code snippet for creating a Python list:
 
 ```
 temps_list = [23, 24, 23, 22, 22]
@@ -239,8 +211,7 @@ The code snippet yields the following output:
 
 Caption: List of elements in temps\_list
 
-Note that the output contains single square brackets, `[` and
-`]`, and the numbers are separated by commas.
+
 
 Vectors have a shape and a dimension. Both of these can be determined by
 using the following code snippet:
@@ -271,11 +242,8 @@ snippet:
 temps_matrix = temps_ndarray.reshape(-1, 1)
 ```
 
-The code snippet makes use of the `.reshape()` method. The
-first parameter, `-1`, instructs the interpreter to keep the
-first dimension constant. The second parameter, `1`, instructs
-the interpreter to add a new dimension. This new dimension is the
-column. To see the new shape, use the following snippet:
+To see the new shape, use the following snippet:
+
 
 ```
 print(temps_matrix.shape)
@@ -287,10 +255,9 @@ You will get the following output:
 
 Caption: Shape of the matrix
 
-Notice that the tuple now has two numbers, `5` and
-`1`. The first number, `5`, represents the rows, and
-the second number, `1`, represents the columns. You can print
-out the value of the matrix using the following snippet:
+
+
+You can print out the value of the matrix using the following snippet:
 
 ```
 print(temps_matrix)
@@ -302,10 +269,7 @@ The output of the code is as follows:
 
 Caption: Elements of the matrix
 
-Notice that the output is different from that of the vector. First, we
-have an outer set of square brackets. Then, each row has its element
-enclosed in square brackets. Each row contains only one number because
-the matrix has only one column.
+
 
 You may reshape the matrix to contain `1` row and
 `5` columns and print out the value using the following code
@@ -321,9 +285,7 @@ The output will be as follows:
 
 Caption: Reshaping the matrix
 
-Notice that you now have all the numbers on one row because this matrix
-has one row and five columns. The outer square brackets represent the
-matrix, while the inner square brackets represent the row.
+
 
 Finally, you can convert the matrix back into a vector by dropping the
 column using the following snippet:
@@ -453,10 +415,6 @@ The following steps will help you to complete the exercise:
     ```
 
 
-    In this step, you train the model using the `fit()` method
-    and the training dataset that you made in *Step 4*. The first
-    parameter is the `features` NumPy array, and the second
-    parameter is `labels`.
 
     You should get an output similar to the following:
 
@@ -498,10 +456,6 @@ The following steps will help you to complete the exercise:
 
     Caption: R2 score
 
-    Note
-
-    The MAE and R[2] score may vary depending on the
-    distribution of the datasets.
 
 9.  You see that the R[2] score we achieved is
     `0.56238`, which is not close to 1. In the next step, we
@@ -863,14 +817,6 @@ The following steps will help you achieve the task:
     from sklearn.linear_model import LogisticRegression
     ```
 
-
-    In this step, you import `pandas` and alias it as
-    `pd`. `pandas` is needed for reading data into a
-    DataFrame. You also import `train_test_split`, which is
-    needed for splitting your data into training and evaluation
-    datasets. Finally, you also import the
-    `LogisticRegression` class.
-
 3.  Import your data:
 
     ```
@@ -885,14 +831,6 @@ The following steps will help you achieve the task:
     df.head()
     ```
 
-
-    In this step, you create a Python list called `_headers`
-    to hold the names of the columns in the file you will be importing
-    because the file doesn\'t have a header. You  then proceed to read
-    the file into a DataFrame named `df` by using
-    `pd.read_csv` and specifying the file location as well as
-    the list containing the file headers. Finally, you display the first
-    five rows using `df.head()`.
 
     You should get an output similar to the following:
 
@@ -912,17 +850,6 @@ The following steps will help you achieve the task:
     _df.head()
     ```
 
-
-    In this step, you convert categorical columns into numeric columns
-    using a technique called one-hot encoding. You saw an example of
-    this in *Step 13* of *Exercise 3.04*, *Feature Engineering --
-    Creating New Features from Existing Ones*. You need to do this
-    because the inputs to your model must be numeric. You get numeric
-    variables from categorical variables using `get_dummies`
-    from the `pandas` library. You provide your DataFrame as
-    input and specify the columns to be encoded. You assign the result
-    to a new DataFrame called `_df`, and then inspect the
-    result using `head()`.
 
     The output should now resemble the following screenshot:
 
@@ -949,15 +876,6 @@ The following steps will help you achieve the task:
     ```
 
 
-    In this step, you begin by extracting your feature columns and your
-    labels into two NumPy arrays called `features` and
-    `labels`. You then proceed to extract 70% into
-    `X_train` and `y_train`, with the remaining 30%
-    going into `X_eval` and `y_eval`. You then
-    further split `X_eval` and `y_eval` into two
-    equal parts and assign those to `X_val` and
-    `y_val` for validation, and `X_test` and
-    `y_test` for testing much later.
 
 6.  Train a logistic regression model:
 
@@ -1002,20 +920,6 @@ The following steps will help you achieve the task:
 Caption: Prediction for the validation set
 
 
-
-The Confusion Matrix
-====================
-
-
-You encountered the confusion matrix in *Lab 3, Binary
-Classification*. You may recall that the confusion matrix compares the
-number of classes that the model predicted against the actual
-occurrences of those classes in the validation dataset. The output is a
-square matrix that has the number of rows and columns equal to the
-number of classes you are predicting. The columns represent the actual
-values, while the rows represent the predictions. You get a confusion
-matrix by using `confusion_matrix` from
-`sklearn.metrics`.
 
 
 
@@ -1075,14 +979,6 @@ In this exercise, you will be computing the precision for the
 classification model you trained in *Exercise 6.05*, *Creating a
 Classification Model for Computing Evaluation Metrics*.
 
-Note
-
-You should continue this exercise in the same notebook as that used in
-*Exercise 6.05, Creating a Classification Model for Computing Evaluation
-Metrics.* If you wish to use a new notebook, make sure you copy and run
-the entire code from *Exercise 6.05*, *Creating a Classification Model
-for Computing Evaluation Metrics*, and then begin with the execution of
-the code of this exercise.
 
 The following steps will help you achieve the task:
 
@@ -1122,14 +1018,7 @@ The goal of this exercise is to compute the recall for the
 classification model you trained in *Exercise 6.05*, *Creating a
 Classification Model for Computing Evaluation Metrics*.
 
-Note
 
-You should continue this exercise in the same notebook as that used in
-*Exercise 6.05, Creating a Classification Model for Computing Evaluation
-Metrics.* If you wish to use a new notebook, make sure you copy and run
-the entire code from *Exercise 6.05*, *Creating a Classification Model
-for Computing Evaluation Metrics*, and then begin with the execution of
-the code of this exercise.
 
 The following steps will help you accomplish the task:
 
@@ -1152,17 +1041,6 @@ The following steps will help you accomplish the task:
     recall_score(y_val, y_pred, average='macro')
     ```
 
-
-    In this step, you compute the recall by using
-    `recall_score`. You need to specify `y_val` and
-    `y_pred` as parameters to the function. The documentation
-    for `recall_score` explains the values that you can supply
-    to `average`. If your model does binary prediction and the
-    labels are `0` and `1`, you can set
-    `average` to `binary`. Other options are
-    `micro`, `macro`, `weighted`, and
-    `samples`. You should read the documentation to see what
-    they do.
 
     You should get an output that looks like the following:
 
@@ -1228,14 +1106,6 @@ The goal of this exercise is to compute the accuracy score of the model
 trained in *Exercise 6.04*, *Computing the Mean Absolute Error of a
 Second Model*.
 
-Note
-
-You should continue this exercise in the same notebook as that used in
-*Exercise 6.05, Creating a Classification Model for Computing Evaluation
-Metrics.* If you wish to use a new notebook, make sure you copy and run
-the entire code from *Exercise 6.05*, *Creating a Classification Model
-for Computing Evaluation Metrics*, and then begin with the execution of
-the code of this exercise.
 
 The following steps will help you accomplish the task:
 
