@@ -435,14 +435,10 @@ X_hd = pd.DataFrame(pd.np.tile(adData, (1, 500)))
 ```
 
 
-From the output, you can see that the session crashes because all the
+From the output, you can see that the session might crash because all the
 RAM provided by Jupyter has been used. The session might restart, and you
 will lose all your variables. Hence, it is always good to be mindful of
-the resources you are provided with, along with the dataset. As a data
-scientist, if you feel that a dataset is huge with many features but the
-resources to process that dataset are limited, you need to get in touch
-with the organization and get the required resources or build an
-appropriate strategy to address these high-dimensional datasets.
+the resources you are provided with, along with the dataset.
 
 
 Strategies for Addressing High-Dimensional Datasets

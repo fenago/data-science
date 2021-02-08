@@ -196,10 +196,8 @@ This generates the following output:
 
 Caption: The temps\_ndarray vector
 
-Note that the output contains single square brackets, `[` and
-`]`, and the numbers are separated by spaces. This is
-different from the output from a Python list, which you can obtain using
-the following code snippet:
+
+
 
 ```
 print(temps_list)
@@ -232,9 +230,7 @@ Caption: Shape of the temps\_ndarray vector
 ### Matrices
 
 
-There are times when you need to convert between vectors and matrices.
-Let\'s revisit `temps_ndarray`. You may recall that it has
-five elements because the shape was `(5,)`. To convert it into
+To convert `temps_ndarray` into
 a matrix with five rows and one column, you would use the following
 snippet:
 
