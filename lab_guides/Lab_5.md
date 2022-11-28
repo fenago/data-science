@@ -1578,14 +1578,10 @@ X_scaled[:,1].min(), X_scaled[:,1].max()
 
 You should get the following output:
 
-![Caption: Minimum and maximum values of the z-score-standardized
-data ](./images/B15019_05_49.jpg)
+![](./images/B15019_05_49.jpg)
 
 Caption: Minimum and maximum values of the z-score-standardized data
 
-The value ranges for both axes are much lower now and we can see that
-their maximum values are around 9 and 18, which indicates that there are
-some extreme outliers in the data.
 
 Now, to fit a k-means model and plot a scatter plot on the
 z-score-standardized data with the following code snippet:

@@ -1,6 +1,6 @@
 <img align="right" src="./logo.png">
 
-<h2><span style="color:red;"></span>Data Science</h2>
+<h2><span style="color:red;">Machine Learning Essentials with Python</span></h2>
 
 ### Description
 
